@@ -4,9 +4,9 @@
 \name{ts-package}
 \alias{ts}
 \alias{ts-package}
-\title{ts: What the Package Does (One Line, Title Case)}
+\title{ts: Tree-sitter Parsing Tools}
 \description{
-What the package does (one paragraph).
+Common tree-sitter parsing tools for R. It is meant to be used by other packages that specialize in particular languages.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Gábor Csárdi \email{csardi.gabor@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Posit Software, PBC (\href{https://ror.org/03wc8by49}{ROR}) [copyright holder, funder]
+}
 
 }
 \keyword{internal}
