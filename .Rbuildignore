@@ -2,3 +2,4 @@
 ^[.]dev$
 ^[.]?air[.]toml$
 ^\.vscode$
+^\.covrignore$
