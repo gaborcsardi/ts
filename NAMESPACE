@@ -2,8 +2,8 @@
 
 S3method(format,ts_parse_error)
 S3method(print,ts_parse_error)
-export(query)
-export(sexpr)
-export(syntax_tree)
-export(tokens)
+export(ts_query)
+export(ts_sexpr)
+export(ts_syntax_tree)
+export(ts_tokens)
 useDynLib(ts, .registration = TRUE, .fixes = "c_")

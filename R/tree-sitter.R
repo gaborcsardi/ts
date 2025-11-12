@@ -1,12 +1,12 @@
 #' Show the syntax tree structure of a file or string
 #'
-#' @inheritParams tokens
+#' @inheritParams ts_tokens
 #'
 #' @export
 #' @examples
 #' # TODO
 
-sexpr <- function(
+ts_sexpr <- function(
   language,
   file = NULL,
   text = NULL,
@@ -58,7 +58,7 @@ sexpr <- function(
 #' @examples
 #' # TODO
 
-tokens <- function(
+ts_tokens <- function(
   language,
   file = NULL,
   text = NULL,
@@ -86,12 +86,12 @@ tokens <- function(
 }
 
 #' Show the annotated syntax tree of a file or string
-#' @inheritParams tokens
+#' @inheritParams ts_tokens
 #' @export
 #' @examples
 #' # TODO
 
-syntax_tree <- function(
+ts_syntax_tree <- function(
   language,
   file = NULL,
   text = NULL,
@@ -99,7 +99,7 @@ syntax_tree <- function(
   fail_on_parse_error = TRUE
 ) {
 
-  tkns <- tokens(
+  tkns <- ts_tokens(
     language,
     file,
     ranges = ranges,
@@ -166,7 +166,7 @@ syntax_tree <- function(
 #' queries.
 #'
 #' @param query Character string, the tree-sitter query to run.
-#' @inheritParams tokens
+#' @inheritParams ts_tokens
 #' @return A list with entries `patterns` and `matched_captures`.
 #'   `patterns` contains information about all patterns in the queries and
 #'   it is a data frame with columns: `id`, `name`, `pattern`, `match_count`.
@@ -177,7 +177,7 @@ syntax_tree <- function(
 #'
 #' @export
 
-query <- function(
+ts_query <- function(
   language,
   file = NULL,
   text = NULL,
