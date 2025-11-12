@@ -98,7 +98,6 @@ ts_syntax_tree <- function(
   ranges = NULL,
   fail_on_parse_error = TRUE
 ) {
-
   tkns <- ts_tokens(
     language,
     file,

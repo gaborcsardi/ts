@@ -104,7 +104,7 @@ format_ts_parse_error_ <- function(x, n = 2, ...) {
   } else {
     "ts"
   }
-  
+
   unlist(mapply(
     format_ts_parse_error_1,
     lang,
