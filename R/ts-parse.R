@@ -77,7 +77,12 @@ ts_parse <- function(
 
   attr(tokens, "text") <- text
   attr(tokens, "file") <- if (!is.null(file)) normalizePath(file)
-  class(tokens) <- c("ts_tokens", class(tokens))
+  cls <- sub("^ts_language_", "ts_tokens_", class(language)[1])
+  class(tokens) <- c(cls, "ts_tokens", class(tokens))
+
+  if (fail_on_parse_error && (tokens$has_error[1] || any(tokens$is_missing))) {
+    stop(tsjson_parse_error_cnd(table = tokens, text = text))
+  }
 
   tokens
 }
