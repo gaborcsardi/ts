@@ -63,34 +63,29 @@ static TSRange *get_ranges(SEXP rranges, uint32_t *count) {
   return ranges;
 }
 
-SEXP s_expr(SEXP input, SEXP rlanguage, SEXP rranges) {
-  if (TYPEOF(rlanguage) != EXTPTRSXP) {
-    Rf_error("ts `language` must be an external pointer");
-  }
-  const TSLanguage *language = (const TSLanguage*)
-    R_ExternalPtrAddr(rlanguage);
-  if (!language) {
-    Rf_error("ts `language` cannot be a NULL pointer");
-  }
-  TSParser *parser = NULL;
-  parser = ts_parser_new();
-  if (!ts_parser_set_language(parser, language)) {
-    Rf_error("Failed to set R language, internal error."); // # nocov
-  }
-  r_call_on_exit((cleanup_fn_t) ts_parser_delete, parser);
+struct ts_xtree {
+  const TSLanguage *language;
+  TSParser *parser;
+  TSTree *tree;
+};
 
-  uint32_t count;
-  TSRange *ranges = get_ranges(rranges, &count);
-  if (ranges) {
-    if (!ts_parser_set_included_ranges(parser, ranges, count)) {
-      Rf_error("Invalid ranges for tree-sitter parser");
-    }
+void ts_xtree_free(SEXP rxtree) {
+  struct ts_xtree *tree = (struct ts_xtree*) R_ExternalPtrAddr(rxtree);
+  if (tree->tree) {
+    ts_tree_delete(tree->tree);
   }
+  if (tree->parser) {
+    ts_parser_delete(tree->parser);
+  }
+  if (tree->language) {
+    // languages are static, do not delete here
+  }
+}
 
-  const char *c_input = (const char*) RAW(input);
-  uint32_t length = Rf_length(input);
-  TSTree *tree = ts_parser_parse_string(parser, NULL, c_input, length);
-  r_call_on_exit((cleanup_fn_t) ts_tree_delete, tree);
+SEXP s_expr(SEXP tokens) {
+  SEXP rtree = Rf_getAttrib(tokens, Rf_install("tree"));
+  struct ts_xtree *xtree = (struct ts_xtree*) R_ExternalPtrAddr(rtree);
+  TSTree *tree = xtree->tree;
   TSNode root = ts_tree_root_node(tree);
   char *code = ts_node_string(root);
 
@@ -99,7 +94,7 @@ SEXP s_expr(SEXP input, SEXP rlanguage, SEXP rranges) {
   return result;
 }
 
-SEXP tokens(SEXP input, SEXP rlanguage, SEXP rranges) {
+SEXP parse(SEXP input, SEXP rlanguage, SEXP rranges) {
   if (TYPEOF(rlanguage) != EXTPTRSXP) {
     Rf_error("ts `language` must be an external pointer");
   }
@@ -114,7 +109,7 @@ SEXP tokens(SEXP input, SEXP rlanguage, SEXP rranges) {
   if (!ts_parser_set_language(parser, language)) {
     Rf_error("Failed to set R language, internal error."); // # nocov
   }
-  r_call_on_exit((cleanup_fn_t) ts_parser_delete, parser);
+  r_call_on_early_exit((cleanup_fn_t) ts_parser_delete, parser);
 
   uint32_t count;
   TSRange *ranges = get_ranges(rranges, &count);
@@ -127,7 +122,7 @@ SEXP tokens(SEXP input, SEXP rlanguage, SEXP rranges) {
   const char *c_input = (const char*) RAW(input);
   uint32_t length = Rf_length(input);
   TSTree *tree = ts_parser_parse_string(parser, NULL, c_input, length);
-  r_call_on_exit((cleanup_fn_t) ts_tree_delete, tree);
+  r_call_on_early_exit((cleanup_fn_t) ts_tree_delete, tree);
   TSNode root = ts_tree_root_node(tree);
   uint32_t num_nodes = ts_node_descendant_count(root);
   const char *nms[] = {
@@ -255,7 +250,18 @@ SEXP tokens(SEXP input, SEXP rlanguage, SEXP rranges) {
   SET_STRING_ELT(cls, 1, Rf_mkChar("data.frame"));
   Rf_setAttrib(res, R_ClassSymbol, cls);
 
-  UNPROTECT(2);
+  struct ts_xtree *rxtree = malloc(sizeof(struct ts_xtree));
+  *rxtree = (struct ts_xtree){ language, parser, tree };
+  SEXP rtree = Rf_protect(R_MakeExternalPtr(
+    (void*) rxtree,
+    R_NilValue,
+    R_NilValue
+  ));
+  R_RegisterCFinalizerEx(rtree, (R_CFinalizer_t) ts_xtree_free, TRUE);
+  SEXP sym_tree = Rf_protect(Rf_install("tree"));
+  Rf_setAttrib(res, sym_tree, rtree);
+
+  UNPROTECT(4);
   return res;
 }
 
@@ -542,33 +548,17 @@ bool check_predicates(const struct query_match_t *qm) {
   return true;
 }
 
-SEXP code_query_c(const char *c_input, uint32_t length, SEXP pattern,
-                  SEXP rlanguage, SEXP rranges) {
-  if (TYPEOF(rlanguage) != EXTPTRSXP) {
-    Rf_error("ts `language` must be an external pointer");
-  }
-  const TSLanguage *language = (const TSLanguage*)
-    R_ExternalPtrAddr(rlanguage);
-  if (!language) {
-    Rf_error("ts `language` cannot be a NULL pointer");
-  }
+SEXP code_query(SEXP tokens, SEXP rquery) {
+  SEXP rtree = Rf_getAttrib(tokens, Rf_install("tree"));
+  struct ts_xtree *xtree = (struct ts_xtree*) R_ExternalPtrAddr(rtree);
+  const TSLanguage *language = xtree->language;
+  TSTree *tree = xtree->tree;
 
-  TSParser *parser = NULL;
-  parser = ts_parser_new();
-  if (!ts_parser_set_language(parser, language)) {
-    Rf_error("Failed to set R language, internal error.");
-  }
-  r_call_on_exit((cleanup_fn_t) ts_parser_delete, parser);
+  SEXP rinput = Rf_getAttrib(tokens, Rf_install("text"));
+  const char *c_input = (const char*) RAW(rinput);
+  uint32_t length = Rf_length(rinput);
 
-  uint32_t count;
-  TSRange *ranges = get_ranges(rranges, &count);
-  if (ranges) {
-    if (!ts_parser_set_included_ranges(parser, ranges, count)) {
-      Rf_error("Invalid ranges for tree-sitter parser");
-    }
-  }
-
-  const char *cpattern = CHAR(STRING_ELT(pattern, 0));
+  const char *cpattern = CHAR(STRING_ELT(rquery, 0));
   uint32_t error_offset;
   TSQueryError error_type;
   TSQuery *query = ts_query_new(
@@ -608,8 +598,6 @@ SEXP code_query_c(const char *c_input, uint32_t length, SEXP pattern,
   r_call_on_exit(r_free, capture_map_pattern);
   memset(capture_map_pattern, 0, sizeof(uint32_t) * capture_count);
 
-  TSTree *tree = ts_parser_parse_string(parser, NULL, c_input, length);
-  r_call_on_exit((cleanup_fn_t) ts_tree_delete, tree);
   TSNode root = ts_tree_root_node(tree);
 
   uint32_t pattern_count = ts_query_pattern_count(query);
@@ -741,37 +729,4 @@ SEXP code_query_c(const char *c_input, uint32_t length, SEXP pattern,
   SET_VECTOR_ELT(result, 2, result_matched_captures);
   UNPROTECT(4);
   return result;
-}
-
-SEXP code_query(SEXP input, SEXP pattern, SEXP rlanguage, SEXP rranges) {
-  const char *c_input = (const char*) RAW(input);
-  uint32_t length = Rf_length(input);
-  return code_query_c(c_input, length, pattern, rlanguage, rranges);
-}
-
-SEXP code_query_path(SEXP path, SEXP pattern, SEXP rlanguage, SEXP rranges) {
-  const char *cpath = CHAR(STRING_ELT(path, 0));
-  FILE *fp = fopen(cpath, "rb");
-  if (fp == NULL) {
-    Rf_error("Cannot open path %s", cpath);
-  }
-
-  fseek(fp, 0, SEEK_END);       // seek to end of file
-  size_t file_size = ftell(fp); // get current file pointer
-  rewind(fp);
-
-  char *buf = malloc(file_size);
-  if (!buf) {
-    fclose(fp);
-    Rf_error("Cannot allocate memory for file %s", cpath);
-  }
-  r_call_on_exit(r_free, buf);
-
-  if ((fread(buf, 1, file_size, fp)) != file_size) {
-    fclose(fp);
-    Rf_error("Error reading file: %s", cpath);
-  }
-  fclose(fp);
-
-  return code_query_c(buf, file_size, pattern, rlanguage, rranges);
 }
