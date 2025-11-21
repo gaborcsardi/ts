@@ -82,8 +82,8 @@ void ts_xtree_free(SEXP rxtree) {
   }
 }
 
-SEXP s_expr(SEXP tokens) {
-  SEXP rtree = Rf_getAttrib(tokens, Rf_install("tree"));
+SEXP s_expr(SEXP rotree) {
+  SEXP rtree = Rf_getAttrib(rotree, Rf_install("tree"));
   struct ts_xtree *xtree = (struct ts_xtree*) R_ExternalPtrAddr(rtree);
   TSTree *tree = xtree->tree;
   TSNode root = ts_tree_root_node(tree);
@@ -548,13 +548,13 @@ bool check_predicates(const struct query_match_t *qm) {
   return true;
 }
 
-SEXP code_query(SEXP tokens, SEXP rquery) {
-  SEXP rtree = Rf_getAttrib(tokens, Rf_install("tree"));
+SEXP code_query(SEXP rotree, SEXP rquery) {
+  SEXP rtree = Rf_getAttrib(rotree, Rf_install("tree"));
   struct ts_xtree *xtree = (struct ts_xtree*) R_ExternalPtrAddr(rtree);
   const TSLanguage *language = xtree->language;
   TSTree *tree = xtree->tree;
 
-  SEXP rinput = Rf_getAttrib(tokens, Rf_install("text"));
+  SEXP rinput = Rf_getAttrib(rotree, Rf_install("text"));
   const char *c_input = (const char*) RAW(rinput);
   uint32_t length = Rf_length(rinput);
 

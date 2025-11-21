@@ -1,4 +1,4 @@
-#' Get the token table of a file or string
+#' Read (parse) a file or a string
 #'
 #' @param language Language of the file or string, a `ts_language` object.
 #' @param file Path of a file. Use either `file` or `text`.
@@ -29,7 +29,7 @@
 #' @examples
 #' # TODO
 
-ts_parse <- function(
+ts_tree_read <- function(
   language,
   file = NULL,
   text = NULL,
@@ -38,7 +38,7 @@ ts_parse <- function(
 ) {
   if (is.null(text) + is.null(file) != 1) {
     stop(cnd(
-      "Invalid arguments in `ts_parse()`: exactly one of `file` \\
+      "Invalid arguments in `ts_tree_read()`: exactly one of `file` \\
        and `text` must be given."
     ))
   }
@@ -49,40 +49,40 @@ ts_parse <- function(
     text <- charToRaw(paste(text, collapse = "\n"))
   }
 
-  tokens <- call_with_cleanup(c_parse, text, language, ranges)
+  tree <- call_with_cleanup(c_parse, text, language, ranges)
 
-  lvls <- seq_len(nrow(tokens))
-  tokens$children <- I(unname(split(
+  lvls <- seq_len(nrow(tree))
+  tree$children <- I(unname(split(
     lvls,
-    factor(tokens$parent, levels = lvls)
+    factor(tree$parent, levels = lvls)
   )))
 
   # trailing whitespace for each token
   # first we add the leading whitespace to the document token
   # this way printing $code and $tws will print the whole document
-  tokens$tws <- rep("", nrow(tokens))
-  if ((lead <- tokens$start_byte[1]) > 0) {
-    tokens$tws[1] <- rawToChar(text[1:lead])
+  tree$tws <- rep("", nrow(tree))
+  if ((lead <- tree$start_byte[1]) > 0) {
+    tree$tws[1] <- rawToChar(text[1:lead])
   }
 
   # then the whitespace of the terminal nodes
-  term <- which(!is.na(tokens$code))
-  from <- tokens$end_byte[term] + 1L
-  to <- c(tokens$start_byte[term][-1], tokens$end_byte[1])
+  term <- which(!is.na(tree$code))
+  from <- tree$end_byte[term] + 1L
+  to <- c(tree$start_byte[term][-1], tree$end_byte[1])
   for (i in seq_along(term)) {
     if (from[i] <= to[i]) {
-      tokens$tws[term[i]] <- rawToChar(text[from[i]:to[i]])
+      tree$tws[term[i]] <- rawToChar(text[from[i]:to[i]])
     }
   }
 
-  attr(tokens, "text") <- text
-  attr(tokens, "file") <- if (!is.null(file)) normalizePath(file)
-  cls <- sub("^ts_language_", "ts_tokens_", class(language)[1])
-  class(tokens) <- c(cls, "ts_tokens", class(tokens))
+  attr(tree, "text") <- text
+  attr(tree, "file") <- if (!is.null(file)) normalizePath(file)
+  cls <- sub("^ts_language_", "ts_tree_", class(language)[1])
+  class(tree) <- c(cls, "ts_tree", class(tree))
 
-  if (fail_on_parse_error && (tokens$has_error[1] || any(tokens$is_missing))) {
-    stop(tsjson_parse_error_cnd(table = tokens, text = text))
+  if (fail_on_parse_error && (tree$has_error[1] || any(tree$is_missing))) {
+    stop(ts_parse_error_cnd(table = tree, text = text))
   }
 
-  tokens
+  tree
 }

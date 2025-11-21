@@ -3,3 +3,4 @@
 ^[.]?air[.]toml$
 ^\.vscode$
 ^\.covrignore$
+^src/.*[.]o$

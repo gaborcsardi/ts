@@ -3,7 +3,7 @@
 #' See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 #' queries.
 #'
-#' @param tokens A `ts_tokens` object as returned by [ts_parse()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
 #' @param query Character string, the tree-sitter query to run.
 #' @return A list with entries `patterns` and `matched_captures`.
 #'   `patterns` contains information about all patterns in the queries and
@@ -15,13 +15,19 @@
 #'
 #' @export
 
-ts_query <- function(tokens, query) {
+ts_tree_query <- function(tree, query) {
+  UseMethod("ts_tree_query")
+}
+
+#' @export
+
+ts_tree_query.default <- function(tree, query) {
   qlen <- nchar(query, type = "bytes") + 1L # + \n
   qbeg <- c(1L, cumsum(qlen))
   qnms <- names(query) %||% rep(NA_character_, length(query))
   query1 <- paste0(query, "\n", collapse = "")
 
-  res <- call_with_cleanup(c_code_query, tokens, query1)
+  res <- call_with_cleanup(c_code_query, tree, query1)
 
   qorig <- as.integer(cut(res[[1]][[3]], breaks = qbeg, include.lowest = TRUE))
   list(

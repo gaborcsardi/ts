@@ -4,8 +4,8 @@
 
 #include "cleancall.h"
 
-SEXP code_query(SEXP tokens, SEXP query);
-SEXP s_expr(SEXP tokens);
+SEXP code_query(SEXP tree, SEXP query);
+SEXP s_expr(SEXP tree);
 SEXP parse(SEXP input, SEXP rlanguage, SEXP rranges);
 
 SEXP glue(SEXP x, SEXP f, SEXP open_arg, SEXP close_arg, SEXP cli_arg);

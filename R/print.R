@@ -1,10 +1,10 @@
-#' Print tree-sitter tokens
+#' Print a tree-sitter tree
 #'
-#' Calls [format.ts_tokens()] to format the ts_tokens object, writes the
+#' Calls [format.ts_tree()] to format the ts_tree object, writes the
 #' formatted object to the standard output, and returns the original object
 #' invisibly.
 #'
-#' @param x ts_tokens object.
+#' @param x ts_tree object.
 #' @param n Number of lines, or number of selections to print.
 #' @param ... Ignored.
 #' @return `x`, invisibly.
@@ -13,19 +13,19 @@
 #' @examples
 #' # TODO
 
-print.ts_tokens <- function(x, n = 10, ...) {
+print.ts_tree <- function(x, n = 10, ...) {
   writeLines(format(x, n = n, ...))
   invisible(x)
 }
 
-#' Format tree-sitter tokens
+#' Format tree-sitter trees
 #'
-#' Format a ts_tokens object for printing.
+#' Format a ts_tree object for printing.
 #'
-#' This is the engine of [print.ts_tokens()], possibly useful to obtain a
+#' This is the engine of [print.ts_tree()], possibly useful to obtain a
 #' printed representation without doing the actual printing.
 #'
-#' @param x ts_tokens object.
+#' @param x ts_tree  object.
 #' @param n Number of lines, or number of selections to print.
 #' @param ... Ignored.
 #' @return Character vector.
@@ -34,20 +34,20 @@ print.ts_tokens <- function(x, n = 10, ...) {
 #' @examples
 #' # TODO
 
-format.ts_tokens <- function(x, n = 10, ...) {
+format.ts_tree <- function(x, n = 10, ...) {
   sel <- get_selected_nodes(x, default = FALSE)
   if (length(sel) > 0) {
-    format_ts_selection(x, n = n, ...)
+    format_ts_tree_selection(x, n = n, ...)
   } else {
-    format_ts_noselection(x, n = n, ...)
+    format_ts_tree_noselection(x, n = n, ...)
   }
 }
 
-format_ts_noselection <- function(x, n = 10, ...) {
+format_ts_tree_noselection <- function(x, n = 10, ...) {
   lns <- strsplit(rawToChar(attr(x, "text")), "\r?\n")[[1]]
   nc <- length(lns)
   sc <- min(nc, n)
-  lns <- head(lns, sc)
+  lns <- utils::head(lns, sc)
   num <- cli::col_grey(format(seq_len(sc)))
 
   sel <- get_selection(x, default = FALSE)
@@ -55,7 +55,7 @@ format_ts_noselection <- function(x, n = 10, ...) {
   grey <- cli::col_grey
 
   sfn <- if (!is.null(attr(x, "file"))) paste0(basename(attr(x, "file")), ", ")
-  lang <- sub("^ts_tokens_", "", grep("^ts_tokens_", class(x), value = TRUE))
+  lang <- sub("^ts_tree_", "", grep("^ts_tree_", class(x), value = TRUE))
 
   c(
     if (is.null(sel)) {
@@ -73,14 +73,14 @@ format_ts_noselection <- function(x, n = 10, ...) {
   )
 }
 
-format_ts_selection <- function(x, n = n, context = 3, ...) {
+format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
   lns <- strsplit(rawToChar(attr(x, "text")), "\r?\n")[[1]]
   nlns <- length(lns)
   num <- seq_along(lns)
   sel <- get_selected_nodes(x, default = FALSE)
   nsel <- length(sel)
   ssel <- min(nsel, n)
-  sel <- head(sel, ssel)
+  sel <- utils::head(sel, ssel)
 
   # calculate the lines affected by the first ssel selections
   selrows <- rep(FALSE, nlns)
@@ -131,7 +131,7 @@ format_ts_selection <- function(x, n = n, context = 3, ...) {
   dots <- diff(c(1, num[shwrows])) > 1
   dotlns <- num[shwrows][dots] - 1L
   # add ... to the end
-  lastshown <- tail(num[shwrows], 1)
+  lastshown <- utils::tail(num[shwrows], 1)
   if (lastshown < nlns) {
     dotlns <- c(dotlns, lastshown + 1L)
   }
@@ -148,7 +148,7 @@ format_ts_selection <- function(x, n = n, context = 3, ...) {
   slns <- paste0(mark[shwrows], num, split[shwrows], lns[shwrows])
 
   sfn <- if (!is.null(attr(x, "file"))) paste0(basename(attr(x, "file")), ", ")
-  lang <- sub("^ts_tokens_", "", grep("^ts_tokens_", class(x), value = TRUE))
+  lang <- sub("^ts_tree_", "", grep("^ts_tree_", class(x), value = TRUE))
 
   c(
     grey(glue(

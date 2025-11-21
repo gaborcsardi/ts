@@ -1,44 +1,50 @@
-#' Show the annotated syntax tree of a file or string
-
-#' @param tokens A `ts_tokens` object as returned by [ts_parse()].
+#' Show the annotated syntax tree tree-sitter tree
+#'
+#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
 #' @export
 #' @examples
 #' # TODO
 
-ts_syntax_tree <- function(tokens) {
-  type <- tokens$type
-  fn <- attr(tokens, "file")
+ts_tree_ast <- function(tree) {
+  UseMethod("ts_tree_ast")
+}
+
+#' @export
+
+ts_tree_ast.default <- function(tree) {
+  type <- tree$type
+  fn <- attr(tree, "file")
   if (cli::ansi_has_hyperlink_support() && !is.null(fn)) {
     type <- cli::style_hyperlink(
       type,
       sprintf(
         "file://%s:%d:%d",
         normalizePath(fn, mustWork = NA),
-        tokens$start_row + 1L,
-        tokens$start_column + 1
+        tree$start_row + 1L,
+        tree$start_column + 1
       )
     )
   }
 
-  linum <- tokens$start_row + 1
+  linum <- tree$start_row + 1
   linum <- ifelse(duplicated(linum), "", as.character(linum))
   linum <- format(linum, justify = "right")
   # this is the spacer we need to put in for multi-line tokens
   nlspc <- paste0("\n\t", strrep(" ", nchar(linum[1])), "|")
   code <- ifelse(
-    is.na(tokens$code),
+    is.na(tree$code),
     "",
-    paste0(strrep(" ", tokens$start_column), tokens$code)
+    paste0(strrep(" ", tree$start_column), tree$code)
   )
 
   # we put in a \t, and later use it to align the lines vertically
   treetab <- data_frame(
-    id = as.character(tokens$id),
-    children = lapply(tokens$children, as.character),
+    id = as.character(tree$id),
+    children = lapply(tree$children, as.character),
     label = paste0(
       type,
       " (",
-      tokens$id,
+      tree$id,
       ")",
       "\t",
       linum,
