@@ -1,3 +1,21 @@
+#' Utility functions for ts language implementations
+#'
+#' It is unlikely that you will need to use these functions directly, except
+#' when implementing a new language for the ts package.
+#'
+#' @param ... Arguments collapsed and interpolated into a condition message.
+#' @param class A character vector of classes for the condition.
+#' @param call Environment of the call to associate with the condition,
+#'   defaults to the caller's environment.
+#' @param .envir The environment in which to evaluate the `...` expressions,
+#'   defaults to the parent frame.
+#' @return `cnd()` returns an error condition object.
+#'
+#' @details `cnd()` creates a condition object. It interpolates its
+#' arguments into a single message.
+#'
+#' @export
+
 cnd <- function(
   ...,
   class = NULL,
@@ -11,20 +29,54 @@ cnd <- function(
   )
 }
 
+#' @rdname cnd
+#' @param arg Argument name.
+#' @details `caller_arg()` captures the expression used as an argument
+#'   to a function, for use in error messages.
+#' @return `caller_arg()` returns the captured expression as a
+#'   ts_caller_arg object.
+#' @export
+
 caller_arg <- function(arg) {
   arg <- substitute(arg)
   expr <- do.call(substitute, list(arg), envir = caller_env())
   structure(list(expr), class = "ts_caller_arg")
 }
 
+#' @rdname cnd
+#' @param x Object to use as a caller argument.
+#' @details `as_caller_arg()` converts an object into a caller argument
+#'   object. This is useful when referring to parts of the caller argument
+#'   in downstream error messages.
+#' @return `as_caller_arg()` returns a ts_caller_arg object.
+#' @export
+
 as_caller_arg <- function(x) {
   structure(list(x), class = "ts_caller_arg")
 }
+
+#' @rdname cnd
+#' @param x A ts_caller_arg object.
+#' @details `as.character.ts_caller_arg()` formats a caller argument
+#'   object as a short string for use in error messages. Multi-line
+#'   expressions are truncated after the first line.
+#' @return `as.character.ts_caller_arg()` returns a short string
+#'   representation of the caller argument, a character scalar.
+#' @export
 
 as.character.ts_caller_arg <- function(x, ...) {
   lbl <- paste(format(x[[1]]), collapse = "\n")
   gsub("\n.*$", "...", lbl)
 }
+
+#' @rdname cnd
+#' @param n Number of frames to go up to find the caller environment.
+#' @details `caller_env()` returns the environment of the caller function,
+#'   `n` levels up the call stack. This is useful for associating error
+#'   conditions with the correct call.
+#' @return `caller_env()` returns an environment, or `NULL` is called
+#'   from the global environment.
+#' @export
 
 caller_env <- function(n = 1) {
   parent.frame(n + 1)
@@ -43,6 +95,15 @@ frame_get <- function(frame, accessor) {
   NULL
 }
 
+#' @rdname cnd
+#' @param arg Argument to check.
+#' @param frame Frame number to inspect, defaults to the caller's frame.
+#' @details `check_named_arg()` checks whether an argument was supplied
+#'   with a name. If not, it raises an error.
+#' @return `check_named_arg()` returns `TRUE` invisibly if the argument
+#'   was named, otherwise it raises an error.
+#' @export
+
 check_named_arg <- function(arg, frame = -1) {
   arg <- as.character(substitute(arg))
   if (!arg %in% names(sys.call(frame)[-1])) {
@@ -54,12 +115,26 @@ check_named_arg <- function(arg, frame = -1) {
   invisible(TRUE)
 }
 
-ts_parse_error_cnd <- function(table, text, call = caller_env()) {
+#' @rdname cnd
+#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param text Raw vector, the original text used to parse the tree.
+#' @param call Environment of the call to associate with the error
+#'   condition, defaults to the caller's environment.
+#' @details `ts_parse_error_cnd()` creates a parse error condition
+#'   associated with a `ts_tree` object and the original text.
+#'   The error message includes information about the location of
+#'   parse errors in the text. It also has `format()` and `print()`
+#'   methods to display the error together with the relevant lines
+#'   of the original text.
+#' @return `ts_parse_error_cnd()` returns a ts_parse_error condition
+#' @export
+
+ts_parse_error_cnd <- function(tree, text, call = caller_env()) {
   call <- frame_get(call, sys.call)
   cnd <- structure(
     list(
       call = call,
-      table = table,
+      tree = tree,
       text = strsplit(rawToChar(text), "\r?\n")[[1]]
     ),
     class = c("ts_parse_error", "error", "condition")
@@ -84,27 +159,22 @@ ts_parse_error_cnd <- function(table, text, call = caller_env()) {
 # So maybe we should mark all rows of the ERROR node.
 
 format_ts_parse_error_ <- function(x, n = 2, ...) {
-  file <- attr(x$table, "file") %||% "<text>"
-  nodes <- utils::head(which(x$table$type == "ERROR" | x$table$is_missing), n)
+  file <- attr(x$tree, "file") %||% "<text>"
+  nodes <- utils::head(which(x$tree$type == "ERROR" | x$tree$is_missing), n)
   # if two errors start at the same position only show the first
-  nodes <- nodes[!duplicated(x$table$start_byte[nodes])]
+  nodes <- nodes[!duplicated(x$tree$start_byte[nodes])]
 
-  rows <- x$table$start_row[nodes] + 1L
-  cols <- x$table$start_column[nodes] + 1L
-  erows <- x$table$end_row[nodes] + 1L
+  rows <- x$tree$start_row[nodes] + 1L
+  cols <- x$tree$start_column[nodes] + 1L
+  erows <- x$tree$end_row[nodes] + 1L
 
   ecols <- ifelse(
     rows == erows,
-    x$table$end_column[nodes] + 1L,
+    x$tree$end_column[nodes] + 1L,
     nchar(x$text[rows])
   )
 
-  lang <- if (grepl("^ts", class(x)[1])) {
-    sub("^ts", "", class(x)[1])
-  } else {
-    "ts"
-  }
-
+  lang <- toupper(get_tree_lang(x$tree))
   unlist(mapply(
     format_ts_parse_error_1,
     lang,

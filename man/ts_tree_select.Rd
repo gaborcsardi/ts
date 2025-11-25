@@ -4,12 +4,18 @@
 \alias{ts_tree_select}
 \title{Select parts of a tree-sitter tree}
 \usage{
-ts_tree_select(tree, ...)
+ts_tree_select(tree, ..., refine = FALSE)
 }
 \arguments{
 \item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
 
 \item{...}{Selection expressions, see details.}
+
+\item{refine}{Logical, whether to refine the current selection or start
+a new selection.}
+}
+\value{
+A \code{ts_tree} object with the selected parts.
 }
 \description{
 TODO: include links to methods here dynamically?

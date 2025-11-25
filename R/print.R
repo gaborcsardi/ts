@@ -35,7 +35,7 @@ print.ts_tree <- function(x, n = 10, ...) {
 #' # TODO
 
 format.ts_tree <- function(x, n = 10, ...) {
-  sel <- get_selected_nodes(x, default = FALSE)
+  sel <- ts_tree_selected_nodes(x, default = FALSE)
   if (length(sel) > 0) {
     format_ts_tree_selection(x, n = n, ...)
   } else {
@@ -50,7 +50,7 @@ format_ts_tree_noselection <- function(x, n = 10, ...) {
   lns <- utils::head(lns, sc)
   num <- cli::col_grey(format(seq_len(sc)))
 
-  sel <- get_selection(x, default = FALSE)
+  sel <- ts_tree_selection(x, default = FALSE)
 
   grey <- cli::col_grey
 
@@ -77,7 +77,7 @@ format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
   lns <- strsplit(rawToChar(attr(x, "text")), "\r?\n")[[1]]
   nlns <- length(lns)
   num <- seq_along(lns)
-  sel <- get_selected_nodes(x, default = FALSE)
+  sel <- ts_tree_selected_nodes(x, default = FALSE)
   nsel <- length(sel)
   ssel <- min(nsel, n)
   sel <- utils::head(sel, ssel)

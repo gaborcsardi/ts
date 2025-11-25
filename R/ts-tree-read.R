@@ -81,7 +81,7 @@ ts_tree_read <- function(
   class(tree) <- c(cls, "ts_tree", class(tree))
 
   if (fail_on_parse_error && (tree$has_error[1] || any(tree$is_missing))) {
-    stop(ts_parse_error_cnd(table = tree, text = text))
+    stop(ts_parse_error_cnd(tree = tree, text = text))
   }
 
   tree
