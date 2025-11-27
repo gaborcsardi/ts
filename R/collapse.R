@@ -1,5 +1,26 @@
+#' @rdname cnd
+#' @param s For `collapse()` a character vector to collapse.
+#' @param sep Separator string for most elements.
+#' @param sep2 Separator string for two elements.
+#' @param last Separator string before the last element.
+#' @param trunc Integer, maximum number of elements to show before
+#'   truncation.
+#' @param width Integer, maximum display width of the collapsed string.
+#'   If the collapsed string exceeds this width, it will be truncated
+#'   with `ellipsis`.
+#' @param ellipsis String to indicate truncation.
+#' @param style Character, the collapsing style to use. Possible values are
+#'   `"both-ends"` (the default), which shows the first few and last few
+#'   elements when truncating, and `"head"`, which shows only the first few
+#'   elements.
+#' @return `collapse()` returns a character scalar, the collapsed string.
+#' @details `collapse()` collapses a character vector into a single string,
+#'   with options for truncation by number of elements or display width.
+#'   It is useful for creating informative error messages.
+#' @export
+
 collapse <- function(
-  x,
+  s,
   sep = ", ",
   sep2 = sub("^,", "", last),
   last = ", and ",
@@ -12,7 +33,7 @@ collapse <- function(
   switch(
     style,
     "both-ends" = collapse_both_ends(
-      x,
+      s,
       sep,
       sep2,
       last,
@@ -20,7 +41,7 @@ collapse <- function(
       width,
       ellipsis
     ),
-    "head" = collapse_head(x, sep, sep2, last, trunc, width, ellipsis)
+    "head" = collapse_head(s, sep, sep2, last, trunc, width, ellipsis)
   )
 }
 
