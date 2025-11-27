@@ -2,16 +2,100 @@
 % Please edit documentation in R/ts-tree-ast.R
 \name{ts_tree_ast}
 \alias{ts_tree_ast}
-\title{Show the annotated syntax tree tree-sitter tree}
+\title{Show the annotated syntax tree of a tree-sitter tree}
 \usage{
 ts_tree_ast(tree)
 }
 \arguments{
 \item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
 }
+\value{
+Character vector, the formatted annotated syntax tree, line by
+line. It has class \link[cli:tree]{cli_tree}, from the cli package. It
+may contain ANSI escape sequences for coloring and hyperlinks.
+}
 \description{
-Show the annotated syntax tree tree-sitter tree
+\code{ts_tree_ast()} prints the annotated syntax tree of a ts_tree object.
+This syntax tree contains all tree-sitter nodes, and it shows the
+source code associated with each node, along with line numbers.
 }
+\details{
+\subsection{The ts and ts* packages:}{
+
+Language implementations may override the default \code{ts_tree_ast()} method,
+to provide language-specific features. Make sure you read the correct
+documentation for the language you are using.
+}
+
+\subsection{The syntax tree and the DOM tree}{
+
+This syntax tree contains all nodes of the tree-sitter parse tree,
+including both named and unnamed nodes and comments. E.g. for a JSON(C)
+document it includes the pairs, brackets, braces, commas, colons,
+double quotes and string escape sequences as separate nodes.
+
+See \code{\link[=ts_tree_dom]{ts_tree_dom()}} for a tree that shows the semantic structure of the
+parsed document.
+}
+}
+\section{Example output}{
+
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_tree_read_jsonc(text = '\{"foo": 42, "bar": [1, 2, 3]\}')
+ts_tree_ast(tree)
+#> document (1)                   1|
+#> \\-object (2)                    |
+#>   +-\{ (3)                       |\{
+#>   +-pair (4)                    |
+#>   | +-string (5)                |
+#>   | | +-" (6)                   | "
+#>   | | +-string_content (7)      |  foo
+#>   | | \\-" (8)                   |     "
+#>   | +-: (9)                     |      :
+#>   | \\-number (10)               |        42
+#>   +-, (11)                      |          ,
+#>   +-pair (12)                   |
+#>   | +-string (13)               |
+#>   | | +-" (14)                  |            "
+#>   | | +-string_content (15)     |             bar
+#>   | | \\-" (16)                  |                "
+#>   | +-: (17)                    |                 :
+#>   | \\-array (18)                |
+#>   |   +-[ (19)                  |                   [
+#>   |   +-number (20)             |                    1
+#>   |   +-, (21)                  |                     ,
+#>   |   +-number (22)             |                       2
+#>   |   +-, (23)                  |                        ,
+#>   |   +-number (24)             |                          3
+#>   |   \\-] (25)                  |                           ]
+#>   \\-\} (26)                      |                            \}
+}\if{html}{\out{</div>}}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_dom(tree)
+#> document (1)
+#> \\-object (2)
+#>   +-number (10) # foo
+#>   \\-array (18) # bar
+#>     +-number (20)
+#>     +-number (22)
+#>     \\-number (24)
+}\if{html}{\out{</div>}}
+}
+
 \examples{
-# TODO
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# see the output above
+tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+tree
+ts_tree_ast(tree)
+ts_tree_dom(tree)
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+\code{\link[=ts_tree_dom]{ts_tree_dom()}} to show the document object model (DOM) of a
+ts_tree object.
+
+Other ts_tree functions: 
+\code{\link{ts_tree_dom}()}
+}
+\concept{ts_tree functions}

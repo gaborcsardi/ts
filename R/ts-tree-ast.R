@@ -1,9 +1,49 @@
-#' Show the annotated syntax tree tree-sitter tree
+#' Show the annotated syntax tree of a tree-sitter tree
+#'
+#' `ts_tree_ast()` prints the annotated syntax tree of a ts_tree object.
+#' This syntax tree contains all tree-sitter nodes, and it shows the
+#' source code associated with each node, along with line numbers.
+#'
+#' @details
+#' ## The ts and ts* packages:
+#' Language implementations may override the default `ts_tree_ast()` method,
+#' to provide language-specific features. Make sure you read the correct
+#' documentation for the language you are using.
+#'
+#' ## The syntax tree and the DOM tree
+#'
+#' This syntax tree contains all nodes of the tree-sitter parse tree,
+#' including both named and unnamed nodes and comments. E.g. for a JSON(C)
+#' document it includes the pairs, brackets, braces, commas, colons,
+#' double quotes and string escape sequences as separate nodes.
+#'
+#' See [ts_tree_dom()] for a tree that shows the semantic structure of the
+#' parsed document.
+#'
+#' @section Example output:
+#' ```{r}
+#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' ts_tree_ast(tree)
+#' ```
+#'
+#' ```{r}
+#' ts_tree_dom(tree)
+#' ```
 #'
 #' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @return Character vector, the formatted annotated syntax tree, line by
+#'   line. It has class [cli_tree][cli::tree()], from the cli package. It
+#'   may contain ANSI escape sequences for coloring and hyperlinks.
 #' @export
-#' @examples
-#' # TODO
+#' @seealso [ts_tree_dom()] to show the document object model (DOM) of a
+#'   ts_tree object.
+#' @family ts_tree functions
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # see the output above
+#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' tree
+#' ts_tree_ast(tree)
+#' ts_tree_dom(tree)
 
 ts_tree_ast <- function(tree) {
   UseMethod("ts_tree_ast")
