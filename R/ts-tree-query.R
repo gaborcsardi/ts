@@ -3,7 +3,7 @@
 #' See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 #' queries.
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param query Character string, the tree-sitter query to run.
 #' @return A list with entries `patterns` and `matched_captures`.
 #'   `patterns` contains information about all patterns in the queries and

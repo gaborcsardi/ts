@@ -2,7 +2,7 @@
 #'
 #' TODO: include links to methods here dynamically?
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param ... Selection expressions, see details.
 #' @param refine Logical, whether to refine the current selection or start
 #'   a new selection.
@@ -36,7 +36,9 @@ ts_tree_select <- function(tree, ..., refine = FALSE) {
   }
   # if 'document' is selected, that means there is no selection
   if (identical(current[[1]]$nodes, 1L)) {
+    # nocov start -- TODO: when is this needed?
     attr(tree, "selection") <- NULL
+    # nocov end
   } else {
     attr(tree, "selection") <- current
   }
@@ -53,7 +55,7 @@ normalize_selectors <- function(slts) {
       )
     } else if (inherits(x, "AsIs")) {
       x <- structure(
-        list(value = unclass(x)),
+        list(ids = unclass(x)),
         class = c("ts_tree_selector_ids", "ts_tree_selector", "list")
       )
     }
@@ -65,7 +67,7 @@ normalize_selectors <- function(slts) {
 
 #' TODO
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param node Integer, the node id to select from.
 #' @param slt A selector object, see details in [ts_tree_select()].
 #' @export
@@ -82,7 +84,7 @@ ts_tree_select1 <- function(tree, node, slt) {
 
 ts_tree_select1.default <- function(tree, node, slt) {
   lang <- toupper(get_tree_lang(tree))
-  stop(cnd(
+  stop(ts_cnd(
     "Don't know how to select nodes from a `ts_tree` ({lang}) object \\
      using selector of class `{class(slt)[1]}`."
   ))
@@ -115,7 +117,7 @@ ts_tree_select1.ts_tree.character <- function(tree, node, slt) {
 
 ts_tree_select1.ts_tree.integer <- function(tree, node, slt) {
   if (any(slt == 0)) {
-    stop(cnd("Zero indices are not allowed in ts selectors."))
+    stop(ts_cnd("Zero indices are not allowed in ts selectors."))
   }
   chdn <- tree$dom_children[[node]]
   slt <- slt[slt <= length(chdn) & slt >= -length(chdn)]
@@ -153,7 +155,7 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
   if (isTRUE(slt)) {
     tree$dom_children[[node]]
   } else {
-    stop(cnd(
+    stop(ts_cnd(
       "Invalid logical selector in `ts_tree_select()`: only scalar `TRUE` is \\
        supported."
     ))
@@ -171,7 +173,7 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 
 #' TODO: move this into ts_select
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param query String, a tree-sitter query.
 #' @return TODO
 #' @export
@@ -209,7 +211,7 @@ ts_tree_select_query <- function(tree, query) {
 #' It is unlikely that you will need to use these functions directly, except
 #' when implementing a new language for the ts package.
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param default Logical, whether to return the default selection if there
 #'   is no explicit selection, or `NULL`.
 #' @return `ts_tree_selection()` returns a list of selection records.
@@ -282,7 +284,7 @@ ts_tree_selector_ids <- function(ids) {
 #' TODO
 #' @name select-set
 #' @rdname select-set
-#' @param tree,x A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree,x A `ts_tree` object as returned by [ts_tree_new()].
 #' @param ... Selection expressions, see details.
 #' @param value An R expression to serialize or `ts_tree_deleted()`.
 #' @return The modified `ts_tree` object.
@@ -314,9 +316,11 @@ ts_tree_selector_ids <- function(ids) {
 #' @export
 
 `[[<-.ts_tree` <- function(x, i, value) {
+  # nocov start -- not sure if still is still needed, if [[ are not nested
   if (missing(i)) {
     i <- list()
   }
+  # nocov end
   res <- if (inherits(value, "ts_tree")) {
     value # nocov
   } else if (inherits(value, "ts_tree_action_delete")) {

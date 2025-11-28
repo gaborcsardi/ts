@@ -7,11 +7,11 @@
 ts_tree_write(tree, file = NULL)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{file}{Character string, connection, or \code{NULL}. The file or connection
 to write to. By default it writes to the same file that was used in
-\code{\link[=ts_tree_read]{ts_tree_read()}}, if \code{tree} was read from a file.}
+\code{\link[=ts_tree_new]{ts_tree_new()}}, if \code{tree} was read from a file.}
 }
 \description{
 Writes the text content of a ts \code{ts_tree} object to a file or connection.

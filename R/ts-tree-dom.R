@@ -18,7 +18,7 @@
 #'
 #' @section Examples:
 #' ```{r}
-#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 #' ts_tree_ast(tree)
 #' ```
 #'
@@ -36,7 +36,7 @@
 #' @family ts_tree functions
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # see the output above
-#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 #' tree
 #' ts_tree_ast(tree)
 #' ts_tree_dom(tree)

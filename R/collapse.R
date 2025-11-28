@@ -1,5 +1,5 @@
-#' @rdname cnd
-#' @param s For `collapse()` a character vector to collapse.
+#' @rdname internal
+#' @param s For `ts_collapse()` a character vector to collapse.
 #' @param sep Separator string for most elements.
 #' @param sep2 Separator string for two elements.
 #' @param last Separator string before the last element.
@@ -13,13 +13,13 @@
 #'   `"both-ends"` (the default), which shows the first few and last few
 #'   elements when truncating, and `"head"`, which shows only the first few
 #'   elements.
-#' @return `collapse()` returns a character scalar, the collapsed string.
-#' @details `collapse()` collapses a character vector into a single string,
+#' @return `ts_collapse()` returns a character scalar, the collapsed string.
+#' @details `ts_collapse()` collapses a character vector into a single string,
 #'   with options for truncation by number of elements or display width.
 #'   It is useful for creating informative error messages.
 #' @export
 
-collapse <- function(
+ts_collapse <- function(
   s,
   sep = ", ",
   sep2 = sub("^,", "", last),

@@ -22,7 +22,7 @@
 #'
 #' @section Example output:
 #' ```{r}
-#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 #' ts_tree_ast(tree)
 #' ```
 #'
@@ -30,7 +30,7 @@
 #' ts_tree_dom(tree)
 #' ```
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @return Character vector, the formatted annotated syntax tree, line by
 #'   line. It has class [cli_tree][cli::tree()], from the cli package. It
 #'   may contain ANSI escape sequences for coloring and hyperlinks.
@@ -40,7 +40,7 @@
 #' @family ts_tree functions
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # see the output above
-#' tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+#' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 #' tree
 #' ts_tree_ast(tree)
 #' ts_tree_dom(tree)

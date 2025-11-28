@@ -9,17 +9,19 @@
 #'   defaults to the caller's environment.
 #' @param .envir The environment in which to evaluate the `...` expressions,
 #'   defaults to the parent frame.
-#' @return `cnd()` returns an error condition object.
+#' @return `ts_cnd()` returns an error condition object.
 #'
-#' @details `cnd()` creates a condition object. It interpolates its
+#' @details `ts_cnd()` creates a condition object. It interpolates its
 #' arguments into a single message.
 #'
+#' @keywords internal
+#' @rdname internal
 #' @export
 
-cnd <- function(
+ts_cnd <- function(
   ...,
   class = NULL,
-  call = caller_env(),
+  call = ts_caller_env(),
   .envir = parent.frame()
 ) {
   call <- frame_get(call, sys.call)
@@ -29,33 +31,33 @@ cnd <- function(
   )
 }
 
-#' @rdname cnd
+#' @rdname internal
 #' @param arg Argument name.
-#' @details `caller_arg()` captures the expression used as an argument
+#' @details `ts_caller_arg()` captures the expression used as an argument
 #'   to a function, for use in error messages.
-#' @return `caller_arg()` returns the captured expression as a
+#' @return `ts_caller_arg()` returns the captured expression as a
 #'   ts_caller_arg object.
 #' @export
 
-caller_arg <- function(arg) {
+ts_caller_arg <- function(arg) {
   arg <- substitute(arg)
-  expr <- do.call(substitute, list(arg), envir = caller_env())
+  expr <- do.call(substitute, list(arg), envir = ts_caller_env())
   structure(list(expr), class = "ts_caller_arg")
 }
 
-#' @rdname cnd
+#' @rdname internal
 #' @param x Object to use as a caller argument.
-#' @details `as_caller_arg()` converts an object into a caller argument
+#' @details `as_ts_caller_arg()` converts an object into a caller argument
 #'   object. This is useful when referring to parts of the caller argument
 #'   in downstream error messages.
-#' @return `as_caller_arg()` returns a ts_caller_arg object.
+#' @return `as_ts_caller_arg()` returns a ts_caller_arg object.
 #' @export
 
-as_caller_arg <- function(x) {
+as_ts_caller_arg <- function(x) {
   structure(list(x), class = "ts_caller_arg")
 }
 
-#' @rdname cnd
+#' @rdname internal
 #' @param x A ts_caller_arg object.
 #' @details `as.character.ts_caller_arg()` formats a caller argument
 #'   object as a short string for use in error messages. Multi-line
@@ -69,16 +71,16 @@ as.character.ts_caller_arg <- function(x, ...) {
   gsub("\n.*$", "...", lbl)
 }
 
-#' @rdname cnd
+#' @rdname internal
 #' @param n Number of frames to go up to find the caller environment.
-#' @details `caller_env()` returns the environment of the caller function,
+#' @details `ts_caller_env()` returns the environment of the caller function,
 #'   `n` levels up the call stack. This is useful for associating error
 #'   conditions with the correct call.
-#' @return `caller_env()` returns an environment, or `NULL` is called
+#' @return `ts_caller_env()` returns an environment, or `NULL` is called
 #'   from the global environment.
 #' @export
 
-caller_env <- function(n = 1) {
+ts_caller_env <- function(n = 1) {
   parent.frame(n + 1)
 }
 
@@ -95,28 +97,28 @@ frame_get <- function(frame, accessor) {
   NULL
 }
 
-#' @rdname cnd
+#' @rdname internal
 #' @param arg Argument to check.
 #' @param frame Frame number to inspect, defaults to the caller's frame.
-#' @details `check_named_arg()` checks whether an argument was supplied
+#' @details `ts_check_named_arg()` checks whether an argument was supplied
 #'   with a name. If not, it raises an error.
-#' @return `check_named_arg()` returns `TRUE` invisibly if the argument
+#' @return `ts_check_named_arg()` returns `TRUE` invisibly if the argument
 #'   was named, otherwise it raises an error.
 #' @export
 
-check_named_arg <- function(arg, frame = -1) {
+ts_check_named_arg <- function(arg, frame = -1) {
   arg <- as.character(substitute(arg))
   if (!arg %in% names(sys.call(frame)[-1])) {
-    stop(cnd(
+    stop(ts_cnd(
       paste0("The `", arg, "` argument must be fully named."),
-      call = caller_env()
+      call = ts_caller_env()
     ))
   }
   invisible(TRUE)
 }
 
-#' @rdname cnd
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @rdname internal
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param text Raw vector, the original text used to parse the tree.
 #' @param call Environment of the call to associate with the error
 #'   condition, defaults to the caller's environment.
@@ -129,7 +131,7 @@ check_named_arg <- function(arg, frame = -1) {
 #' @return `ts_parse_error_cnd()` returns a ts_parse_error condition
 #' @export
 
-ts_parse_error_cnd <- function(tree, text, call = caller_env()) {
+ts_parse_error_cnd <- function(tree, text, call = ts_caller_env()) {
   call <- frame_get(call, sys.call)
   cnd <- structure(
     list(

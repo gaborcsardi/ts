@@ -7,7 +7,7 @@
 ts_tree_select(tree, ..., refine = FALSE)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{...}{Selection expressions, see details.}
 

@@ -1,6 +1,6 @@
 #' Show the syntax tree structure of a file or string
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #'
 #' @export
 #' @examples

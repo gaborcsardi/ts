@@ -62,3 +62,56 @@ test_that("map_lgl", {
     logical()
   )
 })
+
+test_that("pmap", {
+  expect_equal(
+    pmap(
+      list(1:3, 4:6),
+      function(x, y) x + y
+    ),
+    list(5, 7, 9)
+  )
+})
+
+test_that("imap", {
+  expect_equal(
+    imap(
+      c(a = 1, b = 2, c = 3),
+      function(x, i) paste0(i, x)
+    ),
+    list("a1", "b2", "c3")
+  )
+
+  expect_equal(
+    imap(
+      c(1, 2, 3),
+      function(x, i) paste0(i, x)
+    ),
+    list("11", "22", "33")
+  )
+})
+
+test_that("get_tree_lang", {
+  tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
+  expect_equal(get_tree_lang(tree), "jsonc")
+  expect_equal(get_tree_lang(list()), "<unknown>")
+})
+
+test_that("middle", {
+  expect_equal(middle(1:5), 2:4)
+  expect_equal(middle(1:2), integer())
+  expect_equal(middle(1), integer())
+  expect_equal(middle(integer()), integer())
+})
+
+test_that("is_named", {
+  expect_true(is_named(c(a = 1, b = 2)))
+  expect_false(is_named(c(1, 2)))
+  x <- c(a = 1, 2)
+  names(x) <- c("a", "")
+  expect_false(is_named(x))
+  x <- c(a = 1)
+  x[2] <- 2
+  expect_false(is_named(x))
+  expect_true(is_named(c()))
+})

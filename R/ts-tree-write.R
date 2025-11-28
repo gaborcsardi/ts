@@ -2,10 +2,10 @@
 #'
 #' Writes the text content of a ts `ts_tree` object to a file or connection.
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_read()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param file Character string, connection, or `NULL`. The file or connection
 #'   to write to. By default it writes to the same file that was used in
-#'   [ts_tree_read()], if `tree` was read from a file.
+#'   [ts_tree_new()], if `tree` was read from a file.
 #' @export
 #' @examples
 #' # TODO
@@ -20,7 +20,7 @@ ts_tree_write.default <- function(tree, file = NULL) {
   file <- file %||% attr(tree, "file")
   if (is.null(file)) {
     lang <- toupper(get_tree_lang(tree))
-    stop(cnd(
+    stop(ts_cnd(
       "Don't know which file to save {lang} document to. You need to \\
        specify the `file` argument."
     ))
@@ -31,7 +31,7 @@ ts_tree_write.default <- function(tree, file = NULL) {
     text <- c(text, as.raw(0xa))
   }
   if (inherits(file, "connection")) {
-    if (summary(file)$mode == "wb") {
+    if (grepl("b", summary(file)$mode)) {
       writeBin(text, con = file)
     } else {
       cat(rawToChar(text), file = file)

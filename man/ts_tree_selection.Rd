@@ -10,7 +10,7 @@ ts_tree_selection(tree, default = TRUE)
 ts_tree_selected_nodes(tree, default = TRUE)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{default}{Logical, whether to return the default selection if there
 is no explicit selection, or \code{NULL}.}

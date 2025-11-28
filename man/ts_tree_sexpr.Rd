@@ -7,7 +7,7 @@
 ts_tree_sexpr(tree)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 }
 \description{
 Show the syntax tree structure of a file or string

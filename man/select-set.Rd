@@ -12,7 +12,7 @@ ts_tree_select(tree, ...) <- value
 \method{[[}{ts_tree}(x, i) <- value
 }
 \arguments{
-\item{tree, x}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree, x}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{...}{Selection expressions, see details.}
 

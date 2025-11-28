@@ -37,7 +37,7 @@ includes all nodes, including syntax elements like brackets and commas.
 \section{Examples}{
 
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_tree_read_jsonc(text = '\{"foo": 42, "bar": [1, 2, 3]\}')
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_parse_jsonc('\{"foo": 42, "bar": [1, 2, 3]\}')
 ts_tree_ast(tree)
 #> document (1)                   1|
 #> \\-object (2)                    |
@@ -81,14 +81,14 @@ ts_tree_ast(tree)
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # see the output above
-tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 tree
 ts_tree_ast(tree)
 ts_tree_dom(tree)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=ts_tree_ast]{ts_tree_ast()}} to show the document object model (DOM) of a
+\code{\link[=ts_tree_ast]{ts_tree_ast()}} to show the annotated syntax tree of a
 ts_tree object.
 
 Other ts_tree functions: 

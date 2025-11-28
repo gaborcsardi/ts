@@ -7,7 +7,7 @@
 ts_tree_ast(tree)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_read]{ts_tree_read()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 }
 \value{
 Character vector, the formatted annotated syntax tree, line by
@@ -41,7 +41,7 @@ parsed document.
 \section{Example output}{
 
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_tree_read_jsonc(text = '\{"foo": 42, "bar": [1, 2, 3]\}')
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_parse_jsonc('\{"foo": 42, "bar": [1, 2, 3]\}')
 ts_tree_ast(tree)
 #> document (1)                   1|
 #> \\-object (2)                    |
@@ -85,7 +85,7 @@ ts_tree_ast(tree)
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # see the output above
-tree <- tsjsonc::ts_tree_read_jsonc(text = '{"foo": 42, "bar": [1, 2, 3]}')
+tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
 tree
 ts_tree_ast(tree)
 ts_tree_dom(tree)

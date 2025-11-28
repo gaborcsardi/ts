@@ -1,16 +1,18 @@
-#' Read (parse) a file or a string
+#' Read (parse) a file or a string to create a tree-sitter tree (ts_tree)
 #'
-#' @param language Language of the file or string, a `ts_language` object.
-#' @param file Path of a file. Use either `file` or `text`.
+#' @param language Language of the file or string, a `ts_language` object,
+#'   e.g. [tsjsonc::ts_language_jsonc()].
+#' @param file Path of a file. Use either `file` or `text`, but not both.
 #' @param text String. Use either `file` or `text`, but not both.
 #' @param ranges Can be used to parse part(s) of the input. It must be a
 #'   data frame with integer columns `start_row`, `start_col`, `end_row`,
 #'   `end_col`, `start_byte`, `end_byte`, in this order.
 #' @param fail_on_parse_error Logical, whether to error if there are
 #'   parse errors in the document. Default is `TRUE`.
+#' @param ... Additional arguments for methods.
 #'
 #' @return A data frame with one row per token, and columns:
-#' * `id`: integer, the id of the token.
+#' * `id`: integer, the id of the token. The (root) document node has id 1.
 #' * `parent`: integer, the id of the parent token. The root token has
 #'   parent `NA`
 #' * `field_name`: character, the field name of the token in its parent.
@@ -24,21 +26,43 @@
 #'   the parser to recover from errors.
 #' * `has_error`: logical, whether the token has a parse error.
 #' * `children`: list of integer vectors, the ids of the children tokens.
+#' * `dom_type`: character, the type of the node in the DOM tree. See
+#'   [ts_tree_dom()]. Nodes that are not part of the DOM tree have
+#'   `NA_character_` here.
+#' * `dom_children`: list of integer vectors, the ids of the children in the
+#'   DOM tree. See [ts_tree_dom()].
+#' * `dom_parent`: integer, the parent of the node in the DOM tree. See
+#'   [ts_tree_dom()]. Nodes that are not part of the DOM tree and the
+#'   document node have have `NA_integer_` here.
 #'
 #' @export
 #' @examples
 #' # TODO
 
-ts_tree_read <- function(
+ts_tree_new <- function(
   language,
   file = NULL,
   text = NULL,
   ranges = NULL,
-  fail_on_parse_error = TRUE
+  fail_on_parse_error = TRUE,
+  ...
+) {
+  UseMethod("ts_tree_new")
+}
+
+#' @export
+
+ts_tree_new.ts_language <- function(
+  language,
+  file = NULL,
+  text = NULL,
+  ranges = NULL,
+  fail_on_parse_error = TRUE,
+  ...
 ) {
   if (is.null(text) + is.null(file) != 1) {
-    stop(cnd(
-      "Invalid arguments in `ts_tree_read()`: exactly one of `file` \\
+    stop(ts_cnd(
+      "Invalid arguments in `ts_tree_new()`: exactly one of `file` \\
        and `text` must be given."
     ))
   }
@@ -83,6 +107,11 @@ ts_tree_read <- function(
   if (fail_on_parse_error && (tree$has_error[1] || any(tree$is_missing))) {
     stop(ts_parse_error_cnd(tree = tree, text = text))
   }
+
+  language <- structure(
+    list(language = language, tree = tree),
+    class = class(tree)
+  )
 
   tree
 }
