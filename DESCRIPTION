@@ -17,7 +17,7 @@ Suggests:
   testthat (>= 3.0.0),
   tsjsonc
 Remotes:
-  gaborcsardi/tsjsonc
+  gaborcsardi/tsjsonc@v2
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
