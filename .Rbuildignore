@@ -4,3 +4,4 @@
 ^\.vscode$
 ^\.covrignore$
 ^src/.*[.]o$
+^[.]github$
