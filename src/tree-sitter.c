@@ -101,7 +101,7 @@ SEXP parse(SEXP input, SEXP rlanguage, SEXP rranges) {
   const TSLanguage *language = (const TSLanguage*)
     R_ExternalPtrAddr(rlanguage);
   if (!language) {
-    Rf_error("ts `language` cannot be a NULL pointer");
+    Rf_error("ts `language` cannot be a NULL pointer"); // # nocov
   }
   TSParser *parser = NULL;
 
@@ -375,7 +375,9 @@ bool check_predicate_eq(const struct query_match_t *qm, predicate_type op,
 
   } else {
     // this should not happen
+    // # nocov start
     Rf_error("Missing second argument for tree-sitter query");
+    // # nocov end
   }
 }
 
