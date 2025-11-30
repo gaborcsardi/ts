@@ -15,7 +15,8 @@ Imports:
 Suggests:
   pillar,
   testthat (>= 3.0.0),
-  tsjsonc
+  tsjsonc,
+  withr
 Remotes:
   gaborcsardi/tsjsonc@v2
 Encoding: UTF-8
