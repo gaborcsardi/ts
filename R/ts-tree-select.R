@@ -162,6 +162,13 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
   }
 }
 
+#' Unserialize selected parts of a tree-sitter tree
+#'
+#' TODO
+#' @param x A `ts_tree` object as returned by [ts_tree_new()].
+#' @param i Selection expressions, see details in [ts_tree_select()].
+#' @param ... Passed to [ts_tree_select()].
+#' @rdname double-bracket-ts-tree
 #' @export
 
 `[[.ts_tree` <- function(x, i, ...) {
@@ -259,20 +266,12 @@ get_default_selection <- function(tree) {
   )
 }
 
-#' TODO
-#' @export
-
 ts_tree_selector_default <- function() {
   structure(
     list(),
     class = c("ts_tree_selector_default", "ts_tree_selector", "list")
   )
 }
-
-#' TODO: move this into ts_select
-#'
-#' @param ids Integer vector, the ids of the nodes to select.
-#' @export
 
 ts_tree_selector_ids <- function(ids) {
   structure(
@@ -310,8 +309,11 @@ ts_tree_selector_ids <- function(ids) {
   res
 }
 
+#' Edit parts of a tree-sitter tree
+#'
 #' TODO
-#' @rdname select-set
+#' @rdname double-bracket-set-ts-tree
+#' @param x A `ts_tree` object as returned by [ts_tree_new()].
 #' @param i A list with selection expressions, see details.
 #' @export
 

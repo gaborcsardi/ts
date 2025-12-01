@@ -1,0 +1,77 @@
+url: https://gaborcsardi.github.io/ts/
+
+template:
+  package: tidytemplate
+  bootstrap: 5
+
+development:
+  mode: auto
+
+reference:
+- title: About ts
+  desc: |
+    * See [about](about.html) for an overview of ts.
+    * Start at `ts_tree_new()` and `ts_tree_select()` if you want to edit
+      a document.
+    * See the sections below for more.
+
+- title: Create tree-sitter trees
+  contents:
+  - ts_tree_new
+
+- title: Selection
+  contents:
+  - ts_tree_select
+  - ts_tree_select1
+  - ts_tree_select_query
+  - ts_tree_selected_nodes
+
+- title: Editing
+  contents:
+  - ts_tree_delete
+  - ts_tree_format
+  - ts_tree_insert
+  - ts_tree_update
+
+- title: Manipulation
+  desc: |
+    Another way to
+  contents:
+  - ts_tree_deleted
+  - "ts_tree_select<-"
+  - "`[[.ts_tree`"
+  - "`[[<-.ts_tree`"
+
+- title: Formatting and printing
+  contents:
+  - print.ts_tree
+  - format.ts_tree
+
+- title: Unserialize
+  contents:
+  - "`[[.ts_tree`"
+  - ts_tree_unserialize
+  - ts_tree_write
+
+- title: Exploring
+  contents:
+  - "[.ts_tree"
+  - ts_tree_ast
+  - ts_tree_dom
+  - ts_tree_query
+  - ts_tree_sexpr
+
+- title: Functions for ts* packages
+  contents:
+  - as_ts_caller_arg
+  - ts_caller_arg
+  - ts_caller_env
+  - ts_check_named_arg
+  - ts_cnd
+  - ts_collapse
+  - ts_parse_error_cnd
+  - ts_tree_selection
+
+- title: internal
+  contents:
+  - about

@@ -3,13 +3,10 @@
 \name{select-set}
 \alias{select-set}
 \alias{ts_tree_select<-}
-\alias{[[<-.ts_tree}
 \alias{ts_tree_deleted}
 \title{TODO}
 \usage{
 ts_tree_select(tree, ...) <- value
-
-\method{[[}{ts_tree}(x, i) <- value
 }
 \arguments{
 \item{tree, x}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
@@ -17,8 +14,6 @@ ts_tree_select(tree, ...) <- value
 \item{...}{Selection expressions, see details.}
 
 \item{value}{An R expression to serialize or \code{ts_tree_deleted()}.}
-
-\item{i}{A list with selection expressions, see details.}
 }
 \value{
 The modified \code{ts_tree} object.
@@ -28,8 +23,6 @@ hand side of the \verb{ts_tree_select<-} or the double bracket replacement
 functions, see examples below.
 }
 \description{
-TODO
-
 TODO
 }
 \details{

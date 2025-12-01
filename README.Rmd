@@ -1,0 +1,86 @@
+---
+output:
+  github_document:
+always_allow_html: yes
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(
+  comment = "#>",
+  fig.path = "man/figures",
+  fig.width = 10,
+  asciicast_theme = if (Sys.getenv("IN_PKGDOWN") == "true") "pkgdown" else "readme"
+)
+asciicast::init_knitr_engine(
+  echo = TRUE,
+  echo_input = FALSE,
+  startup = quote({
+    library(cli)
+    options(cli.num_colors = cli::truecolor)
+  })
+)
+```
+
+# ts
+
+<!-- badges: start -->
+![lifecycle](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
+[![R-CMD-check](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+Common tree-sitter parsing tools for R. It is meant to be
+used by other packages that specialize in particular languages.
+
+ts is a common interface to [tree-sitter](
+  https://tree-sitter.github.io/tree-sitter/) parsers, implemented in
+other R packages. It has a common API to
+
+- query,
+- edit,
+- format, and
+- unserialize
+
+tree-sitter parse trees.
+
+## Installation
+
+You can install the development version of ts from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("gaborcsardi/ts")
+```
+
+## Documentation
+
+See at [`https://gaborcsardi.github.io/ts/`](
+  https://gaborcsardi.github.io/ts/reference/index.html/)
+and also in the installed package: `help(package = "ts")`.
+
+## Parsers that use ts
+
+- JSONC (JSON with comments and trailing commas): [tsjsonc](
+  https://gaborcsardi.github.io/tsjsonc/).
+- TOML: [tstoml](https://gaborcsardi.github.io/tstoml/).
+
+## Quickstart
+
+```{r include = FALSE}
+file.copy("tools/man/about.Rmd", ".")
+```
+
+```{r child ="about.Rmd"}
+```
+
+```{r include = FALSE}
+unlink("about.Rmd")
+```
+
+# License
+
+MIT © Posit Software, PBC

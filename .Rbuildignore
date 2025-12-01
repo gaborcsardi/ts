@@ -5,3 +5,9 @@
 ^\.covrignore$
 ^src/.*[.]o$
 ^[.]github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^about\.Rmd$
+^README\.html$
