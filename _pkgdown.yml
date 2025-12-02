@@ -11,9 +11,11 @@ reference:
 - title: About ts
   desc: |
     * See [about](about.html) for an overview of ts.
-    * Start at `ts_tree_new()` and `ts_tree_select()` if you want to edit
-      a document.
-    * See the sections below for more.
+    * If you want to edit a document start at `ts_tree_new()` and
+      `ts_tree_select()`.
+    * For more see the sections below.
+  contents:
+  - ts_list_parsers
 
 - title: Create tree-sitter trees
   contents:
@@ -35,12 +37,13 @@ reference:
 
 - title: Manipulation
   desc: |
-    Another way to
+    Another way to edit a tree-sitter tree is "in place", using the
+    `ts_tre_select<-()` replacement function or the `[[<-` replacement
+    operator.
   contents:
-  - ts_tree_deleted
   - "ts_tree_select<-"
-  - "`[[.ts_tree`"
   - "`[[<-.ts_tree`"
+  - ts_tree_deleted
 
 - title: Formatting and printing
   contents:

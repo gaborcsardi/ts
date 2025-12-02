@@ -1,5 +1,24 @@
 #' Read (parse) a file or a string to create a tree-sitter tree (ts_tree)
 #'
+#' @description
+#' This is the main function to create a tree-sitter parse tree, using a
+#' parser from another package. Then the parse tree may be queried, edited,
+#' formatted, written to file, etc. using ts_tree methods.
+#'
+#' See the list of installed and loaded packages that provide parsers for
+#' ts below at "Details".
+#'
+#' @details
+#' A package that implements a tree-sitter parser provides a function that
+#' creates a `ts_language` object for that parser. E.g.
+#' [tsjsonc][tsjsonc::tsjsonc-package] has [tsjsonc::ts_language_jsonc()].
+#' You need to use the returned `ts_language` object as the `language`
+#' argument of this function.
+#'
+#' ## Installed parsers
+#'
+#' \eval{ts:::format_rd_parser_list(ts_list_parsers())}
+#'
 #' @param language Language of the file or string, a `ts_language` object,
 #'   e.g. [tsjsonc::ts_language_jsonc()].
 #' @param file Path of a file. Use either `file` or `text`, but not both.
@@ -36,8 +55,14 @@
 #'   document node have have `NA_integer_` here.
 #'
 #' @export
-#' @examples
-#' # TODO
+#' @family ts_tree methods
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' json <- ts_tree_new(
+#'   tsjsonc::ts_language_jsonc(),
+#'   text = '{ "a": 1, "b": 2 }'
+#' )
+#' json
+#' json |> ts_tree_format()
 
 ts_tree_new <- function(
   language,

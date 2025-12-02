@@ -32,8 +32,7 @@ asciicast::init_knitr_engine(
 [![R-CMD-check](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Common tree-sitter parsing tools for R. It is meant to be
-used by other packages that specialize in particular languages.
+Common tree-sitter parsing tools for R.
 
 ts is a common interface to [tree-sitter](
   https://tree-sitter.github.io/tree-sitter/) parsers, implemented in
