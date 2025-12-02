@@ -14,7 +14,7 @@
 
 ts_list_parsers <- function(lib_path = .libPaths()) {
   pkgs <- list_installed_packages(lib_path)
-  pkgs <- pkgs[grepl("^ts", basename(pkgs))]
+  pkgs <- pkgs[grepl("^ts.", basename(pkgs))]
   dscs <- lapply(pkgs, function(pkg) {
     packageDescription(basename(pkg), lib.loc = dirname(pkg))
   })
@@ -76,7 +76,8 @@ format_rd_parser_list <- function(lst) {
 }
 
 has_ts_parser <- function(dsc) {
-  "ts" %in% parse_deps("Imports", dsc$Imports)$package
+  !is.null(dsc$Imports) &&
+    "ts" %in% parse_deps("Imports", dsc$Imports)$package
 }
 
 list_installed_packages <- function(lib_path = .libPaths()) {
