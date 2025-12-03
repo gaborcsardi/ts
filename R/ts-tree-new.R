@@ -1,4 +1,4 @@
-#' Read (parse) a file or a string to create a tree-sitter tree (ts_tree)
+#' Create tree-sitter tree from file or string
 #'
 #' @description
 #' This is the main function to create a tree-sitter parse tree, using a
@@ -17,7 +17,7 @@
 #'
 #' ## Installed parsers
 #'
-#' \eval{ts:::format_rd_parser_list(ts_list_parsers())}
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @param language Language of the file or string, a `ts_language` object,
 #'   e.g. [tsjsonc::ts_language_jsonc()].

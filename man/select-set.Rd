@@ -9,7 +9,7 @@
 ts_tree_select(tree, ...) <- value
 }
 \arguments{
-\item{tree, x}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{...}{Selection expressions, see details.}
 

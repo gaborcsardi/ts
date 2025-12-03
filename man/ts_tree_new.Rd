@@ -2,7 +2,7 @@
 % Please edit documentation in R/ts-tree-new.R
 \name{ts_tree_new}
 \alias{ts_tree_new}
-\title{Read (parse) a file or a string to create a tree-sitter tree (ts_tree)}
+\title{Create tree-sitter tree from file or string}
 \usage{
 ts_tree_new(
   language,
@@ -73,7 +73,7 @@ You need to use the returned \code{ts_language} object as the \code{language}
 argument of this function.
 \subsection{Installed parsers}{
 
-\eval{ts:::format_rd_parser_list(ts_list_parsers())}
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 }
 }
 \examples{

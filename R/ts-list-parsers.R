@@ -16,7 +16,10 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
   pkgs <- list_installed_packages(lib_path)
   pkgs <- pkgs[grepl("^ts.", basename(pkgs))]
   dscs <- lapply(pkgs, function(pkg) {
-    packageDescription(basename(pkg), lib.loc = dirname(pkg))
+    suppressWarnings(utils::packageDescription(
+      basename(pkg),
+      lib.loc = dirname(pkg)
+    ))
   })
   dscs <- Filter(has_ts_parser, dscs)
   tspkgs <- data_frame(
@@ -35,20 +38,6 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
   tspkgs$loaded <- tspkgs$package %in% loadedNamespaces()
   class(tspkgs) <- c("ts_parser_list", class(tspkgs))
   tspkgs
-}
-
-#' @export
-
-print.ts_parser_list <- function(x, ...) {
-  writeLines(format(x, ...))
-  invisible(x)
-}
-
-#' @export
-
-format.ts_parser_list <- function(x, ...) {
-  # TODO: better formatting
-  NextMethod()
 }
 
 format_rd_parser_list <- function(lst) {
@@ -76,7 +65,8 @@ format_rd_parser_list <- function(lst) {
 }
 
 has_ts_parser <- function(dsc) {
-  !is.null(dsc$Imports) &&
+  is.list(dsc) &&
+    !is.null(dsc$Imports) &&
     "ts" %in% parse_deps("Imports", dsc$Imports)$package
 }
 

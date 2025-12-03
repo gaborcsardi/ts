@@ -18,5 +18,55 @@ a new selection.}
 A \code{ts_tree} object with the selected parts.
 }
 \description{
-TODO: include links to methods here dynamically?
+This function is the heart of ts. To edit a tree-sitter tree, you first
+need to select the parts you want to delete or update.
+}
+\details{
+A selection starts from the root of the DOM tree, the document node
+(see \code{\link[=ts_tree_dom]{ts_tree_dom()}}), unless \code{refine = TRUE} is set, in which case it
+starts from the current selection.
+
+A list of selection expressions is applied in order. Each selection
+expression selects nodes from the currently selected nodes.
+
+See the various types of selection expressions below.
+\subsection{\code{TRUE}}{
+
+Selects all child nodes of the current nodes.
+
+\eval{ts:::docs("ts_tree_select_true")}
+}
+
+\subsection{Character vector}{
+
+Selects child nodes with the given names from nodes with named children.
+If a node has no named children, it selects nothing from that node.
+}
+
+\subsection{Integer vector}{
+
+Selects child nodes by position. Positive indices count from the start,
+negative indices count from the end. Zero indices are not allowed.
+}
+
+\subsection{Regular expression}{
+
+A character scalar named \code{regex} can be used to select child nodes
+whose names match the given regular expression, from nodes with named
+children. If a node has no named children, it selects nothing from that
+node.
+}
+
+\subsection{Tree sitter query}{
+
+A character scalar named \code{query} can be used to select nodes matching
+a tree-sitter query. See \code{\link[=ts_tree_query]{ts_tree_query()}} for details on tree-sitter
+queries.
+}
+
+\subsection{Nodes ids}{
+
+You can use \code{I(c(...))} to select nodes by their ids directly. This is
+for advanced use cases only.
+}
 }

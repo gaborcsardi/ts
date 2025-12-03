@@ -10,6 +10,11 @@
 \item{x}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
 \item{i}{A list with selection expressions, see details.}
+
+\item{value}{An R expression to serialize or \code{ts_tree_deleted()}.}
+}
+\value{
+The modified \code{ts_tree} object.
 }
 \description{
 TODO

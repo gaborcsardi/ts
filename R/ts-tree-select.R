@@ -1,6 +1,50 @@
 #' Select parts of a tree-sitter tree
 #'
-#' TODO: include links to methods here dynamically?
+#' This function is the heart of ts. To edit a tree-sitter tree, you first
+#' need to select the parts you want to delete or update.
+#'
+#' A selection starts from the root of the DOM tree, the document node
+#' (see [ts_tree_dom()]), unless `refine = TRUE` is set, in which case it
+#' starts from the current selection.
+#'
+#' A list of selection expressions is applied in order. Each selection
+#' expression selects nodes from the currently selected nodes.
+#'
+#' See the various types of selection expressions below.
+#'
+#' ## `TRUE`
+#'
+#' Selects all child nodes of the current nodes.
+#'
+#' \eval{ts:::docs("ts_tree_select_true")}
+#'
+#' ## Character vector
+#'
+#' Selects child nodes with the given names from nodes with named children.
+#' If a node has no named children, it selects nothing from that node.
+#'
+#' ## Integer vector
+#'
+#' Selects child nodes by position. Positive indices count from the start,
+#' negative indices count from the end. Zero indices are not allowed.
+#'
+#' ## Regular expression
+#'
+#' A character scalar named `regex` can be used to select child nodes
+#' whose names match the given regular expression, from nodes with named
+#' children. If a node has no named children, it selects nothing from that
+#' node.
+#'
+#' ## Tree sitter query
+#'
+#' A character scalar named `query` can be used to select nodes matching
+#' a tree-sitter query. See [ts_tree_query()] for details on tree-sitter
+#' queries.
+#'
+#' ## Nodes ids
+#'
+#' You can use `I(c(...))` to select nodes by their ids directly. This is
+#' for advanced use cases only.
 #'
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param ... Selection expressions, see details.
@@ -283,7 +327,7 @@ ts_tree_selector_ids <- function(ids) {
 #' TODO
 #' @name select-set
 #' @rdname select-set
-#' @param tree,x A `ts_tree` object as returned by [ts_tree_new()].
+#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param ... Selection expressions, see details.
 #' @param value An R expression to serialize or `ts_tree_deleted()`.
 #' @return The modified `ts_tree` object.
@@ -315,6 +359,8 @@ ts_tree_selector_ids <- function(ids) {
 #' @rdname double-bracket-set-ts-tree
 #' @param x A `ts_tree` object as returned by [ts_tree_new()].
 #' @param i A list with selection expressions, see details.
+#' @param value An R expression to serialize or `ts_tree_deleted()`.
+#' @return The modified `ts_tree` object.
 #' @export
 
 `[[<-.ts_tree` <- function(x, i, value) {
