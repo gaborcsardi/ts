@@ -28,7 +28,7 @@ pak::pak("gaborcsardi/ts")
 See at
 [`https://gaborcsardi.github.io/ts/`](https://gaborcsardi.github.io/ts/reference/index.html/)
 and also in the installed package:
-[`help(package = "ts")`](https://rdrr.io/pkg/ts/man).
+[`help(package = "ts")`](https://gaborcsardi.github.io/ts/reference).
 
 ## Parsers that use ts
 
@@ -621,8 +621,7 @@ MIT © Posit Software, PBC
 ## Create tree-sitter trees
 
 - [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md)
-  : Read (parse) a file or a string to create a tree-sitter tree
-  (ts_tree)
+  : Create tree-sitter tree from file or string
 
 ## Selection
 

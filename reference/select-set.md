@@ -10,7 +10,7 @@ ts_tree_select(tree, ...) <- value
 
 ## Arguments
 
-- tree, x:
+- tree:
 
   A `ts_tree` object as returned by
   [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md).

@@ -33,7 +33,8 @@ A data frame with columns:
 
 ``` r
 ts_list_parsers()
-#> # A data frame: 0 × 5
-#> # ℹ 5 variables: package <chr>, version <chr>, title <chr>,
-#> #   library <chr>, loaded <lgl>
+#> # A data frame: 1 × 5
+#>   package version    title           library                     loaded
+#>   <chr>   <chr>      <chr>           <chr>                       <lgl> 
+#> 1 tsjsonc 0.0.0.9000 Edit JSON Files /home/runner/work/_temp/Li… TRUE  
 ```

@@ -16,8 +16,7 @@
 ## Create tree-sitter trees
 
 - [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md)
-  : Read (parse) a file or a string to create a tree-sitter tree
-  (ts_tree)
+  : Create tree-sitter tree from file or string
 
 ## Selection
 

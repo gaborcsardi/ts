@@ -19,3 +19,12 @@ x[[i]] <- value
 - i:
 
   A list with selection expressions, see details.
+
+- value:
+
+  An R expression to serialize or
+  [`ts_tree_deleted()`](https://gaborcsardi.github.io/ts/reference/select-set.md).
+
+## Value
+
+The modified `ts_tree` object.

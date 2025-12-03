@@ -1,4 +1,4 @@
-# Read (parse) a file or a string to create a tree-sitter tree (ts_tree)
+# Create tree-sitter tree from file or string
 
 This is the main function to create a tree-sitter parse tree, using a
 parser from another package. Then the parse tree may be queried, edited,
@@ -102,7 +102,8 @@ argument of this function.
 
 ### Installed parsers
 
-No tree-sitter parsers are installed.
+- [tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)
+  (0.0.0.9000) (loaded): Edit JSON Files.
 
 ## Examples
 
