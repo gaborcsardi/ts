@@ -52,7 +52,7 @@ See the various types of selection expressions below.
 
 Selects all child nodes of the current nodes.
 
-### JSONC example
+**JSONC example**
 
     json <- tsjsonc::ts_parse_jsonc(
       '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
@@ -67,7 +67,7 @@ Selects all child nodes of the current nodes.
 Selects child nodes with the given names from nodes with named children.
 If a node has no named children, it selects nothing from that node.
 
-### JSONC example
+**JSONC example**
 
     json <- tsjsonc::ts_parse_jsonc(
       '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
@@ -82,12 +82,12 @@ If a node has no named children, it selects nothing from that node.
 Selects child nodes by position. Positive indices count from the start,
 negative indices count from the end. Zero indices are not allowed.
 
-### JSONC
+**JSONC**
 
 For JSONC positional indices can be used both for arrays and objects.
 For other nodes nothing is selected.
 
-### JSONC example
+**JSONC example**
 
     json <- tsjsonc::ts_parse_jsonc(
       '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
@@ -104,7 +104,7 @@ names match the given regular expression, from nodes with named
 children. If a node has no named children, it selects nothing from that
 node.
 
-### JSONC example
+**JSONC example**
 
     json <- tsjsonc::ts_parse_jsonc(
      '{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 }'
@@ -126,11 +126,11 @@ the first element is the query string and the second element is a
 character vector of capture names to select. In this case only nodes
 matching the given capture names will be selected.
 
-### JSONC
+**JSONC**
 
 See `ts_language_jsonc()` for details on the JSONC grammar.
 
-### JSONC example
+**JSONC example**
 
 This example selects all numbers in the JSON document.
 
@@ -147,7 +147,7 @@ This example selects all numbers in the JSON document.
 You can use `I(c(...))` to select nodes by their ids directly. This is
 for advanced use cases only.
 
-### JSONC example
+**JSONC example**
 
     json <- tsjsonc::ts_parse_jsonc(
       '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
@@ -336,8 +336,6 @@ Regular expressions:
     #> > 19  |     ]
     #>   20  |   }
     #>   21  | }
-
-}
 
 ## Examples
 

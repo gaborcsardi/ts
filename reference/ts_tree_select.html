@@ -100,17 +100,15 @@ expression selects nodes from the currently selected nodes.</p>
 
 
 <p>Selects all child nodes of the current nodes.</p>
-<p></p><div class="section">
-<h3 id="jsonc-example">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example"></a></h3>
-<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p><strong>JSONC example</strong>
+</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 5 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [<span style="color: #66C2CD;">10</span>, <span style="color: #66C2CD;">20</span>, <span style="color: #66C2CD;">30</span>], "c": { "c1": <span style="color: #66C2CD;">true</span>, "c2": <span style="color: #66C2CD;">null</span> } }
 </pre></div></div>
-</div>
 </div>
 
 <div class="section">
@@ -119,17 +117,15 @@ expression selects nodes from the currently selected nodes.</p>
 
 <p>Selects child nodes with the given names from nodes with named children.
 If a node has no named children, it selects nothing from that node.</p>
-<p></p><div class="section">
-<h3 id="jsonc-example-1">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-1"></a></h3>
-<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p><strong>JSONC example</strong>
+</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 1 selected element)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [10, 20, 30], "c": { "c1": <span style="color: #66C2CD;">true</span>, "c2": null } }
 </pre></div></div>
-</div>
 </div>
 
 <div class="section">
@@ -138,22 +134,18 @@ If a node has no named children, it selects nothing from that node.</p>
 
 <p>Selects child nodes by position. Positive indices count from the start,
 negative indices count from the end. Zero indices are not allowed.</p>
-<p></p><div class="section">
-<h3 id="jsonc">JSONC<a class="anchor" aria-label="anchor" href="#jsonc"></a></h3>
-<p></p><p></p><p>For JSONC positional indices can be used both for arrays and objects.
+<p><strong>JSONC</strong>
+</p><p></p>For JSONC positional indices can be used both for arrays and objects.
 For other nodes nothing is selected.
-</p><p></p>
-</div><div class="section">
-<h3 id="jsonc-example-2">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-2"></a></h3>
-<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p></p><strong>JSONC example</strong>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 2 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [10, 20, <span style="color: #66C2CD;">30</span>], "c": { "c1": true, "c2": <span style="color: #66C2CD;">null</span> } }
 </pre></div></div>
-</div>
 </div>
 
 <div class="section">
@@ -164,16 +156,15 @@ For other nodes nothing is selected.
 whose names match the given regular expression, from nodes with named
 children. If a node has no named children, it selects nothing from that
 node.</p>
-<p></p><div class="section">
-<h3 id="jsonc-example-3">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-3"></a></h3><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p><strong>JSONC example</strong>
+</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span> <span class="st">'{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"^a"</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"^a"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 2 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "apple": <span style="color: #66C2CD;">1</span>, "almond": <span style="color: #66C2CD;">2</span>, "banana": 3, "cherry": 4 }
 </pre></div></div>
-</div>
 </div>
 
 <div class="section">
@@ -187,22 +178,18 @@ queries.</p>
 the first element is the query string and the second element is a
 character vector of capture names to select. In this case only nodes
 matching the given capture names will be selected.</p>
-<p></p><div class="section">
-<h3 id="jsonc-1">JSONC<a class="anchor" aria-label="anchor" href="#jsonc-1"></a></h3>
-<p></p><p></p><p>See <code>ts_language_jsonc()</code> for details on the JSONC grammar.
-</p><p></p>
-</div><div class="section">
-<h3 id="jsonc-example-4">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-4"></a></h3>
-<p></p><p></p><p>This example selects all numbers in the JSON document.
-</p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p><strong>JSONC</strong>
+</p><p></p>See <code>ts_language_jsonc()</code> for details on the JSONC grammar.
+<p></p><strong>JSONC example</strong>
+<p></p>This example selects all numbers in the JSON document.
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"(number) @number"</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"(number) @number"</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 5 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": <span style="color: #66C2CD;">1</span>, "b": [<span style="color: #66C2CD;">10</span>, <span style="color: #66C2CD;">20</span>, <span style="color: #66C2CD;">30</span>], "c": { "c1": true, "c2": <span style="color: #66C2CD;">100</span> } }
 </pre></div></div>
-</div>
 </div>
 
 <div class="section">
@@ -211,12 +198,11 @@ matching the given capture names will be selected.</p>
 
 <p>You can use <code>I(c(...))</code> to select nodes by their ids directly. This is
 for advanced use cases only.</p>
-<p></p><div class="section">
-<h3 id="jsonc-example-5">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-5"></a></h3>
-<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p><strong>JSONC example</strong>
+</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/ts_tree_dom.html">ts_tree_dom</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span></code></pre><p></p></div>
+<span><span class="fu"><a href="../reference/ts_tree_dom.html">ts_tree_dom</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; document (1)
 #&gt; └─object (2)
@@ -228,12 +214,11 @@ for advanced use cases only.</p>
 #&gt;   └─object (33)<span style="color: #6F7783;"> # c</span>
 #&gt;     ├─true (41)<span style="color: #6F7783;"> # c1</span>
 #&gt;     └─null (49)<span style="color: #6F7783;"> # c2</span>
-</pre></div></div><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+</pre></div></div><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 1 selected element)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": <span style="color: #66C2CD;">[10, 20, 30]</span>, "c": { "c1": true, "c2": null } }
 </pre></div></div>
-</div>
 </div>
 
 
@@ -394,7 +379,6 @@ might be more readable.</p>
 #&gt;   <span style="color: #6F7783;">20  | </span>  }
 #&gt;   <span style="color: #6F7783;">21  | </span>}
 </pre></div></div>
-}
 </div>
 </div>
 

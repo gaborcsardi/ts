@@ -22,11 +22,6 @@
 
 - [`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md)
   : Select parts of a tree-sitter tree
-- [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  : TODO
-- [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
-  [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
-  : Helper functions for tree-sitter tree selections
 
 ## Editing
 
@@ -90,6 +85,8 @@ operator.
   [`ts_check_named_arg()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   [`ts_parse_error_cnd()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   : Utility functions for ts language implementations
+- [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  : TODO
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   : Helper functions for tree-sitter tree selections
