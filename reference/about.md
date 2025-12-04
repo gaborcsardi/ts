@@ -131,7 +131,7 @@ Select multiple keys from an object:
 
 Select nodes that match a tree-sitter query:
 
-    json |> ts_tree_select_query("((pair value: (false) @val))")
+    json |> ts_tree_select(query = "((pair value: (false) @val))")
 
     #> # jsonc (19 lines, 3 selected elements)
     #>   ...

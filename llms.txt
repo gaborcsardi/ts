@@ -166,7 +166,7 @@ ts_tree_select(json, "a", c("a1", "a2"))
 Select nodes that match a tree-sitter query:
 
 ``` r
-json |> ts_tree_select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
     #> # jsonc (19 lines, 3 selected elements)
@@ -629,8 +629,6 @@ MIT © Posit Software, PBC
   : Select parts of a tree-sitter tree
 - [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
   : TODO
-- [`ts_tree_select_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select_query.md)
-  : TODO: move this into ts_select
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   : Helper functions for tree-sitter tree selections

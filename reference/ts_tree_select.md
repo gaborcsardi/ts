@@ -130,7 +130,7 @@ This example selects all numbers in the JSON document.
     json <- tsjsonc::ts_parse_jsonc(
       '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
     )
-    json |> ts_tree_select_query("(number) @number")
+    json |> ts_tree_select(query = "(number) @number")
 
     #> # jsonc (1 line, 5 selected elements)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }
@@ -160,3 +160,17 @@ for advanced use cases only.
     #>     └─null (49) # c2
     #> # jsonc (1 line, 1 selected element)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+## Examples
+
+``` r
+# see more examples above
+json <- ts_tree_new(
+  tsjsonc::ts_language_jsonc(),
+  text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
+)
+# Select all key-value pairs
+json |> ts_tree_select("c", "d")
+#> # jsonc (1 line, 1 selected element)
+#> > 1 | { "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }
+```

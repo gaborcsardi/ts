@@ -24,8 +24,6 @@
   : Select parts of a tree-sitter tree
 - [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
   : TODO
-- [`ts_tree_select_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select_query.md)
-  : TODO: move this into ts_select
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   : Helper functions for tree-sitter tree selections
