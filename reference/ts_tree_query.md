@@ -1,7 +1,6 @@
 # Run tree-sitter queries on a file or string
 
-See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
-queries.
+Run tree-sitter queries on a file or string
 
 ## Usage
 
@@ -29,3 +28,12 @@ frame with columns: `id`, `name`, `pattern`, `match_count`.
 columns `id`, `pattern`, `match`, `start_byte`, `end_byte`, `start_row`,
 `start_column`, `end_row`, `end_column`, `name`, `code`. The `pattern`
 column of `matched_captured` refers to the `id` column of `patterns`.
+
+## Details
+
+See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
+queries.
+
+### JSONC
+
+See `ts_language_jsonc()` for details on the JSONC grammar.

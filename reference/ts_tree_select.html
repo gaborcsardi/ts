@@ -93,109 +93,130 @@ starts from the current selection.</p>
 <p>A list of selection expressions is applied in order. Each selection
 expression selects nodes from the currently selected nodes.</p>
 <p>See the various types of selection expressions below.</p><div class="section">
-<h3 id="all-elements-true">All elements: <code>TRUE</code><a class="anchor" aria-label="anchor" href="#all-elements-true"></a></h3>
+<h3 id="selectors">Selectors<a class="anchor" aria-label="anchor" href="#selectors"></a></h3>
+
+<div class="section">
+<h4 id="all-elements-true">All elements: <code>TRUE</code><a class="anchor" aria-label="anchor" href="#all-elements-true"></a></h4>
 
 
 <p>Selects all child nodes of the current nodes.</p>
-<p><em>JSONC example</em>
-</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p></p><div class="section">
+<h3 id="jsonc-example">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example"></a></h3>
+<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 5 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [<span style="color: #66C2CD;">10</span>, <span style="color: #66C2CD;">20</span>, <span style="color: #66C2CD;">30</span>], "c": { "c1": <span style="color: #66C2CD;">true</span>, "c2": <span style="color: #66C2CD;">null</span> } }
 </pre></div></div>
 </div>
+</div>
 
 <div class="section">
-<h3 id="specific-keys-character-vector">Specific keys: character vector<a class="anchor" aria-label="anchor" href="#specific-keys-character-vector"></a></h3>
+<h4 id="specific-keys-character-vector">Specific keys: character vector<a class="anchor" aria-label="anchor" href="#specific-keys-character-vector"></a></h4>
 
 
 <p>Selects child nodes with the given names from nodes with named children.
 If a node has no named children, it selects nothing from that node.</p>
-<p><em>JSONC example</em>
-</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p></p><div class="section">
+<h3 id="jsonc-example-1">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-1"></a></h3>
+<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 1 selected element)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [10, 20, 30], "c": { "c1": <span style="color: #66C2CD;">true</span>, "c2": null } }
 </pre></div></div>
 </div>
+</div>
 
 <div class="section">
-<h3 id="by-position-integer-vector">By position: integer vector<a class="anchor" aria-label="anchor" href="#by-position-integer-vector"></a></h3>
+<h4 id="by-position-integer-vector">By position: integer vector<a class="anchor" aria-label="anchor" href="#by-position-integer-vector"></a></h4>
 
 
 <p>Selects child nodes by position. Positive indices count from the start,
 negative indices count from the end. Zero indices are not allowed.</p>
-<p><em>JSONC</em>
-</p><p></p>For JSONC positional indices can be used both for arrays and objects.
+<p></p><div class="section">
+<h3 id="jsonc">JSONC<a class="anchor" aria-label="anchor" href="#jsonc"></a></h3>
+<p></p><p></p><p>For JSONC positional indices can be used both for arrays and objects.
 For other nodes nothing is selected.
-<p></p><em>JSONC example</em>
-<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+</p><p></p>
+</div><div class="section">
+<h3 id="jsonc-example-2">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-2"></a></h3>
+<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 2 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": [10, 20, <span style="color: #66C2CD;">30</span>], "c": { "c1": true, "c2": <span style="color: #66C2CD;">null</span> } }
 </pre></div></div>
 </div>
+</div>
 
 <div class="section">
-<h3 id="matching-keys-regular-expression">Matching keys: regular expression<a class="anchor" aria-label="anchor" href="#matching-keys-regular-expression"></a></h3>
+<h4 id="matching-keys-regular-expression">Matching keys: regular expression<a class="anchor" aria-label="anchor" href="#matching-keys-regular-expression"></a></h4>
 
 
 <p>A character scalar named <code>regex</code> can be used to select child nodes
 whose names match the given regular expression, from nodes with named
 children. If a node has no named children, it selects nothing from that
 node.</p>
-<p><em>JSONC example</em></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p></p><div class="section">
+<h3 id="jsonc-example-3">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-3"></a></h3><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span> <span class="st">'{ "apple": 1, "almond": 2, "banana": 3, "cherry": 4 }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"^a"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"^a"</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 2 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "apple": <span style="color: #66C2CD;">1</span>, "almond": <span style="color: #66C2CD;">2</span>, "banana": 3, "cherry": 4 }
 </pre></div></div>
 </div>
+</div>
 
 <div class="section">
-<h3 id="tree-sitter-query-matches">Tree sitter query matches<a class="anchor" aria-label="anchor" href="#tree-sitter-query-matches"></a></h3>
+<h4 id="tree-sitter-query-matches">Tree sitter query matches<a class="anchor" aria-label="anchor" href="#tree-sitter-query-matches"></a></h4>
 
 
 <p>A character scalar named <code>query</code> can be used to select nodes matching
 a tree-sitter query. See <code><a href="ts_tree_query.html">ts_tree_query()</a></code> for details on tree-sitter
 queries.</p>
-<p><em>JSONC</em>
-</p><p></p>TODO: details of the JSONC grammar.
-<p></p><em>JSONC example</em>
-<p></p>This example selects all numbers in the JSON document.
-<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p>Instead of a character scalar this can also be a two-element list, where
+the first element is the query string and the second element is a
+character vector of capture names to select. In this case only nodes
+matching the given capture names will be selected.</p>
+<p></p><div class="section">
+<h3 id="jsonc-1">JSONC<a class="anchor" aria-label="anchor" href="#jsonc-1"></a></h3>
+<p></p><p></p><p>See <code>ts_language_jsonc()</code> for details on the JSONC grammar.
+</p><p></p>
+</div><div class="section">
+<h3 id="jsonc-example-4">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-4"></a></h3>
+<p></p><p></p><p>This example selects all numbers in the JSON document.
+</p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"(number) @number"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"(number) @number"</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 5 selected elements)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": <span style="color: #66C2CD;">1</span>, "b": [<span style="color: #66C2CD;">10</span>, <span style="color: #66C2CD;">20</span>, <span style="color: #66C2CD;">30</span>], "c": { "c1": true, "c2": <span style="color: #66C2CD;">100</span> } }
 </pre></div></div>
 </div>
+</div>
 
 <div class="section">
-<h3 id="explicit-node-ids">Explicit node ids<a class="anchor" aria-label="anchor" href="#explicit-node-ids"></a></h3>
+<h4 id="explicit-node-ids">Explicit node ids<a class="anchor" aria-label="anchor" href="#explicit-node-ids"></a></h4>
 
 
 <p>You can use <code>I(c(...))</code> to select nodes by their ids directly. This is
 for advanced use cases only.</p>
-<p><em>JSONC example</em>
-</p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
+<p></p><div class="section">
+<h3 id="jsonc-example-5">JSONC example<a class="anchor" aria-label="anchor" href="#jsonc-example-5"></a></h3>
+<p></p><p></p><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span>
 <span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/ts_tree_dom.html">ts_tree_dom</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span>
-<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/ts_tree_dom.html">ts_tree_dom</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; document (1)
 #&gt; └─object (2)
@@ -207,21 +228,185 @@ for advanced use cases only.</p>
 #&gt;   └─object (33)<span style="color: #6F7783;"> # c</span>
 #&gt;     ├─true (41)<span style="color: #6F7783;"> # c1</span>
 #&gt;     └─null (49)<span style="color: #6F7783;"> # c2</span>
+</pre></div></div><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; <span style="color: #6F7783;"># jsonc (1 line, 1 selected element)</span>
 #&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">1 | </span>{ "a": 1, "b": <span style="color: #66C2CD;">[10, 20, 30]</span>, "c": { "c1": true, "c2": null } }
 </pre></div></div>
+</div>
+</div>
+
+
+</div>
+
+<div class="section">
+<h3 id="refining-selections">Refining selections<a class="anchor" aria-label="anchor" href="#refining-selections"></a></h3>
+
+
+<p>If the <code>refine</code> argument of <code>ts_tree_select()</code> is <code>TRUE</code>, then
+the selection starts from the already selected elements (all of them
+simultanously), instead of starting from the document element.</p>
+</div>
+
+<div class="section">
+<h3 id="the-and-lt-operators">The <code>[[</code> and <code>[[&lt;-</code> operators<a class="anchor" aria-label="anchor" href="#the-and-lt-operators"></a></h3>
+
+
+<p>The <code>[[</code> operator works similarly to <code>ts_tree_select()</code> on ts_tree
+objects, but it might be more readable.</p>
+<p>The <code>[[&lt;-</code> operator works similarly to <code><a href="select-set.html">ts_tree_select&lt;-()</a></code>, but it
+might be more readable.</p>
+<p></p><div class="section">
+<h3 id="jsonc-examples">JSONC examples<a class="anchor" aria-label="anchor" href="#jsonc-examples"></a></h3><p></p><div class="sourceCode r"><pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gaborcsardi/ts" class="external-link">ts</a></span><span class="op">)</span></span>
+<span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="fu">ts_serialize_jsonc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>a1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, a2 <span class="op">=</span> <span class="st">"string"</span><span class="op">)</span>,</span>
+<span>  b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt;
+</pre></div></div><p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines)</span>
+#&gt; <span style="color: #6F7783;"> 1 | </span>{
+#&gt; <span style="color: #6F7783;"> 2 | </span>  "a": {
+#&gt; <span style="color: #6F7783;"> 3 | </span>    "a1": [
+#&gt; <span style="color: #6F7783;"> 4 | </span>      1,
+#&gt; <span style="color: #6F7783;"> 5 | </span>      2,
+#&gt; <span style="color: #6F7783;"> 6 | </span>      3
+#&gt; <span style="color: #6F7783;"> 7 | </span>    ],
+#&gt; <span style="color: #6F7783;"> 8 | </span>    "a2": "string"
+#&gt; <span style="color: #6F7783;"> 9 | </span>  },
+#&gt; <span style="color: #6F7783;">10 | </span>  "b": [
+#&gt; <span style="color: #6F7783;">ℹ 11 more lines</span>
+#&gt; <span style="color: #6F7783;">ℹ Use `print(n = ...)` to see more lines</span>
+</pre></div></div><p>Select object by key:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 1 selected element)</span>
+#&gt;   <span style="color: #6F7783;"> 1  | </span>{
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 2  | </span>  "a": <span style="color: #66C2CD;">{</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 3  | </span><span style="color: #66C2CD;">    "a1": [</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span><span style="color: #66C2CD;">      1,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">      2,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">      3</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    ],</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 8  | </span><span style="color: #66C2CD;">    "a2": "string"</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 9  | </span><span style="color: #66C2CD;">  }</span>,
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt;   <span style="color: #6F7783;">11  | </span>    4,
+#&gt;   <span style="color: #6F7783;">12  | </span>    5,
+#&gt;   <span style="color: #6F7783;">...</span>
+</pre></div></div><p>Select within select, these are the same:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span></span>
+<span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"a1"</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 1 selected element)</span>
+#&gt;   <span style="color: #6F7783;"> 1  | </span>{
+#&gt;   <span style="color: #6F7783;"> 2  | </span>  "a": {
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 3  | </span>    "a1": <span style="color: #66C2CD;">[</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span><span style="color: #66C2CD;">      1,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">      2,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">      3</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    ]</span>,
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt;   <span style="color: #6F7783;">...</span>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 1 selected element)</span>
+#&gt;   <span style="color: #6F7783;"> 1  | </span>{
+#&gt;   <span style="color: #6F7783;"> 2  | </span>  "a": {
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 3  | </span>    "a1": <span style="color: #66C2CD;">[</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span><span style="color: #66C2CD;">      1,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">      2,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">      3</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    ]</span>,
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt;   <span style="color: #6F7783;">...</span>
+</pre></div></div><p>Select elements of an array. All elements:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 3 selected elements)</span>
+#&gt;   <span style="color: #6F7783;">...</span>
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">11  | </span>    <span style="color: #66C2CD;">4</span>,
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">12  | </span>    <span style="color: #66C2CD;">5</span>,
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">13  | </span>    <span style="color: #66C2CD;">6</span>
+#&gt;   <span style="color: #6F7783;">14  | </span>  ],
+#&gt;   <span style="color: #6F7783;">15  | </span>  "c": {
+#&gt;   <span style="color: #6F7783;">16  | </span>    "c1": [
+#&gt;   <span style="color: #6F7783;">...</span>
+</pre></div></div><p>First two elements:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>
+#&gt;   <span style="color: #6F7783;">...</span>
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">11  | </span>    <span style="color: #66C2CD;">4</span>,
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">12  | </span>    <span style="color: #66C2CD;">5</span>,
+#&gt;   <span style="color: #6F7783;">13  | </span>    6
+#&gt;   <span style="color: #6F7783;">14  | </span>  ],
+#&gt;   <span style="color: #6F7783;">15  | </span>  "c": {
+#&gt;   <span style="color: #6F7783;">...</span>
+</pre></div></div><p>First and last elements:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>
+#&gt;   <span style="color: #6F7783;">...</span>
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">11  | </span>    <span style="color: #66C2CD;">4</span>,
+#&gt;   <span style="color: #6F7783;">12  | </span>    5,
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">13  | </span>    <span style="color: #66C2CD;">6</span>
+#&gt;   <span style="color: #6F7783;">14  | </span>  ],
+#&gt;   <span style="color: #6F7783;">15  | </span>  "c": {
+#&gt;   <span style="color: #6F7783;">16  | </span>    "c1": [
+#&gt;   <span style="color: #6F7783;">...</span>
+</pre></div></div><p>Regular expressions:</p>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"c"</span><span class="op">)</span>, regex <span class="op">=</span> <span class="st">"1$"</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; <span style="color: #6F7783;"># jsonc (21 lines, 2 selected elements)</span>
+#&gt;   <span style="color: #6F7783;"> 1  | </span>{
+#&gt;   <span style="color: #6F7783;"> 2  | </span>  "a": {
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 3  | </span>    "a1": <span style="color: #66C2CD;">[</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 4  | </span><span style="color: #66C2CD;">      1,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 5  | </span><span style="color: #66C2CD;">      2,</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 6  | </span><span style="color: #66C2CD;">      3</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;"> 7  | </span><span style="color: #66C2CD;">    ]</span>,
+#&gt;   <span style="color: #6F7783;"> 8  | </span>    "a2": "string"
+#&gt;   <span style="color: #6F7783;"> 9  | </span>  },
+#&gt;   <span style="color: #6F7783;">10  | </span>  "b": [
+#&gt;   <span style="color: #6F7783;">...</span>
+#&gt;   <span style="color: #6F7783;">13  | </span>    6
+#&gt;   <span style="color: #6F7783;">14  | </span>  ],
+#&gt;   <span style="color: #6F7783;">15  | </span>  "c": {
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">16  | </span>    "c1": <span style="color: #66C2CD;">[</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">17  | </span><span style="color: #66C2CD;">      "a",</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">18  | </span><span style="color: #66C2CD;">      "b"</span>
+#&gt; <span style="background-color: #66C2CD;">&gt;</span> <span style="color: #6F7783;">19  | </span><span style="color: #66C2CD;">    ]</span>
+#&gt;   <span style="color: #6F7783;">20  | </span>  }
+#&gt;   <span style="color: #6F7783;">21  | </span>}
+</pre></div></div>
+}
+</div>
 </div>
 
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># see more examples above</span></span></span>
-<span class="r-in"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="ts_tree_new.html">ts_tree_new</a></span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="ts_tree_new.html">ts_tree_new</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html" class="external-link">ts_language_jsonc</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  text <span class="op">=</span> <span class="st">'{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Select all key-value pairs</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">json</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_select</span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"d"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># jsonc (1 line, 1 selected element)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="background-color: #00BBBB;">&gt;</span> <span style="color: #555555;">1 | </span>{ "a": 1, "b": 2, "c": { "d": <span style="color: #00BBBB;">3</span>, "e": 4 } }</span>
