@@ -33,8 +33,6 @@ reference:
 - title: Selection
   contents:
   - ts_tree_select
-  - ts_tree_select1
-  - ts_tree_selected_nodes
 
 - title: Editing
   contents:
@@ -81,6 +79,8 @@ reference:
   - ts_cnd
   - ts_collapse
   - ts_parse_error_cnd
+  - ts_tree_select1
+  - ts_tree_selected_nodes
   - ts_tree_selection
 
 - title: internal
