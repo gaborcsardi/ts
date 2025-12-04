@@ -1,6 +1,18 @@
 # About ts
 
-About ts
+ts is a common interface to
+[tree-sitter](https://tree-sitter.github.io/tree-sitter/) parsers,
+implemented in other R packages. It has a common API to
+
+- query,
+
+- edit,
+
+- format, and
+
+- unserialize
+
+tree-sitter parse trees.
 
 ## Details
 

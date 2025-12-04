@@ -4,8 +4,10 @@ This is the main function to create a tree-sitter parse tree, using a
 parser from another package. Then the parse tree may be queried, edited,
 formatted, written to file, etc. using ts_tree methods.
 
-See the list of installed and loaded packages that provide parsers for
-ts below at "Details".
+### Installed ts parsers
+
+- [tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)
+  (0.0.0.9000) (loaded): Edit JSON Files.
 
 ## Usage
 
@@ -99,11 +101,6 @@ creates a `ts_language` object for that parser. E.g.
 [`tsjsonc::ts_language_jsonc()`](https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html).
 You need to use the returned `ts_language` object as the `language`
 argument of this function.
-
-### Installed parsers
-
-- [tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)
-  (0.0.0.9000) (loaded): Edit JSON Files.
 
 ## Examples
 
