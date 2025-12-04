@@ -61,9 +61,10 @@ document node have have \code{NA_integer_} here.
 This is the main function to create a tree-sitter parse tree, using a
 parser from another package. Then the parse tree may be queried, edited,
 formatted, written to file, etc. using ts_tree methods.
+\subsection{Installed ts parsers}{
 
-See the list of installed and loaded packages that provide parsers for
-ts below at "Details".
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
+}
 }
 \details{
 A package that implements a tree-sitter parser provides a function that
@@ -71,10 +72,6 @@ creates a \code{ts_language} object for that parser. E.g.
 \link[tsjsonc:tsjsonc-package]{tsjsonc} has \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}}.
 You need to use the returned \code{ts_language} object as the \code{language}
 argument of this function.
-\subsection{Installed parsers}{
-
-\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
-}
 }
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}

@@ -1,8 +1,14 @@
 #' Select parts of a tree-sitter tree
 #'
+#' @description
 #' This function is the heart of ts. To edit a tree-sitter tree, you first
 #' need to select the parts you want to delete or update.
 #'
+#' ## Installed ts parsers
+#'
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
+#'
+#' @details
 #' A selection starts from the root of the DOM tree, the document node
 #' (see [ts_tree_dom()]), unless `refine = TRUE` is set, in which case it
 #' starts from the current selection.
@@ -12,39 +18,49 @@
 #'
 #' See the various types of selection expressions below.
 #'
-#' ## `TRUE`
+#' ## All elements: `TRUE`
 #'
 #' Selects all child nodes of the current nodes.
 #'
 #' \eval{ts:::docs("ts_tree_select_true")}
 #'
-#' ## Character vector
+#' ## Specific keys: character vector
 #'
 #' Selects child nodes with the given names from nodes with named children.
 #' If a node has no named children, it selects nothing from that node.
 #'
-#' ## Integer vector
+#' \eval{ts:::docs("ts_tree_select_character")}
+#'
+#' ## By position: integer vector
 #'
 #' Selects child nodes by position. Positive indices count from the start,
 #' negative indices count from the end. Zero indices are not allowed.
 #'
-#' ## Regular expression
+#' \eval{ts:::docs("ts_tree_select_integer")}
+#'
+#' ## Matching keys: regular expression
 #'
 #' A character scalar named `regex` can be used to select child nodes
 #' whose names match the given regular expression, from nodes with named
 #' children. If a node has no named children, it selects nothing from that
 #' node.
 #'
-#' ## Tree sitter query
+#' \eval{ts:::docs("ts_tree_select_regex")}
+#'
+#' ## Tree sitter query matches
 #'
 #' A character scalar named `query` can be used to select nodes matching
 #' a tree-sitter query. See [ts_tree_query()] for details on tree-sitter
 #' queries.
 #'
-#' ## Nodes ids
+#' \eval{ts:::docs("ts_tree_select_tsquery")}
+#'
+#' ## Explicit node ids
 #'
 #' You can use `I(c(...))` to select nodes by their ids directly. This is
 #' for advanced use cases only.
+#'
+#' \eval{ts:::docs("ts_tree_select_ids")}
 #'
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param ... Selection expressions, see details.
@@ -52,6 +68,14 @@
 #'   a new selection.
 #' @return A `ts_tree` object with the selected parts.
 #' @export
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # see more examples above
+#' json <- ts_tree_new(
+#'   tsjsonc::ts_language_jsonc(),
+#'   text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
+#' )
+#' # Select all key-value pairs
+#' json |> ts_tree_select("c", "d")
 
 ts_tree_select <- function(tree, ..., refine = FALSE) {
   slts <- normalize_selectors(list(...))

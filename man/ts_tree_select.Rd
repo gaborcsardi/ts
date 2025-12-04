@@ -20,6 +20,10 @@ A \code{ts_tree} object with the selected parts.
 \description{
 This function is the heart of ts. To edit a tree-sitter tree, you first
 need to select the parts you want to delete or update.
+\subsection{Installed ts parsers}{
+
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
+}
 }
 \details{
 A selection starts from the root of the DOM tree, the document node
@@ -30,43 +34,53 @@ A list of selection expressions is applied in order. Each selection
 expression selects nodes from the currently selected nodes.
 
 See the various types of selection expressions below.
-\subsection{\code{TRUE}}{
+\subsection{All elements: \code{TRUE}}{
 
 Selects all child nodes of the current nodes.
 
 \eval{ts:::docs("ts_tree_select_true")}
 }
 
-\subsection{Character vector}{
+\subsection{Specific keys: character vector}{
 
 Selects child nodes with the given names from nodes with named children.
 If a node has no named children, it selects nothing from that node.
+
+\eval{ts:::docs("ts_tree_select_character")}
 }
 
-\subsection{Integer vector}{
+\subsection{By position: integer vector}{
 
 Selects child nodes by position. Positive indices count from the start,
 negative indices count from the end. Zero indices are not allowed.
+
+\eval{ts:::docs("ts_tree_select_integer")}
 }
 
-\subsection{Regular expression}{
+\subsection{Matching keys: regular expression}{
 
 A character scalar named \code{regex} can be used to select child nodes
 whose names match the given regular expression, from nodes with named
 children. If a node has no named children, it selects nothing from that
 node.
+
+\eval{ts:::docs("ts_tree_select_regex")}
 }
 
-\subsection{Tree sitter query}{
+\subsection{Tree sitter query matches}{
 
 A character scalar named \code{query} can be used to select nodes matching
 a tree-sitter query. See \code{\link[=ts_tree_query]{ts_tree_query()}} for details on tree-sitter
 queries.
+
+\eval{ts:::docs("ts_tree_select_tsquery")}
 }
 
-\subsection{Nodes ids}{
+\subsection{Explicit node ids}{
 
 You can use \code{I(c(...))} to select nodes by their ids directly. This is
 for advanced use cases only.
+
+\eval{ts:::docs("ts_tree_select_ids")}
 }
 }

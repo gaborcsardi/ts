@@ -5,8 +5,9 @@
 #' parser from another package. Then the parse tree may be queried, edited,
 #' formatted, written to file, etc. using ts_tree methods.
 #'
-#' See the list of installed and loaded packages that provide parsers for
-#' ts below at "Details".
+#' ## Installed ts parsers
+#'
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @details
 #' A package that implements a tree-sitter parser provides a function that
@@ -15,9 +16,6 @@
 #' You need to use the returned `ts_language` object as the `language`
 #' argument of this function.
 #'
-#' ## Installed parsers
-#'
-#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @param language Language of the file or string, a `ts_language` object,
 #'   e.g. [tsjsonc::ts_language_jsonc()].

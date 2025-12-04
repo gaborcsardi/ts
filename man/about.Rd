@@ -4,7 +4,16 @@
 \alias{about}
 \title{About ts}
 \description{
-About ts
+ts is a common interface to \href{https://tree-sitter.github.io/tree-sitter/}{tree-sitter} parsers, implemented in
+other R packages. It has a common API to
+\itemize{
+\item query,
+\item edit,
+\item format, and
+\item unserialize
+}
+
+tree-sitter parse trees.
 }
 \details{
 In this document I show examples with the \code{tsjsonc} package.

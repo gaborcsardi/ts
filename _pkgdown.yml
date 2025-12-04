@@ -7,6 +7,15 @@ template:
 development:
   mode: auto
 
+navbar:
+  structure:
+    left: [about, reference]
+    right: [news]
+  components:
+    about:
+      text: About ts
+      href: reference/about.html
+
 reference:
 - title: About ts
   desc: |

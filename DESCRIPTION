@@ -14,6 +14,7 @@ Imports:
   cli
 Suggests:
   pillar,
+  roxygen2,
   testthat (>= 3.0.0),
   tsjsonc,
   withr
