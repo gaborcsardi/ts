@@ -34,6 +34,7 @@ A list of selection expressions is applied in order. Each selection
 expression selects nodes from the currently selected nodes.
 
 See the various types of selection expressions below.
+\subsection{Selectors}{
 \subsection{All elements: \code{TRUE}}{
 
 Selects all child nodes of the current nodes.
@@ -73,6 +74,11 @@ A character scalar named \code{query} can be used to select nodes matching
 a tree-sitter query. See \code{\link[=ts_tree_query]{ts_tree_query()}} for details on tree-sitter
 queries.
 
+Instead of a character scalar this can also be a two-element list, where
+the first element is the query string and the second element is a
+character vector of capture names to select. In this case only nodes
+matching the given capture names will be selected.
+
 \eval{ts:::docs("ts_tree_select_tsquery")}
 }
 
@@ -83,15 +89,34 @@ for advanced use cases only.
 
 \eval{ts:::docs("ts_tree_select_ids")}
 }
+
+}
+
+\subsection{Refining selections}{
+
+If the \code{refine} argument of \code{\link[=ts_tree_select]{ts_tree_select()}} is \code{TRUE}, then
+the selection starts from the already selected elements (all of them
+simultanously), instead of starting from the document element.
+}
+
+\subsection{The \code{[[} and \verb{[[<-} operators}{
+
+The \code{[[} operator works similarly to \code{\link[=ts_tree_select]{ts_tree_select()}} on ts_tree
+objects, but it might be more readable.
+
+The \verb{[[<-} operator works similarly to \code{\link[=ts_tree_select<-]{ts_tree_select<-()}}, but it
+might be more readable.
+
+\eval{ts:::docs("ts_tree_select_examples")}
+}
 }
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-# see more examples above
 json <- ts_tree_new(
   tsjsonc::ts_language_jsonc(),
   text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
 )
-# Select all key-value pairs
+
 json |> ts_tree_select("c", "d")
 \dontshow{\}) # examplesIf}
 }

@@ -6,7 +6,10 @@ asciicast::init_knitr_engine(
   echo = TRUE,
   echo_input = FALSE,
   timeout = as.integer(Sys.getenv("ASCIICAST_TIMEOUT", 10)),
-  startup = quote(options(cli.num_colors = 256))
+  startup = quote({
+    library(ts)
+    options(cli.num_colors = 256)
+  })
 )
 
 knitr::opts_chunk$set(

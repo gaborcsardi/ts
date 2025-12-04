@@ -21,6 +21,11 @@ columns \code{id}, \code{pattern}, \code{match}, \code{start_byte}, \code{end_by
 column of \code{matched_captured} refers to the \code{id} column of \code{patterns}.
 }
 \description{
+Run tree-sitter queries on a file or string
+}
+\details{
 See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 queries.
+
+\eval{ts:::docs("ts_tree_query")}
 }

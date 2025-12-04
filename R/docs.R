@@ -35,11 +35,28 @@ roclet_process.roclet_ts <- function(x, blocks, env, base_path) {
 
     for (tag in tags) {
       path <- file.path(base_path, "inst", "docs", paste0(tag$val$file, ".Rd"))
-      cli::cli_alert_info("Manual stub at {.file {basename(path)}}.")
-      writeLines(tag$val$val, con = path)
+      write_if_newer(tag$val$val, path)
     }
   }
   invisible(list())
+}
+
+write_if_newer <- function(txt, path) {
+  bin <- charToRaw(txt)
+  nl <- charToRaw("\n")
+  if (length(bin) > 0 && bin[[length(bin)]] != nl) {
+    bin <- c(bin, nl)
+  }
+  if (file.exists(path)) {
+    old <- readBin(path, what = "raw", n = file.size(path))
+    if (identical(old, bin)) {
+      return(invisible(FALSE))
+    }
+  }
+  dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+  cli::cli_alert_info("Manual stub at {.file {basename(path)}}.")
+  writeBin(bin, path)
+  invisible(TRUE)
 }
 
 roclet_output.roclet_ts <- function(x, results, base_path, ...) {
