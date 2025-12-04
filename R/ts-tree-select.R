@@ -253,25 +253,56 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #' @return TODO
 #' @export
 
-ts_tree_select_query <- function(tree, query) {
-  mch <- ts_tree_query(tree, query)$matched_captures
-  ids <- if (nrow(mch) == 0) {
+ts_tree_select_query <- function(tree, query, captures = NULL) {
+  mch <- ts_tree_query(tree, query)
+
+  if (!is.null(captures)) {
+    bad <- !captures %in% mch$captures$name
+    if (any(bad)) {
+      stop(ts_cnd(
+        "Invalid capture names in `select_query()`: \\
+         {collapse(captures[bad])}."
+      ))
+    }
+    mc <- mch$matched_captures[
+      mch$matched_captures$name %in% captures,
+    ]
+  } else {
+    mc <- mch$matched_captures
+  }
+
+  ids <- if (nrow(mc) == 0) {
     integer()
   } else {
-    tree0 <- tree[
-      tree$start_byte %in% mch$start_byte & tree$end_byte %in% mch$end_byte,
+    toml0 <- tree[
+      tree$start_byte %in% mc$start_byte & tree$end_byte %in% mc$end_byte,
     ]
-    mkeys <- paste0(mch$type, ":", mch$start_byte, ":", mch$end_byte)
-    jkeys <- paste0(
-      tree0$type,
-      ":",
-      tree0$start_byte,
-      ":",
-      tree0$end_byte
-    )
-    tree0$id[match(mkeys, jkeys)]
+    mkeys <- paste0(mc$type, ":", mc$start_byte, ":", mc$end_byte)
+    jkeys <- paste0(toml0$type, ":", toml0$start_byte, ":", toml0$end_byte)
+    toml0$id[match(mkeys, jkeys)]
   }
+  ids <- minimize_selection(tree, ids)
   ts_tree_select(tree, ts_tree_selector_ids(ids))
+}
+
+# remove nodes that are in the subtree of other selected nodes
+# start from the last nodes and go up
+
+minimize_selection <- function(tree, ids) {
+  ids <- sort(unique(ids))
+  sel <- logical(nrow(tree))
+  sel[ids] <- TRUE
+  for (id in rev(ids)) {
+    parent <- tree$parent[id]
+    while (!is.na(parent)) {
+      if (sel[parent]) {
+        sel[id] <- FALSE
+        break
+      }
+      parent <- tree$parent[parent]
+    }
+  }
+  which(sel)
 }
 
 # A section is a list of records. Each record has a selector
