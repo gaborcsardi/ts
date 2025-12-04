@@ -78,7 +78,7 @@
 #' json |> ts_tree_select("c", "d")
 
 ts_tree_select <- function(tree, ..., refine = FALSE) {
-  slts <- normalize_selectors(list(...))
+  slts <- normalize_selectors(tree, list(...))
   if (length(slts) == 1 && is.null(slts[[1]])) {
     attr(tree, "selection") <- NULL
     return(tree)
@@ -113,7 +113,7 @@ ts_tree_select <- function(tree, ..., refine = FALSE) {
   tree
 }
 
-normalize_selectors <- function(slts) {
+normalize_selectors <- function(tree, slts) {
   names(slts) <- names(slts) %||% rep("", length(slts))
   slts <- imap(slts, function(x, nm) {
     if (nm == "regex") {
@@ -121,6 +121,16 @@ normalize_selectors <- function(slts) {
         list(pattern = x),
         class = c("ts_tree_selector_regex", "ts_tree_selector", "list")
       )
+    } else if (nm == "query") {
+      # we do the query up front, so we don't rerun it for every node
+      x <- structure(
+        list(
+          query = if (is.character(x)) x else x[[1]],
+          captures = if (!is.character(x)) x[[2]] else NULL
+        ),
+        class = c("ts_tree_selector_tsquery", "ts_tree_selector", "list")
+      )
+      x$nodes <- select_query(tree, x$query, x$captures)
     } else if (inherits(x, "AsIs")) {
       x <- structure(
         list(ids = unclass(x)),
@@ -169,6 +179,13 @@ ts_tree_select1.ts_tree.NULL <- function(tree, node, slt) {
 ts_tree_select1.ts_tree.ts_tree_selector_ids <- function(tree, node, slt) {
   # TODO: should we select in subtree of node? Probably.
   slt$ids
+}
+
+#' @export
+
+ts_tree_select1.ts_tree.ts_tree_selector_tsquery <- function(tree, node, slt) {
+  # TODO: should we select in subtree of node? Probably.
+  slt$nodes
 }
 
 #' @export
@@ -246,14 +263,7 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
   ts_tree_unserialize(ts_tree_select(x, i, ...))
 }
 
-#' TODO: move this into ts_select
-#'
-#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
-#' @param query String, a tree-sitter query.
-#' @return TODO
-#' @export
-
-ts_tree_select_query <- function(tree, query, captures = NULL) {
+select_query <- function(tree, query, captures = NULL) {
   mch <- ts_tree_query(tree, query)
 
   if (!is.null(captures)) {
@@ -281,8 +291,8 @@ ts_tree_select_query <- function(tree, query, captures = NULL) {
     jkeys <- paste0(toml0$type, ":", toml0$start_byte, ":", toml0$end_byte)
     toml0$id[match(mkeys, jkeys)]
   }
-  ids <- minimize_selection(tree, ids)
-  ts_tree_select(tree, ts_tree_selector_ids(ids))
+  # TODO: should we do this?
+  minimize_selection(tree, ids)
 }
 
 # remove nodes that are in the subtree of other selected nodes

@@ -78,7 +78,7 @@ Select nodes that match a tree-sitter query:
 
 ```{asciicast}
 #| label: select-query
-json |> ts_tree_select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
 ### Delete elements

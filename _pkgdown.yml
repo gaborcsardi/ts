@@ -34,7 +34,6 @@ reference:
   contents:
   - ts_tree_select
   - ts_tree_select1
-  - ts_tree_select_query
   - ts_tree_selected_nodes
 
 - title: Editing

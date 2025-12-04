@@ -152,7 +152,7 @@ Select multiple keys from an object:
 
 Select nodes that match a tree-sitter query:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select_query("((pair value: (false) @val))")
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{json |> ts_tree_select(query = "((pair value: (false) @val))")
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
 #> <span style="color: #6F7783;"># jsonc (19 lines, 3 selected elements)</span>                                         

@@ -36,7 +36,7 @@ test_that("ts_tree_select regex", {
 
 test_that("normalize_selectors", {
   expect_snapshot({
-    normalize_selectors(list("a", 1L, TRUE, NULL, I(1), regex = "b"))
+    normalize_selectors(NULL, list("a", 1L, TRUE, NULL, I(1), regex = "b"))
   })
 })
 
@@ -98,18 +98,18 @@ test_that("[[", {
 })
 
 
-test_that("ts_tree_select_query", {
+test_that("TS query", {
   tree <- tsjsonc::ts_parse_jsonc(
     '{"a": {"b": [1,2,3]}, "c": {"b": [4,5,6]}}'
   ) |>
     ts_tree_format()
   expect_snapshot({
-    tree |> ts_tree_select_query("(number) @num")
-    tree |> ts_tree_select_query("(number) @num") |> ts_tree_unserialize()
+    tree |> ts_tree_select(query = "(number) @num")
+    tree |> ts_tree_select(query = "(number) @num") |> ts_tree_unserialize()
   })
 
   expect_snapshot({
-    tree |> ts_tree_select_query("(null) @foo")
+    tree |> ts_tree_select(query = "(null) @foo")
   })
 })
 

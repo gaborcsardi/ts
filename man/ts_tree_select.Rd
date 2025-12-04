@@ -84,3 +84,14 @@ for advanced use cases only.
 \eval{ts:::docs("ts_tree_select_ids")}
 }
 }
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# see more examples above
+json <- ts_tree_new(
+  tsjsonc::ts_language_jsonc(),
+  text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
+)
+# Select all key-value pairs
+json |> ts_tree_select("c", "d")
+\dontshow{\}) # examplesIf}
+}

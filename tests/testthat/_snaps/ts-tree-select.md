@@ -85,7 +85,7 @@
 # normalize_selectors
 
     Code
-      normalize_selectors(list("a", 1L, TRUE, NULL, I(1), regex = "b"))
+      normalize_selectors(NULL, list("a", 1L, TRUE, NULL, I(1), regex = "b"))
     Output
       [[1]]
       [1] "a"
@@ -206,10 +206,10 @@
       
       
 
-# ts_tree_select_query
+# TS query
 
     Code
-      ts_tree_select_query(tree, "(number) @num")
+      ts_tree_select(tree, query = "(number) @num")
     Output
       # jsonc (16 lines, 6 selected elements)
          1 | {
@@ -229,7 +229,7 @@
         15 |     }
         16 | }
     Code
-      ts_tree_unserialize(ts_tree_select_query(tree, "(number) @num"))
+      ts_tree_unserialize(ts_tree_select(tree, query = "(number) @num"))
     Output
       [[1]]
       [1] 1
@@ -253,7 +253,7 @@
 ---
 
     Code
-      ts_tree_select_query(tree, "(null) @foo")
+      ts_tree_select(tree, query = "(null) @foo")
     Output
       # jsonc (16 lines, 0 selected elements)
        1 | {

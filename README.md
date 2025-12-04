@@ -9,8 +9,7 @@
 [![R-CMD-check](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Common tree-sitter parsing tools for R. It is meant to be used by other
-packages that specialize in particular languages.
+Common tree-sitter parsing tools for R.
 
 ts is a common interface to
 [tree-sitter](https://tree-sitter.github.io/tree-sitter/) parsers,
@@ -135,7 +134,7 @@ ts_tree_select(json, "a", c("a1", "a2"))
 Select nodes that match a tree-sitter query:
 
 ``` r
-json |> ts_tree_select_query("((pair value: (false) @val))")
+json |> ts_tree_select(query = "((pair value: (false) @val))")
 ```
 
 <picture>
