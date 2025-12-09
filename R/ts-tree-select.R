@@ -124,14 +124,7 @@ ts_tree_select <- function(tree, ..., refine = FALSE) {
     )
     cnodes <- current[[length(current)]]$nodes
   }
-  # if 'document' is selected, that means there is no selection
-  if (identical(current[[1]]$nodes, 1L)) {
-    # nocov start -- TODO: when is this needed?
-    attr(tree, "selection") <- NULL
-    # nocov end
-  } else {
-    attr(tree, "selection") <- current
-  }
+  attr(tree, "selection") <- current
   tree
 }
 
