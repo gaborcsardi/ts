@@ -294,7 +294,7 @@ select_query <- function(tree, query, captures = NULL) {
     if (any(bad)) {
       stop(ts_cnd(
         "Invalid capture names in `select_query()`: \\
-         {collapse(captures[bad])}."
+         {ts_collapse(captures[bad])}."
       ))
     }
     mc <- mch$matched_captures[
