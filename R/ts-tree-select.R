@@ -108,7 +108,7 @@ ts_tree_select <- function(tree, ..., refine = FALSE) {
   current <- if (refine) {
     ts_tree_selection(tree)
   } else {
-    get_default_selection(tree)
+    ts_tree_selector_default(tree)
   }
   cnodes <- current[[length(current)]]$nodes
 
@@ -188,6 +188,14 @@ ts_tree_select1.default <- function(tree, node, slt) {
     "Don't know how to select nodes from a `ts_tree` ({lang}) object \\
      using selector of class `{class(slt)[1]}`."
   ))
+}
+
+#' @export
+
+ts_tree_select1.ts_tree.ts_tree_selector_default <- function(tree, node, slt) {
+  top <- tree$children[[1]]
+  top <- top[tree$type[top] != "comment"]
+  if (length(top) > 0) top else 1L
 }
 
 #' @export
@@ -364,7 +372,7 @@ ts_tree_selection <- function(tree, default = TRUE) {
   if (!is.null(sel)) {
     sel
   } else if (default) {
-    get_default_selection(tree)
+    ts_tree_selector_default(tree)
   } else {
     NULL
   }
@@ -386,22 +394,15 @@ ts_tree_selected_nodes <- function(tree, default = TRUE) {
   }
 }
 
-get_default_selection <- function(tree) {
-  top <- tree$children[[1]]
-  top <- top[tree$type[top] != "comment"]
-  list(
-    list(
-      selector = ts_tree_selector_default(),
-      nodes = if (length(top) > 0) top else 1L
-    )
-  )
-}
-
-ts_tree_selector_default <- function() {
-  structure(
+ts_tree_selector_default <- function(tree) {
+  slt <- structure(
     list(),
     class = c("ts_tree_selector_default", "ts_tree_selector", "list")
   )
+  list(list(
+    selector = slt,
+    nodes = ts_tree_select1(tree, NULL, slt)
+  ))
 }
 
 ts_tree_selector_ids <- function(ids) {
