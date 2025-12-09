@@ -73,6 +73,22 @@ format_ts_tree_noselection <- function(x, n = 10, ...) {
   )
 }
 
+ts_tree_mark_selection <- function(tree, node) {
+  unlist(lapply(node, ts_tree_mark_selection1, tree = tree))
+}
+
+#' @export
+
+ts_tree_mark_selection1 <- function(tree, node) {
+  UseMethod("ts_tree_mark_selection1")
+}
+
+#' @export
+
+ts_tree_mark_selection1.ts_tree <- function(tree, node) {
+  node
+}
+
 format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
   lns <- strsplit(rawToChar(attr(x, "text")), "\r?\n")[[1]]
   nlns <- length(lns)
@@ -81,13 +97,18 @@ format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
   nsel <- length(sel)
   ssel <- min(nsel, n)
   sel <- utils::head(sel, ssel)
+  isel <- ts_tree_mark_selection(x, sel)
 
   # calculate the lines affected by the first ssel selections
   selrows <- rep(FALSE, nlns)
   shwrows <- rep(FALSE, nlns)
-  for (sel1 in sel) {
+  for (sel1 in isel) {
     beg <- x$start_row[sel1] + 1L
     end <- x$end_row[sel1] + 1L
+    end <- x$end_row[sel1] + 1L
+    if (x$end_column[sel1] == 0) {
+      end <- end - 1L
+    }
     selrows[beg:end] <- TRUE
     sbeg <- max(1, beg - context)
     send <- min(nlns, end + context)
@@ -96,15 +117,22 @@ format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
 
   # now highlight the selected elements
   mark <- rep("  ", nlns)
-  for (sel1 in sel) {
-    rows <- x$start_row[sel1]:x$end_row[sel1] + 1L
+  for (sel1 in isel) {
+    beg <- x$start_row[sel1] + 1L
+    end <- x$end_row[sel1] + 1L
+    endcol <- x$end_column[sel1]
+    if (x$end_column[sel1] == 0) {
+      end <- end - 1L
+      endcol <- cli::ansi_nchar(lns[end], type = "bytes")
+    }
+    rows <- beg:end
     mark[rows] <- paste0(cli::bg_cyan(">"), " ")
     # one row only
     if (length(rows) == 1) {
       lns[rows] <- hl(
         lns[rows],
         x$start_column[sel1] + 1L,
-        x$end_column[sel1]
+        endcol
       )
     } else {
       # first row
@@ -119,7 +147,7 @@ format_ts_tree_selection <- function(x, n = n, context = 3, ...) {
         lns[rows[length(rows)]] <- hl(
           lns[rows[length(rows)]],
           start = NULL,
-          x$end_column[sel1]
+          endcol
         )
       }
     }
