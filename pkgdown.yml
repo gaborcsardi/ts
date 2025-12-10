@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-12-10T13:06Z
+last_built: 2025-12-10T14:11Z
 urls:
   reference: https://gaborcsardi.github.io/ts/reference
   article: https://gaborcsardi.github.io/ts/articles
