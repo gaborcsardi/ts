@@ -56,7 +56,7 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
   })
   tspkgs$loaded <- tspkgs$package %in% loadedNamespaces() & nspath == pkgpath
 
-  tspkgs <- tspkgs[order(tspkgs$package, tspkgs$version), ]
+  tspkgs <- tspkgs[order(tspkgs$package, !tspkgs$loaded, tspkgs$version), ]
 
   class(tspkgs) <- c(
     "ts_parser_list",
