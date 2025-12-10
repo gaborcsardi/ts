@@ -79,6 +79,7 @@ reference:
   - ts_cnd
   - ts_collapse
   - ts_parse_error_cnd
+  - ts_tree_mark_selection1
   - ts_tree_select1
   - ts_tree_selected_nodes
   - ts_tree_selection
