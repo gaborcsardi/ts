@@ -35,11 +35,11 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
   dscs <- dscs[!duplicated(path)]
   path <- path[!duplicated(path)]
 
-  pkgpath <- ifelse(
+  pkgpath <- as.character(ifelse(
     basename(path) == "DESCRIPTION",
     dirname(path),
     dirname(dirname(path))
-  )
+  ))
 
   tspkgs <- data_frame(
     package = map_chr(dscs, "[[", "Package"),
