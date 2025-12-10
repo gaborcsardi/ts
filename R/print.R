@@ -77,6 +77,11 @@ ts_tree_mark_selection <- function(tree, node) {
   unlist(lapply(node, ts_tree_mark_selection1, tree = tree))
 }
 
+#' TODO
+#'
+#' @param tree Tree-sitter tree.
+#' @param node Node id.
+#' @return Integer vector of node ids to highlight.
 #' @export
 
 ts_tree_mark_selection1 <- function(tree, node) {
