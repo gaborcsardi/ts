@@ -116,5 +116,9 @@ json
 #> # jsonc (1 line)
 #> 1 | { "a": 1, "b": 2 }
 json |> ts_tree_format()
-#> Error in FUN(X[[i]], ...): Internal tstoml error, unknown TOML node type: object.
+#> # jsonc (4 lines)
+#> 1 | {
+#> 2 |     "a": 1,
+#> 3 |     "b": 2
+#> 4 | }
 ```
