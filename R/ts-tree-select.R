@@ -398,13 +398,6 @@ ts_tree_selector_default <- function(tree) {
   ))
 }
 
-ts_tree_selector_ids <- function(ids) {
-  structure(
-    list(ids = ids),
-    class = c("ts_tree_selector_ids", "ts_tree_selector", "list")
-  )
-}
-
 #' TODO
 #' @name select-set
 #' @rdname select-set

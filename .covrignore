@@ -2,6 +2,7 @@ R/cleancall.R
 R/collapse.R
 R/compat-vctrs.R
 R/friendly-type.R
+R/docs.R
 src/tree-sitter
 src/cleancall.c
 src/glue.c

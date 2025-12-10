@@ -111,6 +111,26 @@ test_that("TS query", {
   expect_snapshot({
     tree |> ts_tree_select(query = "(null) @foo")
   })
+
+  # invalid capture name
+  expect_snapshot(error = TRUE, {
+    tree |> ts_tree_select(query = list("(null) @foo", "bar"))
+  })
+
+  # query with a captures parameter
+  expect_snapshot({
+    tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": 2, "c": 3, "d": 4 }') |>
+      ts_tree_format()
+    ts_tree_sexpr(tree)
+    tree |>
+      ts_tree_select(
+        query = list(
+          "((pair (string (string_content) @key) (number) @num)
+           (#not-eq? @key \"c\") )",
+          "num"
+        )
+      )
+  })
 })
 
 test_that("ts_tree_select<-", {
@@ -141,4 +161,14 @@ test_that("ts_tree_select<- can insert", {
     tree[[list("y", "z")]] <- TRUE
     tree |> print(n = 100)
   })
+})
+
+test_that("minimize_selection", {
+  tree <- tsjsonc::ts_parse_jsonc('{"a": null, "b": [1,2,3]}')
+  arr <- which(tree$type == "array")
+  num <- which(tree$type == "number")
+  expect_equal(
+    minimize_selection(tree, c(arr, num)),
+    arr
+  )
 })

@@ -29,7 +29,9 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
     library = map_chr(dscs, function(dsc) {
       path <- attr(dsc, "file") %||% NA_character_
       if (basename(path) == "DESCRIPTION") {
+        # nocov start
         dirname(dirname(path))
+        # nocov end
       } else {
         dirname(dirname(dirname(path)))
       }

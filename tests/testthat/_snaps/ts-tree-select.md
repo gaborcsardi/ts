@@ -269,6 +269,35 @@
       i 6 more lines
       i Use `print(n = ...)` to see more lines
 
+---
+
+    Code
+      ts_tree_select(tree, query = list("(null) @foo", "bar"))
+    Condition
+      Error in `select_query()`:
+      ! Invalid capture names in `select_query()`: bar.
+
+---
+
+    Code
+      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc(
+        "{\"a\": 1, \"b\": 2, \"c\": 3, \"d\": 4 }"))
+      ts_tree_sexpr(tree)
+    Output
+      [1] "(document (object (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number))))"
+    Code
+      ts_tree_select(tree, query = list(
+        "((pair (string (string_content) @key) (number) @num)\n           (#not-eq? @key \"c\") )",
+        "num"))
+    Output
+      # jsonc (6 lines, 3 selected elements)
+        1 | {
+      > 2 |     "a": 1,
+      > 3 |     "b": 2,
+        4 |     "c": 3,
+      > 5 |     "d": 4
+        6 | }
+
 # ts_tree_select<-
 
     Code

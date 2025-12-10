@@ -36,3 +36,10 @@ test_that("format.ts_tree", {
     tree |> ts_tree_select(1:5) |> print(n = 3)
   })
 })
+
+test_that("end_column == 0", {
+  expect_snapshot({
+    tree <- tstoml::ts_parse_toml(tstoml::toml_example_text())
+    tree |> ts_tree_select("owner")
+  })
+})

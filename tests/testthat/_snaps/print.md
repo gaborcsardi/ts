@@ -109,3 +109,22 @@
       i 2 more selected elements
       i Use `print(n = ...)` to see more selected elements
 
+# end_column == 0
+
+    Code
+      tree <- tstoml::ts_parse_toml(tstoml::toml_example_text())
+      ts_tree_select(tree, "owner")
+    Output
+      # toml (23 lines, 1 selected element)
+         2  | 
+         3  | title = "TOML Example"
+         4  | 
+      >  5  | [owner]
+      >  6  | name = "Tom Preston-Werner"
+      >  7  | dob = 1979-05-27T07:32:00-08:00
+      >  8  | 
+         9  | [database]
+        10  | enabled = true
+        11  | ports = [ 8000, 8001, 8002 ]
+        ...   
+
