@@ -69,6 +69,7 @@ format_rd_parser_list <- function(lst) {
   if (nrow(lst) == 0) {
     return("No tree-sitter parsers are installed.")
   }
+  lst <- lst[!duplicated(lst[, c("package", "version")]), ]
   lines <- map_chr(
     seq_len(nrow(lst)),
     function(i) {

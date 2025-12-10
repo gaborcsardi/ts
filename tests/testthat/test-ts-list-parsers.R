@@ -4,7 +4,7 @@ test_that("ts_list_parsers", {
   loadNamespace("tstoml")
   expect_snapshot(
     {
-      ts_list_parsers()[, 1:3]
+      unique(ts_list_parsers()[, 1:3])
     },
   )
 

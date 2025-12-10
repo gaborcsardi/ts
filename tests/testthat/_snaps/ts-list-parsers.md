@@ -1,7 +1,7 @@
 # ts_list_parsers
 
     Code
-      ts_list_parsers()[, 1:3]
+      unique(ts_list_parsers()[, 1:3])
     Output
       # A data frame: 2 x 3
         package version    title          
