@@ -33,8 +33,9 @@ A data frame with columns:
 
 ``` r
 ts_list_parsers()
-#> # A data frame: 1 × 5
+#> # A data frame: 2 × 5
 #>   package version    title           library                     loaded
 #>   <chr>   <chr>      <chr>           <chr>                       <lgl> 
 #> 1 tsjsonc 0.0.0.9000 Edit JSON Files /home/runner/work/_temp/Li… TRUE  
+#> 2 tstoml  0.0.0.9000 Edit TOML files /home/runner/work/_temp/Li… FALSE 
 ```

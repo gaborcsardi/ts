@@ -9,6 +9,9 @@ formatted, written to file, etc. using ts_tree methods.
 - [tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)
   (0.0.0.9000) (loaded): Edit JSON Files.
 
+- [tstoml](https://rdrr.io/pkg/tstoml/man/tstoml-package.html)
+  (0.0.0.9000): Edit TOML files.
+
 ## Usage
 
 ``` r
@@ -113,9 +116,5 @@ json
 #> # jsonc (1 line)
 #> 1 | { "a": 1, "b": 2 }
 json |> ts_tree_format()
-#> # jsonc (4 lines)
-#> 1 | {
-#> 2 |     "a": 1,
-#> 3 |     "b": 2
-#> 4 | }
+#> Error in FUN(X[[i]], ...): Internal tstoml error, unknown TOML node type: object.
 ```

@@ -690,6 +690,8 @@ operator.
   [`ts_check_named_arg()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   [`ts_parse_error_cnd()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   : Utility functions for ts language implementations
+- [`ts_tree_mark_selection1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_mark_selection1.md)
+  : TODO
 - [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
   : TODO
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
