@@ -5,7 +5,7 @@
     Output
       # A data frame: 2 x 3
         package version    title          
-        <chr>   <chr>      <chr>          
+      * <chr>   <chr>      <chr>          
       1 tsjsonc 0.0.0.9000 Edit JSON Files
       2 tstoml  0.0.0.9000 Edit TOML files
 

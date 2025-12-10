@@ -13,32 +13,55 @@
 #' ts_list_parsers()
 
 ts_list_parsers <- function(lib_path = .libPaths()) {
-  pkgs <- list_installed_packages(lib_path)
-  pkgs <- pkgs[grepl("^ts.", basename(pkgs))]
-  dscs <- lapply(pkgs, function(pkg) {
+  # installed packages
+  ipkgs <- list_installed_packages(lib_path)
+  ipkgs <- ipkgs[grepl("^ts.", basename(ipkgs))]
+  dscs1 <- lapply(ipkgs, function(pkg) {
     suppressWarnings(utils::packageDescription(
       basename(pkg),
       lib.loc = dirname(pkg)
     ))
   })
-  dscs <- Filter(has_ts_parser, dscs)
+
+  # loaded packages
+  lpkgs <- loadedNamespaces()
+  lpkgs <- lpkgs[grepl("^ts.", lpkgs)]
+  dscs2 <- lapply(lpkgs, function(pkg) {
+    suppressWarnings(utils::packageDescription(pkg))
+  })
+
+  dscs <- Filter(has_ts_parser, c(dscs1, dscs2))
+  path <- map_chr(dscs, attr, "file", exact = TRUE)
+  dscs <- dscs[!duplicated(path)]
+  path <- path[!duplicated(path)]
+
+  pkgpath <- ifelse(
+    basename(path) == "DESCRIPTION",
+    dirname(path),
+    dirname(dirname(path))
+  )
+
   tspkgs <- data_frame(
     package = map_chr(dscs, "[[", "Package"),
     version = map_chr(dscs, "[[", "Version"),
     title = map_chr(dscs, "[[", "Title"),
-    library = map_chr(dscs, function(dsc) {
-      path <- attr(dsc, "file") %||% NA_character_
-      if (basename(path) == "DESCRIPTION") {
-        # nocov start
-        dirname(dirname(path))
-        # nocov end
-      } else {
-        dirname(dirname(dirname(path)))
-      }
-    })
+    library = dirname(pkgpath)
   )
-  tspkgs$loaded <- tspkgs$package %in% loadedNamespaces()
-  class(tspkgs) <- c("ts_parser_list", class(tspkgs))
+  nspath <- map_chr(tspkgs$package, function(pkg) {
+    if (pkg %in% loadedNamespaces()) {
+      getNamespaceInfo(pkg, "path")
+    } else {
+      NA_character_
+    }
+  })
+  tspkgs$loaded <- tspkgs$package %in% loadedNamespaces() & nspath == pkgpath
+
+  tspkgs <- tspkgs[order(tspkgs$package, tspkgs$version), ]
+
+  class(tspkgs) <- c(
+    "ts_parser_list",
+    class(tspkgs)
+  )
   tspkgs
 }
 
