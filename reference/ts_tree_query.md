@@ -34,6 +34,4 @@ column of `matched_captured` refers to the `id` column of `patterns`.
 See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 queries.
 
-### JSONC
-
-See `ts_language_jsonc()` for details on the JSONC grammar.
+`ts:::docs("ts_tree_query")`
