@@ -1,6 +1,6 @@
-```{asciicast}
+```{asciicast, load}
 #| include: FALSE
-pkgload::load_all()
+library(ts)
 ```
 
 In this document I show examples with the `tsjsonc` package.
@@ -9,7 +9,7 @@ In this document I show examples with the `tsjsonc` package.
 
 Create a ts_tree (ts_tree_jsonc) object from a string:
 
-```{asciicast}
+```{asciicast, data}
 #| results: "hide"
 txt <- r"(
 // this is a comment

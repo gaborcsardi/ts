@@ -12,6 +12,30 @@ docs <- function(key) {
   output
 }
 
+docs2 <- function(key) {
+  file <- paste0(key, ".Rd")
+  path <- file.path(find.package("ts"), "inst", "docs", file)
+  if (!file.exists(path)) {
+    path <- file.path(find.package("ts"), "docs", file)
+  }
+  output <- if (file.exists(path)) {
+    paste(readLines(path), collapse = "\n")
+  } else {
+    ""
+  }
+
+  mch <- gregexpr("\\\\eval\\{[^\\}]+\\}", output, perl = TRUE)
+  regmatches(output, mch)[[1]] <- lapply(
+    regmatches(output, mch)[[1]],
+    function(x) {
+      x <- sub("^\\\\eval\\{", "", x)
+      x <- sub("\\}$", "", x)
+      eval(parse(text = x))
+    }
+  )
+  output
+}
+
 roxy_tag_parse.roxy_tag_ts <- function(x) {
   lns <- strsplit(x$raw, "\n", fixed = TRUE)[[1]]
   file <- lns[1]

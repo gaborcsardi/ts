@@ -21,7 +21,10 @@ knitr::opts_chunk$set(
   error = FALSE
 )
 
+ts:::ts_roclet_register()
+
 list(
   markdown = TRUE,
-  restrict_image_formats = TRUE
+  restrict_image_formats = TRUE,
+  roclets = c("rd", "namespace", "collate", "ts:::roclet_ts")
 )
