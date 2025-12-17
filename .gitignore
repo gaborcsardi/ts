@@ -8,7 +8,7 @@
 /src/**/*.o
 /src/*.so
 /src/*.dll
-docs
+/docs
 /about.Rmd
 /README.html
 /man/macros/eval2.Rd
