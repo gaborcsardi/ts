@@ -17,8 +17,7 @@ ts_tree_select(tree, ..., refine = FALSE)
 
 - tree:
 
-  A `ts_tree` object as returned by
-  [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md).
+  `ts:::doc_insert("ts_tree_select_param_tree")`
 
 - ...:
 
@@ -35,7 +34,7 @@ A `ts_tree` object with the selected parts.
 
 ## Details
 
-`ts:::docs2("ts_tree_select_details")`
+`ts:::doc_insert("ts::ts_tree_select_details")` `ts:::doc_extra()`
 
 ## Examples
 
