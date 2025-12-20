@@ -18,7 +18,7 @@
 #' Selects all child nodes of the current nodes.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_true")}
+#' \eval{ts:::doc_tabs("ts_tree_select_true")}
 #'
 #' ### Specific keys: character vector
 #'
@@ -26,7 +26,7 @@
 #' If a node has no named children, it selects nothing from that node.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_character")}
+#' \eval{ts:::doc_tabs("ts_tree_select_character")}
 #'
 #' ### By position: integer vector
 #'
@@ -34,7 +34,7 @@
 #' negative indices count from the end. Zero indices are not allowed.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_integer")}
+#' \eval{ts:::doc_tabs("ts_tree_select_integer")}
 #'
 #' ### Matching keys: regular expression
 #'
@@ -44,7 +44,7 @@
 #' node.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_regex")}
+#' \eval{ts:::doc_tabs("ts_tree_select_regex")}
 #'
 #' ### Tree sitter query matches
 #'
@@ -59,7 +59,7 @@
 #' matching the given capture names will be selected.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_tsquery")}
+#' \eval{ts:::doc_tabs("ts_tree_select_tsquery")}
 #'
 #' ### Explicit node ids
 #'
@@ -67,7 +67,7 @@
 #' for advanced use cases only.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_ids")}
+#' \eval{ts:::doc_tabs("ts_tree_select_ids")}
 #'
 #' ## Refining selections
 #'
@@ -85,8 +85,6 @@
 #' might be more readable.
 #' <p/>
 #'
-#' \eval{ts:::docs("ts_tree_select_examples")}
-#'
 NULL
 
 #' Select parts of a tree-sitter tree
@@ -100,9 +98,13 @@ NULL
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @details
-#' \eval{ts:::docs2("ts_tree_select_details")}
+#' \eval{ts:::doc_insert("ts::ts_tree_select_details")}
+#' \eval{ts:::doc_extra()}
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
+#' @ts ts_tree_select_param_tree
+#' A `ts_tree` object as returned by [ts_tree_new()].
+#'
+#' @param tree \eval{ts:::doc_insert("ts_tree_select_param_tree")}
 #' @param ... Selection expressions, see details.
 #' @param refine Logical, whether to refine the current selection or start
 #'   a new selection.

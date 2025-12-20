@@ -7,7 +7,7 @@
 ts_tree_select(tree, ..., refine = FALSE)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts_tree_select_param_tree")}}
 
 \item{...}{Selection expressions, see details.}
 
@@ -26,7 +26,8 @@ need to select the parts you want to delete or update.
 }
 }
 \details{
-\eval{ts:::docs2("ts_tree_select_details")}
+\eval{ts:::doc_insert("ts::ts_tree_select_details")}
+\eval{ts:::doc_extra()}
 }
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}

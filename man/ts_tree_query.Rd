@@ -26,6 +26,4 @@ Run tree-sitter queries on a file or string
 \details{
 See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 queries.
-
-\eval{ts:::docs("ts_tree_query")}
 }

@@ -4,8 +4,6 @@
 #' See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
 #' queries.
 #'
-#' \eval{ts:::docs("ts_tree_query")}
-#'
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param query Character string, the tree-sitter query to run.
 #' @return A list with entries `patterns` and `matched_captures`.

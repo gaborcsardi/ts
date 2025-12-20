@@ -48,3 +48,16 @@ is_named <- function(x) {
   nms <- names(x)
   length(x) == length(nms) && !anyNA(nms) && all(nms != "")
 }
+
+get_env <- function(x) {
+  ev <- Sys.getenv(x, unset = NA_character_)
+  if (is.na(ev)) {
+    NULL
+  } else {
+    ev
+  }
+}
+
+read_char <- function(fn) {
+  paste0(readLines(fn, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+}

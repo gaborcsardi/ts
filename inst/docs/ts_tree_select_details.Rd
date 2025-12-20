@@ -1,3 +1,5 @@
+#| title: 
+# ---
 A selection starts from the root of the DOM tree, the document node
 (see \code{\link[=ts_tree_dom]{ts_tree_dom()}}), unless \code{refine = TRUE} is set, in which case it
 starts from the current selection.\if{html}{\out{
@@ -23,7 +25,7 @@ Selects all child nodes of the current nodes.\if{html}{\out{
 }}
 
 
-\eval{ts:::docs("ts_tree_select_true")}
+\eval{ts:::doc_tabs("ts_tree_select_true")}
 }
 
 \subsection{Specific keys: character vector}{
@@ -34,7 +36,7 @@ If a node has no named children, it selects nothing from that node.\if{html}{\ou
 }}
 
 
-\eval{ts:::docs("ts_tree_select_character")}
+\eval{ts:::doc_tabs("ts_tree_select_character")}
 }
 
 \subsection{By position: integer vector}{
@@ -45,7 +47,7 @@ negative indices count from the end. Zero indices are not allowed.\if{html}{\out
 }}
 
 
-\eval{ts:::docs("ts_tree_select_integer")}
+\eval{ts:::doc_tabs("ts_tree_select_integer")}
 }
 
 \subsection{Matching keys: regular expression}{
@@ -58,7 +60,7 @@ node.\if{html}{\out{
 }}
 
 
-\eval{ts:::docs("ts_tree_select_regex")}
+\eval{ts:::doc_tabs("ts_tree_select_regex")}
 }
 
 \subsection{Tree sitter query matches}{
@@ -78,7 +80,7 @@ matching the given capture names will be selected.\if{html}{\out{
 }}
 
 
-\eval{ts:::docs("ts_tree_select_tsquery")}
+\eval{ts:::doc_tabs("ts_tree_select_tsquery")}
 }
 
 \subsection{Explicit node ids}{
@@ -89,7 +91,7 @@ for advanced use cases only.\if{html}{\out{
 }}
 
 
-\eval{ts:::docs("ts_tree_select_ids")}
+\eval{ts:::doc_tabs("ts_tree_select_ids")}
 }
 
 }
@@ -114,6 +116,4 @@ might be more readable.\if{html}{\out{
 <p/>
 }}
 
-
-\eval{ts:::docs("ts_tree_select_examples")}
 }

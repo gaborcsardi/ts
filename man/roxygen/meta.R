@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
   error = FALSE
 )
 
+Sys.unsetenv("R_TS_PACKAGE")
 ts:::ts_roclet_register()
 
 list(

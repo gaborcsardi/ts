@@ -1,0 +1,8 @@
+/* undo the gradient in tidytemplate, but add it to the whole tab */
+.ts-package {
+  background-image: linear-gradient(-160deg, #f8f8f8 0, #f1f1f1 100%);
+}
+.ts-package pre, code {
+  background-image: none;
+  background-color: #00000000;
+}
