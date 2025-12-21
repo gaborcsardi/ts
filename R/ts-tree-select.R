@@ -89,9 +89,11 @@ NULL
 
 #' Select parts of a tree-sitter tree
 #'
-#' @description
+#' @ts ts_tree_select_description
 #' This function is the heart of ts. To edit a tree-sitter tree, you first
 #' need to select the parts you want to delete or update.
+#' @description
+#' \eval{ts:::doc_insert("ts::ts_tree_select_description")}
 #'
 #' ## Installed ts parsers
 #'
@@ -103,12 +105,17 @@ NULL
 #'
 #' @ts ts_tree_select_param_tree
 #' A `ts_tree` object as returned by [ts_tree_new()].
-#'
+#' @ts ts_tree_select_param_dots
+#' Selection expressions, see details.
+#' @ts ts_tree_select_param_refine
+#' Logical, whether to refine the current selection or start
+#' a new selection.
 #' @param tree \eval{ts:::doc_insert("ts_tree_select_param_tree")}
-#' @param ... Selection expressions, see details.
-#' @param refine Logical, whether to refine the current selection or start
-#'   a new selection.
-#' @return A `ts_tree` object with the selected parts.
+#' @param ... \eval{ts:::doc_insert("ts_tree_select_param_dots")}
+#' @param refine \eval{ts:::doc_insert("ts_tree_select_param_refine")}
+#' @ts ts_tree_select_return
+#' A `ts_tree` object with the selected parts.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_select_return")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' json <- ts_tree_new(

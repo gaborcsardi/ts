@@ -2,7 +2,11 @@ dglue <- function(..., .envir = parent.frame()) {
   glue(..., .open = "<<", .close = ">>", .envir = .envir)
 }
 
-doc_insert <- function(key) {
+doc_insert <- function(key, manpkg = NULL) {
+  if (!is.null(manpkg)) {
+    Sys.setenv("R_TS_PACKAGE" = manpkg)
+    on.exit(Sys.unsetenv("R_TS_PACKAGE"), add = TRUE)
+  }
   keypcs <- strsplit(key, "::", fixed = TRUE)[[1]]
   if (length(keypcs) == 2) {
     package <- keypcs[1]
@@ -31,21 +35,16 @@ doc_tabs <- function(key) {
   }
 
   if (is.null(package)) {
-    # list all installed ts packages
-    psrs <- ts_list_parsers()
-    psrs <- psrs[!duplicated(psrs$package), ]
+    doc_tabs_all(key)
   } else {
-    # only list `package`
-    dsc <- utils::packageDescription(package)
-    psrs <- data.frame(
-      package = package,
-      version = dsc$Version,
-      library = dirname(find.package(package)),
-      title = dsc$Title,
-      loaded = package %in% loadedNamespaces(),
-      stringsAsFactors = FALSE
-    )
+    doc_tabs_one(key, package)
   }
+}
+
+doc_tabs_all <- function(key) {
+  # list all installed ts packages
+  psrs <- ts_list_parsers()
+  psrs <- psrs[!duplicated(psrs$package), ]
 
   tsdocpath <- doc_path("ts")
   t_tab <- read_char(file.path(tsdocpath, "tab.html"))
@@ -70,6 +69,11 @@ doc_tabs <- function(key) {
   }
 
   output
+}
+
+doc_tabs_one <- function(key, package) {
+  lib <- dirname(find.package(package))
+  doc_create_chunk(key, lib, package, 1, "<<contents>>")
 }
 
 doc_path <- function(package) {
