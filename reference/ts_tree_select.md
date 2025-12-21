@@ -1,7 +1,6 @@
 # Select parts of a tree-sitter tree
 
-This function is the heart of ts. To edit a tree-sitter tree, you first
-need to select the parts you want to delete or update.
+`ts:::doc_insert("ts::ts_tree_select_description")`
 
 ### Installed ts parsers
 
@@ -21,16 +20,15 @@ ts_tree_select(tree, ..., refine = FALSE)
 
 - ...:
 
-  Selection expressions, see details.
+  `ts:::doc_insert("ts_tree_select_param_dots")`
 
 - refine:
 
-  Logical, whether to refine the current selection or start a new
-  selection.
+  `ts:::doc_insert("ts_tree_select_param_refine")`
 
 ## Value
 
-A `ts_tree` object with the selected parts.
+`ts:::doc_insert("ts::ts_tree_select_return")`
 
 ## Details
 
