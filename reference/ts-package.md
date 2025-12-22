@@ -1,4 +1,4 @@
-# ts: Tree-sitter Parsing Tools
+# ts: Tree-Sitter Parsing Tools
 
 Common tree-sitter parsing tools for R. It is meant to be used by other
 packages that specialize in particular languages.

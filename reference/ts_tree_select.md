@@ -1,10 +1,10 @@
 # Select parts of a tree-sitter tree
 
-`ts:::doc_insert("ts::ts_tree_select_description")`
+Placeholder.ts:::doc_insert("ts::ts_tree_select_description")
 
 ### Installed ts parsers
 
-`ts:::format_rd_parser_list(ts:::ts_list_parsers())`
+Placeholder.ts:::format_rd_parser_list(ts:::ts_list_parsers())
 
 ## Usage
 
@@ -16,23 +16,24 @@ ts_tree_select(tree, ..., refine = FALSE)
 
 - tree:
 
-  `ts:::doc_insert("ts_tree_select_param_tree")`
+  Placeholder.ts:::doc_insert("ts_tree_select_param_tree")
 
 - ...:
 
-  `ts:::doc_insert("ts_tree_select_param_dots")`
+  Placeholder.ts:::doc_insert("ts_tree_select_param_dots")
 
 - refine:
 
-  `ts:::doc_insert("ts_tree_select_param_refine")`
+  Placeholder.ts:::doc_insert("ts_tree_select_param_refine")
 
 ## Value
 
-`ts:::doc_insert("ts::ts_tree_select_return")`
+Placeholder.ts:::doc_insert("ts::ts_tree_select_return")
 
 ## Details
 
-`ts:::doc_insert("ts::ts_tree_select_details")` `ts:::doc_extra()`
+Placeholder.ts:::doc_insert("ts::ts_tree_select_details")
+Placeholder.ts:::doc_extra()
 
 ## Examples
 
