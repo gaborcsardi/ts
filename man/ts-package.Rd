@@ -4,7 +4,7 @@
 \name{ts-package}
 \alias{ts}
 \alias{ts-package}
-\title{ts: Tree-sitter Parsing Tools}
+\title{ts: Tree-Sitter Parsing Tools}
 \description{
 Common tree-sitter parsing tools for R. It is meant to be used by other packages that specialize in particular languages.
 }

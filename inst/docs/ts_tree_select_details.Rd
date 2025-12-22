@@ -2,28 +2,16 @@
 # ---
 A selection starts from the root of the DOM tree, the document node
 (see \code{\link[=ts_tree_dom]{ts_tree_dom()}}), unless \code{refine = TRUE} is set, in which case it
-starts from the current selection.\if{html}{\out{
-<p/>
-}}
-
+starts from the current selection.
 
 A list of selection expressions is applied in order. Each selection
-expression selects nodes from the currently selected nodes.\if{html}{\out{
-<p/>
-}}
+expression selects nodes from the currently selected nodes.
 
-
-See the various types of selection expressions below.\if{html}{\out{
-<p/>
-}}
-
+See the various types of selection expressions below.
 \subsection{Selectors}{
 \subsection{All elements: \code{TRUE}}{
 
-Selects all child nodes of the current nodes.\if{html}{\out{
-<p/>
-}}
-
+Selects all child nodes of the current nodes.
 
 \eval{ts:::doc_tabs("ts_tree_select_true")}
 }
@@ -31,10 +19,7 @@ Selects all child nodes of the current nodes.\if{html}{\out{
 \subsection{Specific keys: character vector}{
 
 Selects child nodes with the given names from nodes with named children.
-If a node has no named children, it selects nothing from that node.\if{html}{\out{
-<p/>
-}}
-
+If a node has no named children, it selects nothing from that node.
 
 \eval{ts:::doc_tabs("ts_tree_select_character")}
 }
@@ -42,10 +27,7 @@ If a node has no named children, it selects nothing from that node.\if{html}{\ou
 \subsection{By position: integer vector}{
 
 Selects child nodes by position. Positive indices count from the start,
-negative indices count from the end. Zero indices are not allowed.\if{html}{\out{
-<p/>
-}}
-
+negative indices count from the end. Zero indices are not allowed.
 
 \eval{ts:::doc_tabs("ts_tree_select_integer")}
 }
@@ -55,10 +37,7 @@ negative indices count from the end. Zero indices are not allowed.\if{html}{\out
 A character scalar named \code{regex} can be used to select child nodes
 whose names match the given regular expression, from nodes with named
 children. If a node has no named children, it selects nothing from that
-node.\if{html}{\out{
-<p/>
-}}
-
+node.
 
 \eval{ts:::doc_tabs("ts_tree_select_regex")}
 }
@@ -67,18 +46,12 @@ node.\if{html}{\out{
 
 A character scalar named \code{query} can be used to select nodes matching
 a tree-sitter query. See \code{\link[=ts_tree_query]{ts_tree_query()}} for details on tree-sitter
-queries.\if{html}{\out{
-<p/>
-}}
-
+queries.
 
 Instead of a character scalar this can also be a two-element list, where
 the first element is the query string and the second element is a
 character vector of capture names to select. In this case only nodes
-matching the given capture names will be selected.\if{html}{\out{
-<p/>
-}}
-
+matching the given capture names will be selected.
 
 \eval{ts:::doc_tabs("ts_tree_select_tsquery")}
 }
@@ -86,10 +59,7 @@ matching the given capture names will be selected.\if{html}{\out{
 \subsection{Explicit node ids}{
 
 You can use \code{I(c(...))} to select nodes by their ids directly. This is
-for advanced use cases only.\if{html}{\out{
-<p/>
-}}
-
+for advanced use cases only.
 
 \eval{ts:::doc_tabs("ts_tree_select_ids")}
 }
@@ -106,14 +76,8 @@ simultanously), instead of starting from the document element.
 \subsection{The \code{[[} and \verb{[[<-} operators}{
 
 The \code{[[} operator works similarly to \code{\link[=ts_tree_select]{ts_tree_select()}} on ts_tree
-objects, but it might be more readable.\if{html}{\out{
-<p/>
-}}
-
+objects, but it might be more readable.
 
 The \verb{[[<-} operator works similarly to \code{\link[=ts_tree_select<-]{ts_tree_select<-()}}, but it
-might be more readable.\if{html}{\out{
-<p/>
-}}
-
+might be more readable.
 }

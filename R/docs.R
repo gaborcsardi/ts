@@ -2,7 +2,15 @@ dglue <- function(..., .envir = parent.frame()) {
   glue(..., .open = "<<", .close = ">>", .envir = .envir)
 }
 
+is_rcmd_check <- function() {
+  Sys.getenv("_R_CHECK_PACKAGE_NAME_", "") != "" ||
+    Sys.getenv("_R_RD_MACROS_PACKAGE_DIR_", "") != ""
+}
+
 doc_insert <- function(key, manpkg = NULL) {
+  if (is_rcmd_check()) {
+    return("Placeholder.")
+  }
   if (!is.null(manpkg)) {
     Sys.setenv("R_TS_PACKAGE" = manpkg)
     on.exit(Sys.unsetenv("R_TS_PACKAGE"), add = TRUE)
@@ -30,6 +38,9 @@ doc_insert <- function(key, manpkg = NULL) {
 }
 
 doc_tabs <- function(key) {
+  if (is_rcmd_check()) {
+    return("Placeholder.")
+  }
   package <- if (nzchar(ev <- Sys.getenv("R_TS_PACKAGE"))) {
     ev
   }
@@ -106,6 +117,9 @@ doc_create_chunk <- function(key, lib, package, idx, template) {
 }
 
 doc_extra <- function() {
+  if (is_rcmd_check()) {
+    return("Placeholder.")
+  }
   tsdocpath <- doc_path("ts")
   jspath <- file.path(tsdocpath, "tabs.js")
   js <- read_char(jspath)
@@ -120,6 +134,16 @@ doc_extra <- function() {
   css <- gsub("%", "\\%", css, fixed = TRUE)
 
   dglue("\\if{html}{\\out{<<js>>\n<<css>>}}")
+}
+
+doc_style_tab <- function(idx) {
+  paste0(
+    "padding: 0.01em 16px;",
+    "border: 1px solid #ccc!important;",
+    if (idx != 1) {
+      "display:none"
+    }
+  )
 }
 
 roxy_tag_parse.roxy_tag_ts <- function(x) {
@@ -153,12 +177,23 @@ roclet_process.roclet_ts <- function(x, blocks, env, base_path) {
         "#| title: ",
         tag$val$title,
         "\n# ---\n",
-        tag$val$val
+        rd_patch_p(tag$val$val)
       )
       write_if_newer(value, path)
     }
   }
   invisible(list())
+}
+
+# Rd2HTML adds a </p> before the \preformatted, this is a hach.
+# It might create an un-closed <p>, but that's apparently not a problem.
+rd_patch_p <- function(rd) {
+  gsub(
+    '\\out{<div class="sourceCode r">}}\\preformatted',
+    '\\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\\preformatted',
+    rd,
+    fixed = TRUE
+  )
 }
 
 write_if_newer <- function(txt, path) {

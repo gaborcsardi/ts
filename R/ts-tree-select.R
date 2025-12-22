@@ -2,21 +2,17 @@
 #' A selection starts from the root of the DOM tree, the document node
 #' (see [ts_tree_dom()]), unless `refine = TRUE` is set, in which case it
 #' starts from the current selection.
-#' <p/>
 #'
 #' A list of selection expressions is applied in order. Each selection
 #' expression selects nodes from the currently selected nodes.
-#' <p/>
 #'
 #' See the various types of selection expressions below.
-#' <p/>
 #'
 #' ## Selectors
 #'
 #' ### All elements: `TRUE`
 #'
 #' Selects all child nodes of the current nodes.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_true")}
 #'
@@ -24,7 +20,6 @@
 #'
 #' Selects child nodes with the given names from nodes with named children.
 #' If a node has no named children, it selects nothing from that node.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_character")}
 #'
@@ -32,7 +27,6 @@
 #'
 #' Selects child nodes by position. Positive indices count from the start,
 #' negative indices count from the end. Zero indices are not allowed.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_integer")}
 #'
@@ -42,7 +36,6 @@
 #' whose names match the given regular expression, from nodes with named
 #' children. If a node has no named children, it selects nothing from that
 #' node.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_regex")}
 #'
@@ -51,13 +44,11 @@
 #' A character scalar named `query` can be used to select nodes matching
 #' a tree-sitter query. See [ts_tree_query()] for details on tree-sitter
 #' queries.
-#' <p/>
 #'
 #' Instead of a character scalar this can also be a two-element list, where
 #' the first element is the query string and the second element is a
 #' character vector of capture names to select. In this case only nodes
 #' matching the given capture names will be selected.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_tsquery")}
 #'
@@ -65,7 +56,6 @@
 #'
 #' You can use `I(c(...))` to select nodes by their ids directly. This is
 #' for advanced use cases only.
-#' <p/>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_ids")}
 #'
@@ -79,11 +69,9 @@
 #'
 #' The `[[` operator works similarly to [ts_tree_select()] on ts_tree
 #' objects, but it might be more readable.
-#' <p/>
 #'
 #' The `[[<-` operator works similarly to [ts_tree_select<-()], but it
 #' might be more readable.
-#' <p/>
 #'
 NULL
 

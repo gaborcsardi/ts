@@ -35,7 +35,7 @@ pak::pak("gaborcsardi/ts")
 ## Documentation
 
 See at
-[`https://gaborcsardi.github.io/ts/`](https://gaborcsardi.github.io/ts/reference/index.html/)
+[`https://gaborcsardi.github.io/ts/`](https://gaborcsardi.github.io/ts/reference/index.html)
 and also in the installed package: `help(package = "ts")`.
 
 ## Parsers that use ts

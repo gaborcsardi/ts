@@ -1,5 +1,5 @@
 Package: ts
-Title: Tree-sitter Parsing Tools
+Title: Tree-Sitter Parsing Tools
 Version: 0.0.0.9000
 Authors@R: c(
     person("Gábor", "Csárdi", , "csardi.gabor@gmail.com",
