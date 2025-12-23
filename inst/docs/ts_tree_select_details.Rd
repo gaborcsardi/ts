@@ -90,6 +90,6 @@ objects, but it might be more readable.\if{html}{\out{
 }}
 
 
-The \verb{[[<-} operator works similarly to \code{\link[=ts_tree_select<-]{ts_tree_select<-()}}, but it
+The \verb{[[<-} operator works similarly to \code{\link[ts:ts_tree_select<-]{ts::ts_tree_select<-()}}, but it
 might be more readable.
 }

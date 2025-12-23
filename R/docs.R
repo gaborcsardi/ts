@@ -167,6 +167,13 @@ roxy_tag_parse.roxy_tag_ts <- function(x) {
 
   x$raw <- paste(lns[-1], collapse = "\n")
 
+  pkg <- asNamespace("roxygen2")$roxy_meta_get("current_package")
+  asNamespace("roxygen2")$roxy_meta_set("current_package", "x")
+  on.exit(
+    asNamespace("roxygen2")$roxy_meta_set("current_package", pkg),
+    add = TRUE
+  )
+
   x <- roxygen2::tag_markdown_with_sections(x)
   x$val <- list(
     file = file,
