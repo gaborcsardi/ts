@@ -8,7 +8,10 @@ starts from the current selection.\if{html}{\out{
 
 
 A list of selection expressions is applied in order. Each selection
-expression selects nodes from the currently selected nodes.
+expression selects nodes from the currently selected nodes.\if{html}{\out{
+<p>
+}}
+
 
 See the various types of selection expressions below.
 \subsection{Selectors}{

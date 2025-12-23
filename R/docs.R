@@ -126,9 +126,10 @@ doc_extra <- function() {
 
   csspath1 <- file.path(doc_path("ts"), "w3.css")
   css1 <- read_char(csspath1)
+  css <- ""
   if (Sys.getenv("IN_PKGDOWN") == "true") {
     csspath2 <- file.path(doc_path("ts"), "pkgdown.css")
-    css2 <- paste0("<style>\n", read_char(csspath2), "\n</style>\n")
+    css2 <- read_char(csspath2)
     css <- gsub("%", "\\%", paste0(css1, "\n\n", css2), fixed = TRUE)
     css <- paste0("<style>\n", css, "\n</style>\n")
   } else {
@@ -136,14 +137,13 @@ doc_extra <- function() {
     # tags in <body>
     js <- paste0(
       "styles = `",
-      css1,
+      gsub("%", "\\%", css1, fixed = TRUE),
       "`;\n",
       "var styleSheet = document.createElement('style');\n",
       "styleSheet.textContent = styles;\n",
       "document.head.appendChild(styleSheet);\n",
       js
     )
-    css <- ""
   }
 
   dglue("\\if{html}{\\out{<script>\n<<js>>\n</script>\n<<css>>}}")
