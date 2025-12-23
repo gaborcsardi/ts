@@ -3,6 +3,8 @@
 #' (see [ts_tree_dom()]), unless `refine = TRUE` is set, in which case it
 #' starts from the current selection.
 #'
+#' <p>
+#'
 #' A list of selection expressions is applied in order. Each selection
 #' expression selects nodes from the currently selected nodes.
 #'
@@ -45,6 +47,8 @@
 #' a tree-sitter query. See [ts_tree_query()] for details on tree-sitter
 #' queries.
 #'
+#' <p>
+#'
 #' Instead of a character scalar this can also be a two-element list, where
 #' the first element is the query string and the second element is a
 #' character vector of capture names to select. In this case only nodes
@@ -69,6 +73,8 @@
 #'
 #' The `[[` operator works similarly to [ts_tree_select()] on ts_tree
 #' objects, but it might be more readable.
+#'
+#' <p>
 #'
 #' The `[[<-` operator works similarly to [ts_tree_select<-()], but it
 #' might be more readable.

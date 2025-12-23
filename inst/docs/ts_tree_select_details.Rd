@@ -2,7 +2,10 @@
 # ---
 A selection starts from the root of the DOM tree, the document node
 (see \code{\link[=ts_tree_dom]{ts_tree_dom()}}), unless \code{refine = TRUE} is set, in which case it
-starts from the current selection.
+starts from the current selection.\if{html}{\out{
+<p>
+}}
+
 
 A list of selection expressions is applied in order. Each selection
 expression selects nodes from the currently selected nodes.
@@ -46,7 +49,10 @@ node.
 
 A character scalar named \code{query} can be used to select nodes matching
 a tree-sitter query. See \code{\link[=ts_tree_query]{ts_tree_query()}} for details on tree-sitter
-queries.
+queries.\if{html}{\out{
+<p>
+}}
+
 
 Instead of a character scalar this can also be a two-element list, where
 the first element is the query string and the second element is a
@@ -76,7 +82,10 @@ simultanously), instead of starting from the document element.
 \subsection{The \code{[[} and \verb{[[<-} operators}{
 
 The \code{[[} operator works similarly to \code{\link[=ts_tree_select]{ts_tree_select()}} on ts_tree
-objects, but it might be more readable.
+objects, but it might be more readable.\if{html}{\out{
+<p>
+}}
+
 
 The \verb{[[<-} operator works similarly to \code{\link[=ts_tree_select<-]{ts_tree_select<-()}}, but it
 might be more readable.
