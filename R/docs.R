@@ -124,14 +124,15 @@ doc_extra <- function() {
   jspath <- file.path(tsdocpath, "tabs.js")
   js <- read_char(jspath)
 
-  csspath <- file.path(doc_path("ts"), "w3.css")
-  css <- paste0("<style>\n", read_char(csspath), "\n</style>\n")
   if (Sys.getenv("IN_PKGDOWN") == "true") {
-    csspath2 <- file.path(doc_path("ts"), "pkgdown.css")
-    css2 <- paste0("<style>\n", read_char(csspath2), "\n</style>\n")
-    css <- paste0(css, css2)
+    csspath <- file.path(doc_path("ts"), "pkgdown.css")
+    css <- paste0("<style>\n", read_char(csspath), "\n</style>\n")
+    css <- gsub("%", "\\%", css, fixed = TRUE)
+  } else {
+    # in Rd we insert CSS with JS, because tidy does not allow <style>
+    # tags in <body>
+    css <- ""
   }
-  css <- gsub("%", "\\%", css, fixed = TRUE)
 
   dglue("\\if{html}{\\out{<<js>>\n<<css>>}}")
 }
