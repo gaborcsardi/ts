@@ -1,14 +1,13 @@
 # Select parts of a tree-sitter tree
 
-Placeholder.ts:::doc_insert("ts::ts_tree_select_description")
+`ts:::doc_insert("ts::ts_tree_select_description")`
 
 ### Installed ts parsers
 
 This is the manual path of the `ts_tree_select()` S3 generic function.
 See the S3 methods in the installed ts parser packages (if any):
 
-Placeholder.ts:::format_rd_parser_list(ts:::ts_list_parsers(),
-"ts_tree_select")
+`ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")`
 
 ## Usage
 
@@ -20,24 +19,23 @@ ts_tree_select(tree, ..., refine = FALSE)
 
 - tree:
 
-  Placeholder.ts:::doc_insert("ts_tree_select_param_tree")
+  `ts:::doc_insert("ts_tree_select_param_tree")`
 
 - ...:
 
-  Placeholder.ts:::doc_insert("ts_tree_select_param_dots")
+  `ts:::doc_insert("ts_tree_select_param_dots")`
 
 - refine:
 
-  Placeholder.ts:::doc_insert("ts_tree_select_param_refine")
+  `ts:::doc_insert("ts_tree_select_param_refine")`
 
 ## Value
 
-Placeholder.ts:::doc_insert("ts::ts_tree_select_return")
+`ts:::doc_insert("ts::ts_tree_select_return")`
 
 ## Details
 
-Placeholder.ts:::doc_insert("ts::ts_tree_select_details")
-Placeholder.ts:::doc_extra()
+`ts:::doc_insert("ts::ts_tree_select_details")` `ts:::doc_extra()`
 
 ## Examples
 

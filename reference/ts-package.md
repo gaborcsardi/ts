@@ -5,7 +5,7 @@ packages that specialize in particular languages.
 
 ## Installed ts parsers
 
-Placeholder.ts:::format_rd_parser_list(ts:::ts_list_parsers())
+`ts:::format_rd_parser_list(ts:::ts_list_parsers())`
 
 ## See also
 

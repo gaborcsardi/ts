@@ -6,7 +6,7 @@ formatted, written to file, etc. using ts_tree methods.
 
 ### Installed ts parsers
 
-Placeholder.ts:::format_rd_parser_list(ts:::ts_list_parsers())
+`ts:::format_rd_parser_list(ts:::ts_list_parsers())`
 
 ## Usage
 
