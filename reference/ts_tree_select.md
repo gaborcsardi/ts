@@ -102,6 +102,8 @@ If a node has no named children, it selects nothing from that node.
 
 JSONC
 
+TOML
+
  
 
     json <- tsjsonc::ts_parse_jsonc(
@@ -112,12 +114,32 @@ JSONC
     #> # jsonc (1 line, 1 selected element)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
 
+ 
+
+    toml <- tstoml::ts_parse_toml('
+      a = 1
+      b = [10, 20, 30]
+      [c]
+      c1 = true
+      c2 = []
+    ')
+    toml |> ts_tree_select(c("a", "c"), "c1")
+
+    #> # toml (6 lines, 1 selected element)
+    #>   2 |   a = 1
+    #>   3 |   b = [10, 20, 30]
+    #>   4 |   [c]
+    #> > 5 |   c1 = true
+    #>   6 |   c2 = []
+
 #### By position: integer vector
 
 Selects child nodes by position. Positive indices count from the start,
 negative indices count from the end. Zero indices are not allowed.
 
 JSONC
+
+TOML
 
 For JSONC positional indices can be used both for arrays and objects.
 For other nodes nothing is selected.
@@ -132,6 +154,25 @@ For other nodes nothing is selected.
     #> # jsonc (1 line, 2 selected elements)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
 
+ 
+
+    toml <- tstoml::ts_parse_toml('
+      a = 1
+      b = [10, 20, 30]
+      [c]
+      c1 = true
+      c2 = []
+    ')
+    toml |> ts_tree_select(c("b", "c"), -1)
+
+    #> # toml (6 lines, 2 selected elements)
+    #>   1 | 
+    #>   2 |   a = 1
+    #> > 3 |   b = [10, 20, 30]
+    #>   4 |   [c]
+    #>   5 |   c1 = true
+    #> > 6 |   c2 = []
+
 #### Matching keys: regular expression
 
 A character scalar named `regex` can be used to select child nodes whose
@@ -140,6 +181,8 @@ children. If a node has no named children, it selects nothing from that
 node.
 
 JSONC
+
+TOML
 
  
 
@@ -150,6 +193,19 @@ JSONC
 
     #> # jsonc (1 line, 2 selected elements)
     #> > 1 | { "apple": 1, "almond": 2, "banana": 3, "cherry": 4 }
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+     'apple = 1\nalmond = 2\nbanana = 3\ncherry = 4\n'
+    )
+    toml |> ts_tree_select(regex = "^a")
+
+    #> # toml (4 lines, 2 selected elements)
+    #> > 1 | apple = 1
+    #> > 2 | almond = 2
+    #>   3 | banana = 3
+    #>   4 | cherry = 4
 
 #### Tree sitter query matches
 
@@ -164,6 +220,8 @@ character vector of capture names to select. In this case only nodes
 matching the given capture names will be selected.
 
 JSONC
+
+TOML
 
 See
 [`tsjsonc::ts_language_jsonc()`](https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html)
@@ -181,12 +239,32 @@ This example selects all numbers in the JSON document.
     #> # jsonc (1 line, 5 selected elements)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }
 
+See
+[`tstoml::ts_language_toml()`](https://gaborcsardi.github.io/tstoml/reference/ts_language_toml.html)
+for details on the TOML grammar.
+
+This example selects all integers in the TOML document.
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      'a = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = 100 }\n'
+    )
+    toml |> ts_tree_select(query = "(integer) @integer")
+
+    #> # toml (3 lines, 5 selected elements)
+    #> > 1 | a = 1
+    #> > 2 | b = [10, 20, 30]
+    #> > 3 | c = { c1 = true, c2 = 100 }
+
 #### Explicit node ids
 
 You can use `I(c(...))` to select nodes by their ids directly. This is
 for advanced use cases only.
 
 JSONC
+
+TOML
 
  
 
@@ -212,6 +290,32 @@ JSONC
 
     #> # jsonc (1 line, 1 selected element)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      'a = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = [] }\n'
+    )
+    ts_tree_dom(toml)
+
+    #> document (1)
+    #> ├─value (5) # a
+    #> ├─array (9) # b
+    #> │ ├─value (11)
+    #> │ ├─value (13)
+    #> │ └─value (15)
+    #> └─inline_table (20) # c
+    #>   ├─value (25) # c1
+    #>   └─array (30) # c2
+
+ 
+
+    toml |> ts_tree_select(I(9))
+
+    #> # toml (3 lines, 1 selected element)
+    #>   1 | a = 1
+    #> > 2 | b = [10, 20, 30]
+    #>   3 | c = { c1 = true, c2 = [] }
 
 ### Refining selections
 
