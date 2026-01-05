@@ -8,7 +8,7 @@ packages that specialize in particular languages.
 - **[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)**
   0.0.0.9000 (loaded): Edit JSON Files.
 
-- **[tstoml](https://rdrr.io/pkg/tstoml/man/tstoml-package.html)**
+- **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
   0.0.0.9000: Edit TOML files.
 
 ## See also

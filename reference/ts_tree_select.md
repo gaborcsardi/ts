@@ -13,9 +13,10 @@ See the S3 methods in the installed ts parser packages (if any):
   Method:
   [`ts_tree_select(<ts_tree_tsjsonc>)`](https://rdrr.io/pkg/tsjsonc/man/ts_tree_select.tsjsonc.html)
 
-- **[tstoml](https://rdrr.io/pkg/tstoml/man/tstoml-package.html)**
+- **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
   0.0.0.9000 (loaded): Edit TOML files.  
-  Method: `ts_tree_select(<ts_tree_tstoml>)`
+  Method:
+  [`ts_tree_select(<ts_tree_tstoml>)`](https://gaborcsardi.github.io/tstoml/reference/ts_tree_select.tstoml.html)
 
 ## Usage
 
@@ -63,6 +64,8 @@ Selects all child nodes of the current nodes.
 
 JSONC
 
+TOML
+
  
 
     json <- tsjsonc::ts_parse_jsonc(
@@ -72,6 +75,25 @@ JSONC
 
     #> # jsonc (1 line, 5 selected elements)
     #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    toml <- tstoml::ts_parse_toml('
+      a = 1
+      b = [10, 20, 30]
+      [c]
+      c1 = true
+      c2 = []
+    ')
+    toml |> ts_tree_select(c("b", "c"), TRUE)
+
+    #> # toml (6 lines, 5 selected elements)
+    #>   1 | 
+    #>   2 |   a = 1
+    #> > 3 |   b = [10, 20, 30]
+    #>   4 |   [c]
+    #> > 5 |   c1 = true
+    #> > 6 |   c2 = []
 
 #### Specific keys: character vector
 
