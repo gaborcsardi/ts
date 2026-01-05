@@ -93,7 +93,10 @@ NULL
 #'
 #' ## Installed ts parsers
 #'
-#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
+#' This is the manual path of the `ts_tree_select()` S3 generic function.
+#' See the S3 methods in the installed ts parser packages (if any):
+#'
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")}
 #'
 #' @details
 #' \eval{ts:::doc_insert("ts::ts_tree_select_details")}

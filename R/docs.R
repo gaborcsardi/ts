@@ -159,6 +159,9 @@ doc_style_tab <- function(idx) {
   )
 }
 
+# ------------------------------------------------------------------------------
+# Roxygen2 roclet for generating manual stubs
+
 roxy_tag_parse.roxy_tag_ts <- function(x) {
   lns <- strsplit(x$raw, "\n", fixed = TRUE)[[1]]
   lns1p <- strsplit(lns[1], " ", fixed = TRUE)[[1]]

@@ -6,6 +6,14 @@
   }
 }
 
+`%&&%` <- function(l, r) {
+  if (is.null(l)) {
+    NULL
+  } else {
+    r
+  }
+}
+
 map_int <- function(.x, .f, ...) {
   vapply(.x, .f, integer(1), ...)
 }

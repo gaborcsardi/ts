@@ -65,7 +65,7 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
   tspkgs
 }
 
-format_rd_parser_list <- function(lst) {
+format_rd_parser_list <- function(lst, method = NULL) {
   if (nrow(lst) == 0) {
     return("No tree-sitter parsers are installed.")
   }
@@ -77,9 +77,15 @@ format_rd_parser_list <- function(lst) {
       ver <- lst$version[i]
       title <- lst$title[i]
       loaded <- if (lst$loaded[i]) " (loaded)" else ""
+      method <- method %&&%
+        glue(
+          "\\cr \\
+          Method:
+           \\code{{\\link[{pkg}:{method}.{pkg}]{{{method}(<ts_tree_{pkg}>)}}}}"
+        )
       glue(
-        "\\item \\link[{pkg}:{pkg}-package]{{{pkg}}} \\
-        ({ver}){loaded}: {title}."
+        "\\item \\strong{{\\link[{pkg}:{pkg}-package]{{{pkg}}}}} \\
+        {ver}{loaded}: {title}.{method}"
       )
     }
   )
