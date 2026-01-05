@@ -1,1 +1,1 @@
-\newcommand{\eval}{Placeholder.}
+\newcommand{\eval}{\code{#1}}
