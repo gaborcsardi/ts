@@ -6,7 +6,11 @@ formatted, written to file, etc. using ts_tree methods.
 
 ### Installed ts parsers
 
-`ts:::format_rd_parser_list(ts:::ts_list_parsers())`
+- **[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)**
+  0.0.0.9000 (loaded): Edit JSON Files.
+
+- **[tstoml](https://rdrr.io/pkg/tstoml/man/tstoml-package.html)**
+  0.0.0.9000 (loaded): Edit TOML files.
 
 ## Usage
 
