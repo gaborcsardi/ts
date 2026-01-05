@@ -3,6 +3,9 @@ dglue <- function(..., .envir = parent.frame()) {
 }
 
 is_rcmd_check <- function() {
+  if (Sys.getenv("GITHUB_ACTIONS") != "true") {
+    return(FALSE)
+  }
   Sys.getenv("_R_CHECK_PACKAGE_NAME_", "") != "" ||
     Sys.getenv("_R_RD_MACROS_PACKAGE_DIR_", "") != ""
 }
