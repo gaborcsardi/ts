@@ -1,4 +1,4 @@
-#' @description
+#' @details
 #' # Installed ts parsers
 #'
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
