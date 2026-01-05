@@ -14,13 +14,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/gaborcsardi/ts/blob/main/DESCRIPTION)
 
-Csárdi G (2025). *ts: Tree-Sitter Parsing Tools*. R package version
+Csárdi G (2026). *ts: Tree-Sitter Parsing Tools*. R package version
 0.0.0.9000, <https://github.com/gaborcsardi/ts>.
 
     @Manual{,
       title = {ts: Tree-Sitter Parsing Tools},
       author = {Gábor Csárdi},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.0.0.9000},
       url = {https://github.com/gaborcsardi/ts},
     }

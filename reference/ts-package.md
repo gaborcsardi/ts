@@ -1,7 +1,8 @@
 # ts: Tree-Sitter Parsing Tools
 
-Common tree-sitter parsing tools for R. It is meant to be used by other
-packages that specialize in particular languages.
+## Installed ts parsers
+
+Placeholder.ts:::format_rd_parser_list(ts:::ts_list_parsers())
 
 ## See also
 
