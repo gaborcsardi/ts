@@ -10,7 +10,7 @@ development:
 navbar:
   structure:
     left: [about, reference]
-    right: [news]
+    right: [news, search, github]
   components:
     about:
       text: About ts
