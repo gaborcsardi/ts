@@ -15,8 +15,8 @@
       writeLines(format_rd_parser_list(ts_list_parsers()))
     Output
       \itemize{
-      \item \link[tsjsonc:tsjsonc-package]{tsjsonc} (x.y.z) (loaded): Edit JSON Files.
-      \item \link[tstoml:tstoml-package]{tstoml} (x.y.z) (loaded): Edit TOML files.
+      \item \strong{\link[tsjsonc:tsjsonc-package]{tsjsonc}} 0.0.0.9000 (loaded): Edit JSON Files.
+      \item \strong{\link[tstoml:tstoml-package]{tstoml}} 0.0.0.9000 (loaded): Edit TOML files.
       }
       
 
