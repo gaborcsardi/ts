@@ -91,7 +91,7 @@ includes all nodes, including syntax elements like brackets and commas.</p>
 
 
 
-<p></p><div class="sourceCode r"><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span>
+<p></p><div class="sourceCode r"><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ts_tree_ast.html">ts_tree_ast</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span>
 <span><span class="co">#&gt; document (1)                   1|</span></span>
 <span><span class="co">#&gt; \-object (2)                    |</span></span>
@@ -139,7 +139,7 @@ ts_tree object.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># see the output above</span></span></span>
-<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tsjsonc/man/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tree</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># jsonc (1 line)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">1 | </span>{"foo": 42, "bar": [1, 2, 3]}</span>

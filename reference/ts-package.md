@@ -5,7 +5,7 @@ packages that specialize in particular languages.
 
 ## Installed ts parsers
 
-- **[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)**
+- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
   0.0.0.9000 (loaded): Edit JSON Files.
 
 - **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**

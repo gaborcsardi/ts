@@ -21,12 +21,12 @@
 ## Selection
 
 - [`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md)
-  : Select parts of a tree-sitter tree
+  : Select elements of a tree-sitter tree
 
 ## Editing
 
 - [`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md)
-  : TODO
+  : Delete selected elements from a tree-sitter tree
 - [`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md)
   : Format a tree sitter tree for printing
 - [`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md)

@@ -1,12 +1,13 @@
 # Create tree-sitter tree from file or string
 
-This is the main function to create a tree-sitter parse tree, using a
-parser from another package. Then the parse tree may be queried, edited,
-formatted, written to file, etc. using ts_tree methods.
+This is the main function to create a tree-sitter parse tree, using a ts
+parser implemented in another package. The result is a `ts_tree` object.
+A `ts_tree` object may be queried, edited, formatted, written to file,
+etc. using `ts_tree` methods.
 
 ### Installed ts parsers
 
-- **[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)**
+- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
   0.0.0.9000 (loaded): Edit JSON Files.
 
 - **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
@@ -29,16 +30,17 @@ ts_tree_new(
 
 - language:
 
-  Language of the file or string, a `ts_language` object, e.g.
-  [`tsjsonc::ts_language_jsonc()`](https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html).
+  Language of the file or string, a `ts_language` object,e.g. the return
+  value of
+  [`tsjsonc::ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.html).
 
 - file:
 
-  Path of a file. Use either `file` or `text`, but not both.
+  Path of a file to parse. Use either `file` or `text`, but not both.
 
 - text:
 
-  String. Use either `file` or `text`, but not both.
+  String to parse. Use either `file` or `text`, but not both.
 
 - ranges:
 
@@ -57,68 +59,90 @@ ts_tree_new(
 
 ## Value
 
-A data frame with one row per token, and columns:
-
-- `id`: integer, the id of the token. The (root) document node has id 1.
-
-- `parent`: integer, the id of the parent token. The root token has
-  parent `NA`
-
-- `field_name`: character, the field name of the token in its parent.
-
-- `type`: character, the type of the token.
-
-- `code`: character, the actual code of the token.
-
-- `start_byte`, `end_byte`: integer, the byte positions of the token in
-  the input.
-
-- `start_row`, `start_column`, `end_row`, `end_column`: integer, the
-  position of the token in the input.
-
-- `is_missing`: logical, whether the token is a missing token added by
-  the parser to recover from errors.
-
-- `has_error`: logical, whether the token has a parse error.
-
-- `children`: list of integer vectors, the ids of the children tokens.
-
-- `dom_type`: character, the type of the node in the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
-  Nodes that are not part of the DOM tree have `NA_character_` here.
-
-- `dom_children`: list of integer vectors, the ids of the children in
-  the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
-
-- `dom_parent`: integer, the parent of the node in the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
-  Nodes that are not part of the DOM tree and the document node have
-  have `NA_integer_` here.
+A `ts_tree` object representing the parse tree of the input. You can use
+the single bracket `` `[` `` operator to convert it to a data frame.
 
 ## Details
 
 A package that implements a tree-sitter parser provides a function that
 creates a `ts_language` object for that parser. E.g.
-[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html) has
-[`tsjsonc::ts_language_jsonc()`](https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html).
+[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)
+has
+[`tsjsonc::ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.html).
 You need to use the returned `ts_language` object as the `language`
-argument of this function.
+argument of `ts_tree_new()`.
+
+JSONC
+
+TOML
+
+ 
+
+    jsonc <- ts::ts_tree_new(
+      tsjsonc::ts_language_jsonc(),
+      text = "{ \"a\": true, // comment\n \"b\": [1, 2, 3], }"
+    )
+    jsonc
+
+    #> # jsonc (2 lines)
+    #> 1 | { "a": true, // comment
+    #> 2 |  "b": [1, 2, 3], }
+
+ 
+
+    toml <- ts::ts_tree_new(
+      tstoml::ts_language_toml(),
+      text = "[table]\nkey = \"value\""
+    )
+    toml
+
+    #> # toml (2 lines)
+    #> 1 | [table]
+    #> 2 | key = "value"
+
+## See also
+
+The tree-sitter parser packages typically include shortcuts to create
+parse trees from strings and file, e.g.
+[`tsjsonc::ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html)
+and
+[`tsjsonc::ts_read_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html).
 
 ## Examples
 
 ``` r
+# JSONC example, needs the tsjsonc package -----------------------------
 json <- ts_tree_new(
   tsjsonc::ts_language_jsonc(),
   text = '{ "a": 1, "b": 2 }'
 )
+
 json
 #> # jsonc (1 line)
 #> 1 | { "a": 1, "b": 2 }
+
 json |> ts_tree_format()
 #> # jsonc (4 lines)
 #> 1 | {
 #> 2 |     "a": 1,
 #> 3 |     "b": 2
 #> 4 | }
+
+# TOML example, needs the tstoml package -------------------------------
+toml <- ts_tree_new(
+  tstoml::ts_language_toml(),
+  text = '[section]\nkey = "value"\nnumber = 42\n'
+)
+
+toml
+#> # toml (3 lines)
+#> 1 | [section]
+#> 2 | key = "value"
+#> 3 | number = 42
+
+toml |> ts_tree_format()
+#> # toml (3 lines)
+#> 1 | [section]
+#> 2 | key = "value"
+#> 3 | number = 42
 ```

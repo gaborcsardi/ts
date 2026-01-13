@@ -1,17 +1,16 @@
-# Select parts of a tree-sitter tree
+# Select elements of a tree-sitter tree
 
 This function is the heart of ts. To edit a tree-sitter tree, you first
 need to select the parts you want to delete or update.
 
 ### Installed ts parsers
 
-This is the manual path of the `ts_tree_select()` S3 generic function.
+This is the manual page of the `ts_tree_select()` S3 generic function.
 See the S3 methods in the installed ts parser packages (if any):
 
-- **[tsjsonc](https://rdrr.io/pkg/tsjsonc/man/tsjsonc-package.html)**
+- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
   0.0.0.9000 (loaded): Edit JSON Files.  
-  Method:
-  [`ts_tree_select(<ts_tree_tsjsonc>)`](https://rdrr.io/pkg/tsjsonc/man/ts_tree_select.tsjsonc.html)
+  Method: `ts_tree_select(<ts_tree_tsjsonc>)`
 
 - **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
   0.0.0.9000 (loaded): Edit TOML files.  
@@ -46,13 +45,16 @@ A `ts_tree` object with the selected parts.
 
 ## Details
 
-A selection starts from the root of the DOM tree, the document node (see
+The selection process is iterative. Selection expressions (selectors)
+are applied one by one, and each selector selects nodes from the
+currently selected nodes. For each selector, it is applied individually
+to each currently selected node, and the results are concatenated.
+
+The selection process starts from the root of the DOM tree, the document
+node (see
 [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md)),
 unless `refine = TRUE` is set, in which case it starts from the current
 selection.
-
-A list of selection expressions is applied in order. Each selection
-expression selects nodes from the currently selected nodes.
 
 See the various types of selection expressions below.
 
@@ -224,7 +226,7 @@ JSONC
 TOML
 
 See
-[`tsjsonc::ts_language_jsonc()`](https://rdrr.io/pkg/tsjsonc/man/ts_language_jsonc.html)
+[`ts_language_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_language_jsonc.html)
 for details on the JSONC grammar.
 
 This example selects all numbers in the JSON document.
@@ -323,18 +325,259 @@ If the `refine` argument of `ts_tree_select()` is `TRUE`, then the
 selection starts from the already selected elements (all of them
 simultanously), instead of starting from the document element.
 
+JSONC
+
+TOML
+
+ 
+
+    json <- tsjsonc::ts_parse_jsonc(
+      '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+    )
+    json <- json |> ts_tree_select(c("b", "c"))
+
+ 
+
+    json |> ts_tree_select(1:2)
+
+    #> # jsonc (1 line, 2 selected elements)
+    #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    json |> ts_tree_select(1:2, refine = TRUE)
+
+    #> # jsonc (1 line, 4 selected elements)
+    #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      '[table]\na = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = [] }\n'
+    )
+    toml <- toml |> ts_tree_select("table", "b")
+
+ 
+
+    # selects the first two elements in the document node, ie. "table"
+    toml |> ts_tree_select(1:2)
+
+    #> # toml (4 lines, 1 selected element)
+    #> > 1 | [table]
+    #> > 2 | a = 1
+    #> > 3 | b = [10, 20, 30]
+    #> > 4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    # selects the first two elements inside "table" and "b"
+    toml |> ts_tree_select(1:2, refine = TRUE)
+
+    #> # toml (4 lines, 2 selected elements)
+    #>   1 | [table]
+    #>   2 | a = 1
+    #> > 3 | b = [10, 20, 30]
+    #>   4 | c = { c1 = true, c2 = [] }
+
+### The `ts_tree_select<-()` replacement function
+
+The
+[`ts_tree_select<-()`](https://gaborcsardi.github.io/ts/reference/select-set.md)
+replacement function works similarly to the combination of
+`ts_tree_select()` and
+[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
+but it might be more readable.
+
+JSONC
+
+TOML
+
+ 
+
+    json <- tsjsonc::ts_parse_jsonc(
+      '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+    )
+    json
+
+    #> # jsonc (1 line)
+    #> 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    json |> ts_tree_select("b", 1)
+
+    #> # jsonc (1 line, 1 selected element)
+    #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    ts_tree_select(json, "b", 1) <- 100
+    json
+
+    #> # jsonc (1 line)
+    #> 1 | { "a": 1, "b": [100, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      '[table]\na = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = [] }\n'
+    )
+    toml
+
+    #> # toml (4 lines)
+    #> 1 | [table]
+    #> 2 | a = 1
+    #> 3 | b = [10, 20, 30]
+    #> 4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    toml |> ts_tree_select("table", "b", 1)
+
+    #> # toml (4 lines, 1 selected element)
+    #>   1 | [table]
+    #>   2 | a = 1
+    #> > 3 | b = [10, 20, 30]
+    #>   4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    ts_tree_select(toml, "table", "b", 1) <- 100
+    toml
+
+    #> # toml (4 lines)
+    #> 1 | [table]
+    #> 2 | a = 1
+    #> 3 | b = [100.0, 20, 30]
+    #> 4 | c = { c1 = true, c2 = [] }
+
 ### The `[[` and `[[<-` operators
 
-The `[[` operator works similarly to `ts_tree_select()` on ts_tree
-objects, but it might be more readable.
-
-The `[[<-` operator works similarly to
-[`ts::ts_tree_select<-()`](https://gaborcsardi.github.io/ts/reference/select-set.md),
+The `[[` operator works similarly to the combination of
+`ts_tree_select()` and
+[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
 but it might be more readable.
+
+JSONC
+
+TOML
+
+ 
+
+    json <- tsjsonc::ts_parse_jsonc(
+      '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+    )
+    json |> ts_tree_select("b", 1)
+
+    #> # jsonc (1 line, 1 selected element)
+    #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    json[[list("b", 1)]]
+
+    #> [[1]]
+    #> [1] 10
+    #>
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      '[table]\na = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = [] }\n'
+    )
+    toml |> ts_tree_select("table", "b", 1)
+
+    #> # toml (4 lines, 1 selected element)
+    #>   1 | [table]
+    #>   2 | a = 1
+    #> > 3 | b = [10, 20, 30]
+    #>   4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    toml[[list("table", "b", 1)]]
+
+    #> [[1]]
+    #> [1] 10
+    #>
+
+The `[[<-` operator works similarly to the combination of
+`ts_tree_select()` and
+[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
+(and also to the replacement function
+[`ts_tree_select<-()`](https://gaborcsardi.github.io/ts/reference/select-set.md)),
+but it might be more readable.
+
+JSONC
+
+TOML
+
+ 
+
+    json <- tsjsonc::ts_parse_jsonc(
+      '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }'
+    )
+    json
+
+    #> # jsonc (1 line)
+    #> 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    json |> ts_tree_select("b", 1)
+
+    #> # jsonc (1 line, 1 selected element)
+    #> > 1 | { "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    json[[list("b", 1)]] <- 100
+    json
+
+    #> # jsonc (1 line)
+    #> 1 | { "a": 1, "b": [100, 20, 30], "c": { "c1": true, "c2": null } }
+
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      '[table]\na = 1\nb = [10, 20, 30]\nc = { c1 = true, c2 = [] }\n'
+    )
+    toml
+
+    #> # toml (4 lines)
+    #> 1 | [table]
+    #> 2 | a = 1
+    #> 3 | b = [10, 20, 30]
+    #> 4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    toml |> ts_tree_select("table", "b", 1)
+
+    #> # toml (4 lines, 1 selected element)
+    #>   1 | [table]
+    #>   2 | a = 1
+    #> > 3 | b = [10, 20, 30]
+    #>   4 | c = { c1 = true, c2 = [] }
+
+ 
+
+    toml[[list("table", "b", 1)]] <- 100
+    toml
+
+    #> # toml (4 lines)
+    #> 1 | [table]
+    #> 2 | a = 1
+    #> 3 | b = [100.0, 20, 30]
+    #> 4 | c = { c1 = true, c2 = [] }
 
 ## Examples
 
 ``` r
+# See more examples above
+
+# ----------------------------------------------------------------------
+# Create a JSONC tree, needs the tsjsonc package
 json <- ts_tree_new(
   tsjsonc::ts_language_jsonc(),
   text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
@@ -343,4 +586,24 @@ json <- ts_tree_new(
 json |> ts_tree_select("c", "d")
 #> # jsonc (1 line, 1 selected element)
 #> > 1 | { "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }
+
+# ----------------------------------------------------------------------
+# Create a TOML tree, needs the tstoml package
+toml <- ts_tree_new(
+  tstoml::ts_language_toml(),
+  text = tstoml::toml_example_text()
+)
+
+toml |> ts_tree_select("servers", TRUE, "ip")
+#> # toml (23 lines, 2 selected elements)
+#>   ...   
+#>   15  | [servers]
+#>   16  | 
+#>   17  | [servers.alpha]
+#> > 18  | ip = "10.0.0.1"
+#>   19  | role = "frontend"
+#>   20  | 
+#>   21  | [servers.beta]
+#> > 22  | ip = "10.0.0.2"
+#>   23  | role = "backend"
 ```

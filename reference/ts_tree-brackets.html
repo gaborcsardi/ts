@@ -67,7 +67,31 @@ exploration and debugging.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame with columns: TODO.</p>
+    <p>A data frame with one row per token, and columns:</p><ul><li><p><code>id</code>: integer, the id of the token. The (root) document node has id 1.</p></li>
+<li><p><code>parent</code>: integer, the id of the parent token. The root token has
+parent <code>NA</code></p></li>
+<li><p><code>field_name</code>: character, the field name of the token in its parent.</p></li>
+<li><p><code>type</code>: character, the type of the token.</p></li>
+<li><p><code>code</code>: character, the actual code of the token.</p></li>
+<li><p><code>start_byte</code>, <code>end_byte</code>: integer, the byte positions of the token
+in the input.</p></li>
+<li><p><code>start_row</code>, <code>start_column</code>, <code>end_row</code>, <code>end_column</code>: integer, the
+position of the token in the input.</p></li>
+<li><p><code>is_missing</code>: logical, whether the token is a missing token added by
+the parser to recover from errors.</p></li>
+<li><p><code>has_error</code>: logical, whether the token has a parse error.</p></li>
+<li><p><code>children</code>: list of integer vectors, the ids of the children tokens.</p></li>
+<li><p><code>dom_type</code>: character, the type of the node in the DOM tree. See
+<code><a href="ts_tree_dom.html">ts_tree_dom()</a></code>. Nodes that are not part of the DOM tree have
+<code>NA_character_</code> here.</p></li>
+<li><p><code>dom_children</code>: list of integer vectors, the ids of the children in the
+DOM tree. See <code><a href="ts_tree_dom.html">ts_tree_dom()</a></code>.</p></li>
+<li><p><code>dom_parent</code>: integer, the parent of the node in the DOM tree. See
+<code><a href="ts_tree_dom.html">ts_tree_dom()</a></code>. Nodes that are not part of the DOM tree and the
+document node have have <code>NA_integer_</code> here.</p></li>
+</ul><p>Other, undocumented columns may also be present, these are considered
+internal and may change without notice.</p>
+<p>A data frame with columns: TODO.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
