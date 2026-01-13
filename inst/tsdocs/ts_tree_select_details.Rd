@@ -3,7 +3,10 @@
 The selection process is iterative. Selection expressions (selectors)
 are applied one by one, and each selector selects nodes from the
 currently selected nodes. For each selector, it is applied individually
-to each currently selected node, and the results are concatenated.
+to each currently selected node, and the results are concatenated.\if{html}{\out{
+<p>
+}}
+
 
 The selection process starts from the root of the DOM tree, the document
 node (see \code{\link[ts:ts_tree_dom]{ts_tree_dom()}}), unless
@@ -81,18 +84,38 @@ If the \code{refine} argument of
 \code{\link[ts:ts_tree_select]{ts_tree_select()}} is \code{TRUE}, then
 the selection starts from the already selected elements (all of them
 simultanously), instead of starting from the document element.
+
+\eval{ts:::doc_tabs("ts_tree_select_refine")}
+}
+
+\subsection{The \verb{ts_tree_select<-()} replacement function}{
+
+The \code{\link[ts:ts_tree_select<-]{ts_tree_select<-()}} replacement
+function works similarly to the combination of
+\code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+\code{\link[ts:ts_tree_update]{ts_tree_update()}}, but it might be more
+readable.
+
+\eval{ts:::doc_tabs("ts_tree_select_set")}
 }
 
 \subsection{The \code{[[} and \verb{[[<-} operators}{
 
-The \code{[[} operator works similarly to
-\code{\link[ts:ts_tree_select]{ts_tree_select()}} on \code{ts_tree} objects,
-but it might be more readable.\if{html}{\out{
+The \code{[[} operator works similarly to the combination of
+\code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+\code{\link[ts:ts_tree_unserialize]{ts_tree_unserialize()}}, but it
+might be more readable.
+
+\eval{ts:::doc_tabs("ts_tree_select_brackets")}\if{html}{\out{
 <p>
 }}
 
 
-The \verb{[[<-} operator works similarly to
-\code{\link[ts:ts_tree_select<-]{ts_tree_select<-}}, but it might be
-more readable.
+The \verb{[[<-} operator works similarly to the combination of
+\code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+\code{\link[ts:ts_tree_update]{ts_tree_update()}}, (and also to the
+replacement function \code{\link[ts:ts_tree_select<-]{ts_tree_select<-()}}),
+but it might be more readable.
+
+\eval{ts:::doc_tabs("ts_tree_select_brackets_set")}
 }

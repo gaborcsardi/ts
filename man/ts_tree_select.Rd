@@ -2,7 +2,7 @@
 % Please edit documentation in R/ts-tree-select.R
 \name{ts_tree_select}
 \alias{ts_tree_select}
-\title{Select parts of a tree-sitter tree}
+\title{Select elements of a tree-sitter tree}
 \usage{
 ts_tree_select(tree, ..., refine = FALSE)
 }
@@ -31,6 +31,8 @@ See the S3 methods in the installed ts parser packages (if any):
 \eval{ts:::doc_extra()}
 }
 \examples{
+# See more examples above
+
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # ----------------------------------------------------------------------
 # Create a JSONC tree, needs the tsjsonc package
