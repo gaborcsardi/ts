@@ -1,5 +1,21 @@
 #' List installed tree-sitter parsers
 #'
+#' The ts package contains a common interface to several tree-sitter
+#' parsers, implemented in other R packages. `ts_list_parsers()` lists
+#' the available parsers installed in the system.
+#'
+#' To see tree-sitter parser packages that are available on CRAN, but not
+#' installed on your system, see the packages that depend on ts and have a
+#' name with a 'ts' prefix.
+# TODO: add URLs here, or pkgsearch  example once ts is on CRAN.
+#'
+# NOTE: this only works if all suggested packages are installed.
+#' Here is an example that includes all tree-sitter parsers at this time:
+#'
+#' ```{asciicast}
+#' ts_list_parsers()
+#' ```
+#'
 #' @param lib_path Library paths to search for installed packages.
 #'   Default is [base::.libPaths()].
 #' @return A data frame with columns:

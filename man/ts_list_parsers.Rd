@@ -21,7 +21,27 @@ A data frame with columns:
 }
 }
 \description{
-List installed tree-sitter parsers
+The ts package contains a common interface to several tree-sitter
+parsers, implemented in other R packages. \code{ts_list_parsers()} lists
+the available parsers installed in the system.
+}
+\details{
+To see tree-sitter parser packages that are available on CRAN, but not
+installed on your system, see the packages that depend on ts and have a
+name with a 'ts' prefix.
+
+Here is an example that includes all tree-sitter parsers at this time:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_list_parsers()
+}\if{html}{\out{</div>}}\if{html}{\out{
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
+#> <span style="color: #999999;"># A data frame: 2 × 5</span>                                                           
+#>   package version    title           library                    loaded          
+#> <span style="color: #c2c2c2;">*</span> <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>   <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>      <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>           <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>                      <span style="font-style: italic;color: #999999;">&lt;lgl&gt;</span>           
+#> <span style="color: #c2c2c2;">1</span> tsjsonc 0.0.0.9000 Edit JSON Files /Users/gaborcsardi/Librar… FALSE           
+#> <span style="color: #c2c2c2;">2</span> tstoml  0.0.0.9000 Edit TOML files /Users/gaborcsardi/Librar… FALSE           
+</pre></div>
+}}
 }
 \examples{
 ts_list_parsers()

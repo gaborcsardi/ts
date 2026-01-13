@@ -14,53 +14,25 @@ ts_tree_new(
 )
 }
 \arguments{
-\item{language}{Language of the file or string, a \code{ts_language} object,
-e.g. \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}}.}
+\item{language}{\eval{ts:::doc_insert("ts::ts_tree_new_param_language", "ts")}}
 
-\item{file}{Path of a file. Use either \code{file} or \code{text}, but not both.}
+\item{file}{\eval{ts:::doc_insert("ts::ts_tree_new_param_file", "ts")}}
 
-\item{text}{String. Use either \code{file} or \code{text}, but not both.}
+\item{text}{\eval{ts:::doc_insert("ts::ts_tree_new_param_text", "ts")}}
 
-\item{ranges}{Can be used to parse part(s) of the input. It must be a
-data frame with integer columns \code{start_row}, \code{start_col}, \code{end_row},
-\code{end_col}, \code{start_byte}, \code{end_byte}, in this order.}
+\item{ranges}{\eval{ts:::doc_insert("ts::ts_tree_new_param_ranges", "ts")}}
 
-\item{fail_on_parse_error}{Logical, whether to error if there are
-parse errors in the document. Default is \code{TRUE}.}
+\item{fail_on_parse_error}{\eval{ts:::doc_insert("ts::ts_tree_new_param_fail_on_parse_error", "ts")}}
 
 \item{...}{Additional arguments for methods.}
 }
 \value{
-A data frame with one row per token, and columns:
-\itemize{
-\item \code{id}: integer, the id of the token. The (root) document node has id 1.
-\item \code{parent}: integer, the id of the parent token. The root token has
-parent \code{NA}
-\item \code{field_name}: character, the field name of the token in its parent.
-\item \code{type}: character, the type of the token.
-\item \code{code}: character, the actual code of the token.
-\item \code{start_byte}, \code{end_byte}: integer, the byte positions of the token
-in the input.
-\item \code{start_row}, \code{start_column}, \code{end_row}, \code{end_column}: integer, the
-position of the token in the input.
-\item \code{is_missing}: logical, whether the token is a missing token added by
-the parser to recover from errors.
-\item \code{has_error}: logical, whether the token has a parse error.
-\item \code{children}: list of integer vectors, the ids of the children tokens.
-\item \code{dom_type}: character, the type of the node in the DOM tree. See
-\code{\link[=ts_tree_dom]{ts_tree_dom()}}. Nodes that are not part of the DOM tree have
-\code{NA_character_} here.
-\item \code{dom_children}: list of integer vectors, the ids of the children in the
-DOM tree. See \code{\link[=ts_tree_dom]{ts_tree_dom()}}.
-\item \code{dom_parent}: integer, the parent of the node in the DOM tree. See
-\code{\link[=ts_tree_dom]{ts_tree_dom()}}. Nodes that are not part of the DOM tree and the
-document node have have \code{NA_integer_} here.
-}
+\eval{ts:::doc_insert("ts::ts_tree_new_return", "ts")}
 }
 \description{
 This is the main function to create a tree-sitter parse tree, using a
-parser from another package. Then the parse tree may be queried, edited,
-formatted, written to file, etc. using ts_tree methods.
+ts parser implemented in another package.
+\eval{ts:::doc_insert("ts_tree_new_description", "ts")}
 \subsection{Installed ts parsers}{
 
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
@@ -71,16 +43,44 @@ A package that implements a tree-sitter parser provides a function that
 creates a \code{ts_language} object for that parser. E.g.
 \link[tsjsonc:tsjsonc-package]{tsjsonc} has \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}}.
 You need to use the returned \code{ts_language} object as the \code{language}
-argument of this function.
+argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
+\eval{ts:::doc_insert("ts_tree_new_details", "ts")}\if{html}{\out{
+<p>
+}}
+
+
+\eval{ts:::doc_tabs("ts_tree_new_examples")}
+\eval{ts:::doc_extra()}
 }
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# JSONC example, needs the tsjsonc package -----------------------------
 json <- ts_tree_new(
   tsjsonc::ts_language_jsonc(),
   text = '{ "a": 1, "b": 2 }'
 )
+
 json
+
 json |> ts_tree_format()
 \dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# TOML example, needs the tstoml package -------------------------------
+toml <- ts_tree_new(
+  tstoml::ts_language_toml(),
+  text = '[section]\nkey = "value"\nnumber = 42\n'
+)
+
+toml
+
+toml |> ts_tree_format()
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+The tree-sitter parser packages typically include shortcuts to
+create parse trees from strings and file, e.g.
+\code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_parse_jsonc()}} and \code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_read_jsonc()}}.
 }
 \concept{ts_tree methods}

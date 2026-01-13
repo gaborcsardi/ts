@@ -2,15 +2,21 @@
 % Please edit documentation in R/ts-tree-delete.R
 \name{ts_tree_delete}
 \alias{ts_tree_delete}
-\title{TODO}
+\title{Delete selected elements from a tree-sitter tree}
 \usage{
 ts_tree_delete(tree, ...)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_delete_param_tree", "ts")}}
 
 \item{...}{Extra arguments for methods.}
 }
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_delete_return", "ts")}
+}
 \description{
-TODO
+Delete selected elements from a tree-sitter tree
+}
+\details{
+\eval{ts:::doc_insert("ts_tree_delete_details", "tsjsonc")}
 }

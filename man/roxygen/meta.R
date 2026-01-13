@@ -8,6 +8,9 @@ asciicast::init_knitr_engine(
   timeout = as.integer(Sys.getenv("ASCIICAST_TIMEOUT", 10)),
   startup = quote({
     library(ts)
+    loadNamespace("pillar")
+    options(width = 70)
+    options(cli.width = 70)
     options(cli.num_colors = 256)
   })
 )

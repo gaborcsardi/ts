@@ -73,7 +73,7 @@ doc_tabs_all <- function(key) {
       t_btn,
       .envir = c(psrs[i, ], list(idx = i, language = language))
     )
-    if (!is.null(tab)) {
+    if (!is.null(tab) && nzchar(tab)) {
       tabs <- paste0(tabs, tab, "\n")
       buttons <- paste0(buttons, btn, "\n")
     }
@@ -92,9 +92,9 @@ doc_tabs_one <- function(key, package) {
 
 doc_path <- function(package) {
   pkgdir <- find.package(package)
-  docpath <- file.path(pkgdir, "docs")
+  docpath <- file.path(pkgdir, "tsdocs")
   if (!file.exists(docpath)) {
-    docpath <- file.path(pkgdir, "inst", "docs")
+    docpath <- file.path(pkgdir, "inst", "tsdocs")
   }
 
   docpath
@@ -104,7 +104,7 @@ doc_create_chunk <- function(key, lib, package, idx, template) {
   file <- paste0(key, ".Rd")
   path <- file.path(doc_path(package), file)
   if (!file.exists(path)) {
-    return(NULL)
+    return("")
   }
   x <- read_char(path)
   lns <- strsplit(x, "\n", fixed = TRUE)[[1]]
@@ -198,7 +198,12 @@ roclet_process.roclet_ts <- function(x, blocks, env, base_path) {
     tags <- roxygen2::block_get_tags(block, "ts")
 
     for (tag in tags) {
-      path <- file.path(base_path, "inst", "docs", paste0(tag$val$file, ".Rd"))
+      path <- file.path(
+        base_path,
+        "inst",
+        "tsdocs",
+        paste0(tag$val$file, ".Rd")
+      )
       value <- paste0(
         "#| title: ",
         tag$val$title,

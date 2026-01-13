@@ -1,66 +1,94 @@
 #' Create tree-sitter tree from file or string
 #'
+#' @ts ts_tree_new_description
+#' The result is a `ts_tree` object. A `ts_tree` object may be queried,
+#' edited, formatted, written to file, etc. using `ts_tree` methods.
 #' @description
 #' This is the main function to create a tree-sitter parse tree, using a
-#' parser from another package. Then the parse tree may be queried, edited,
-#' formatted, written to file, etc. using ts_tree methods.
+#' ts parser implemented in another package.
+#' \eval{ts:::doc_insert("ts_tree_new_description", "ts")}
 #'
 #' ## Installed ts parsers
 #'
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
+#' @ts ts_tree_new_details
+#' \eval{ts:::doc_tabs("tsjsonc::ts_tree_new_examples")}
 #' @details
 #' A package that implements a tree-sitter parser provides a function that
 #' creates a `ts_language` object for that parser. E.g.
 #' [tsjsonc][tsjsonc::tsjsonc-package] has [tsjsonc::ts_language_jsonc()].
 #' You need to use the returned `ts_language` object as the `language`
-#' argument of this function.
+#' argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
+#' \eval{ts:::doc_insert("ts_tree_new_details", "ts")}
 #'
+#' <p>
 #'
-#' @param language Language of the file or string, a `ts_language` object,
-#'   e.g. [tsjsonc::ts_language_jsonc()].
-#' @param file Path of a file. Use either `file` or `text`, but not both.
-#' @param text String. Use either `file` or `text`, but not both.
-#' @param ranges Can be used to parse part(s) of the input. It must be a
-#'   data frame with integer columns `start_row`, `start_col`, `end_row`,
-#'   `end_col`, `start_byte`, `end_byte`, in this order.
-#' @param fail_on_parse_error Logical, whether to error if there are
-#'   parse errors in the document. Default is `TRUE`.
+#' \eval{ts:::doc_tabs("ts_tree_new_examples")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts ts_tree_new_param_language
+#' Language of the file or string, a `ts_language` object,e.g. the return
+#' value of [tsjsonc::ts_language_jsonc()].
+#' @ts ts_tree_new_param_file
+#' Path of a file to parse. Use either `file` or `text`, but not both.
+#' @ts ts_tree_new_param_text
+#' String to parse. Use either `file` or `text`, but not both.
+#' @ts ts_tree_new_param_ranges
+#' Can be used to parse part(s) of the input. It must be a data frame with
+#' integer columns `start_row`, `start_col`, `end_row`, `end_col`,
+#' `start_byte`, `end_byte`, in this order.
+#' @ts ts_tree_new_param_fail_on_parse_error
+#' Logical, whether to error if there are parse errors in the document.
+#' Default is `TRUE`.
+#'
+#' @param language
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_language", "ts")}
+#' @param file
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_file", "ts")}
+#' @param text
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_text", "ts")}
+#' @param ranges
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_ranges", "ts")}
+#' @param fail_on_parse_error
+#' \eval{ts:::doc_insert("ts::ts_tree_new_param_fail_on_parse_error", "ts")}
 #' @param ... Additional arguments for methods.
 #'
-#' @return A data frame with one row per token, and columns:
-#' * `id`: integer, the id of the token. The (root) document node has id 1.
-#' * `parent`: integer, the id of the parent token. The root token has
-#'   parent `NA`
-#' * `field_name`: character, the field name of the token in its parent.
-#' * `type`: character, the type of the token.
-#' * `code`: character, the actual code of the token.
-#' * `start_byte`, `end_byte`: integer, the byte positions of the token
-#'   in the input.
-#' * `start_row`, `start_column`, `end_row`, `end_column`: integer, the
-#'   position of the token in the input.
-#' * `is_missing`: logical, whether the token is a missing token added by
-#'   the parser to recover from errors.
-#' * `has_error`: logical, whether the token has a parse error.
-#' * `children`: list of integer vectors, the ids of the children tokens.
-#' * `dom_type`: character, the type of the node in the DOM tree. See
-#'   [ts_tree_dom()]. Nodes that are not part of the DOM tree have
-#'   `NA_character_` here.
-#' * `dom_children`: list of integer vectors, the ids of the children in the
-#'   DOM tree. See [ts_tree_dom()].
-#' * `dom_parent`: integer, the parent of the node in the DOM tree. See
-#'   [ts_tree_dom()]. Nodes that are not part of the DOM tree and the
-#'   document node have have `NA_integer_` here.
+#' @ts ts_tree_new_return
+#' A `ts_tree` object representing the parse tree of the input. You can
+#' use the single bracket \code{\link[ts::ts_tree-brackets]{`[`}}
+#' operator to convert it to a data frame.
+#' @return
+#' \eval{ts:::doc_insert("ts::ts_tree_new_return", "ts")}
 #'
 #' @export
 #' @family ts_tree methods
+#' @seealso The tree-sitter parser packages typically include shortcuts to
+#'   create parse trees from strings and file, e.g.
+#'   [tsjsonc::ts_parse_jsonc()] and [tsjsonc::ts_read_jsonc()].
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#'
+#' # JSONC example, needs the tsjsonc package -----------------------------
 #' json <- ts_tree_new(
 #'   tsjsonc::ts_language_jsonc(),
 #'   text = '{ "a": 1, "b": 2 }'
 #' )
+#'
 #' json
+#'
 #' json |> ts_tree_format()
+#'
+#' @examplesIf requireNamespace("tstoml", quietly = TRUE)
+#'
+#' # TOML example, needs the tstoml package -------------------------------
+#' toml <- ts_tree_new(
+#'   tstoml::ts_language_toml(),
+#'   text = '[section]\nkey = "value"\nnumber = 42\n'
+#' )
+#'
+#' toml
+#'
+#' toml |> ts_tree_format()
 
 ts_tree_new <- function(
   language,

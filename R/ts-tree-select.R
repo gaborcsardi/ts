@@ -1,12 +1,13 @@
 #' @ts ts_tree_select_details
-#' A selection starts from the root of the DOM tree, the document node
-#' (see [ts_tree_dom()]), unless `refine = TRUE` is set, in which case it
-#' starts from the current selection.
+#' The selection process is iterative. Selection expressions (selectors)
+#' are applied one by one, and each selector selects nodes from the
+#' currently selected nodes. For each selector, it is applied individually
+#' to each currently selected node, and the results are concatenated.
 #'
-#' <p>
-#'
-#' A list of selection expressions is applied in order. Each selection
-#' expression selects nodes from the currently selected nodes.
+#' The selection process starts from the root of the DOM tree, the document
+#' node (see \code{\link[ts:ts_tree_dom]{ts_tree_dom()}}), unless
+#' `refine = TRUE` is set, in which case it starts from the current
+#' selection.
 #'
 #' <p>
 #'
@@ -46,8 +47,8 @@
 #' ### Tree sitter query matches
 #'
 #' A character scalar named `query` can be used to select nodes matching
-#' a tree-sitter query. See [ts_tree_query()] for details on tree-sitter
-#' queries.
+#' a tree-sitter query. See \code{\link[ts:ts_tree_query]{ts_tree_query()}}
+#' for details on tree-sitter queries.
 #'
 #' <p>
 #'
@@ -67,19 +68,22 @@
 #'
 #' ## Refining selections
 #'
-#' If the `refine` argument of [ts_tree_select()] is `TRUE`, then
+#' If the `refine` argument of
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} is `TRUE`, then
 #' the selection starts from the already selected elements (all of them
 #' simultanously), instead of starting from the document element.
 #'
 #' ## The `[[` and `[[<-` operators
-#'
-#' The `[[` operator works similarly to [ts_tree_select()] on ts_tree
-#' objects, but it might be more readable.
+#
+#' The `[[` operator works similarly to
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} on `ts_tree` objects,
+#' but it might be more readable.
 #'
 #' <p>
 #'
-#' The `[[<-` operator works similarly to [ts_tree_select<-()], but it
-#' might be more readable.
+#' The `[[<-` operator works similarly to
+#' \code{\link[ts:ts_tree_select<-]{ts_tree_select<-}}, but it might be
+#' more readable.
 #'
 NULL
 
@@ -93,7 +97,7 @@ NULL
 #'
 #' ## Installed ts parsers
 #'
-#' This is the manual path of the `ts_tree_select()` S3 generic function.
+#' This is the manual page of the `ts_tree_select()` S3 generic function.
 #' See the S3 methods in the installed ts parser packages (if any):
 #'
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")}
@@ -103,7 +107,8 @@ NULL
 #' \eval{ts:::doc_extra()}
 #'
 #' @ts ts_tree_select_param_tree
-#' A `ts_tree` object as returned by [ts_tree_new()].
+#' A `ts_tree` object as returned by
+#' \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
 #' @ts ts_tree_select_param_dots
 #' Selection expressions, see details.
 #' @ts ts_tree_select_param_refine
@@ -117,12 +122,25 @@ NULL
 #' @return \eval{ts:::doc_insert("ts::ts_tree_select_return")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # ----------------------------------------------------------------------
+#' # Create a JSONC tree, needs the tsjsonc package
 #' json <- ts_tree_new(
 #'   tsjsonc::ts_language_jsonc(),
 #'   text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
 #' )
 #'
 #' json |> ts_tree_select("c", "d")
+#'
+#' @examplesIf requireNamespace("tstoml", quietly = TRUE)
+#'
+#' # ----------------------------------------------------------------------
+#' # Create a TOML tree, needs the tstoml package
+#' toml <- ts_tree_new(
+#'   tstoml::ts_language_toml(),
+#'   text = tstoml::toml_example_text()
+#' )
+#'
+#' toml |> ts_tree_select("servers", TRUE, "ip")
 
 ts_tree_select <- function(tree, ..., refine = FALSE) {
   slts <- normalize_selectors(tree, list(...))

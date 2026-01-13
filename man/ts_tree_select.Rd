@@ -20,7 +20,7 @@ ts_tree_select(tree, ..., refine = FALSE)
 \eval{ts:::doc_insert("ts::ts_tree_select_description")}
 \subsection{Installed ts parsers}{
 
-This is the manual path of the \code{ts_tree_select()} S3 generic function.
+This is the manual page of the \code{ts_tree_select()} S3 generic function.
 See the S3 methods in the installed ts parser packages (if any):
 
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")}
@@ -32,11 +32,24 @@ See the S3 methods in the installed ts parser packages (if any):
 }
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# ----------------------------------------------------------------------
+# Create a JSONC tree, needs the tsjsonc package
 json <- ts_tree_new(
   tsjsonc::ts_language_jsonc(),
   text = '{ "a": 1, "b": 2, "c": { "d": 3, "e": 4 } }'
 )
 
 json |> ts_tree_select("c", "d")
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# ----------------------------------------------------------------------
+# Create a TOML tree, needs the tstoml package
+toml <- ts_tree_new(
+  tstoml::ts_language_toml(),
+  text = tstoml::toml_example_text()
+)
+
+toml |> ts_tree_select("servers", TRUE, "ip")
 \dontshow{\}) # examplesIf}
 }
