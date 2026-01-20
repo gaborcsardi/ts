@@ -1,7 +1,8 @@
 # format.ts_tree
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}"))
+      tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}") %>%
+        ts_tree_format()
       print(tree)
     Output
       # jsonc (8 lines)
@@ -32,8 +33,9 @@
 ---
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}"))
-      print(ts_tree_select(tree, "a"))
+      tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}") %>%
+        ts_tree_format()
+      tree %>% ts_tree_select("a") %>% print()
     Output
       # jsonc (8 lines, 1 selected element)
         1   | {
@@ -43,7 +45,7 @@
         5   |         2,
         ...   
     Code
-      print(ts_tree_select(tree, "b", TRUE))
+      tree %>% ts_tree_select("b", TRUE) %>% print()
     Output
       # jsonc (8 lines, 3 selected elements)
         1 | {
@@ -58,8 +60,9 @@
 ---
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}"))
-      print(ts_tree_select(tree, "c"))
+      tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}") %>%
+        ts_tree_format()
+      tree %>% ts_tree_select("c") %>% print()
     Output
       # jsonc (8 lines, 0 selected elements)
       1 | {
@@ -74,9 +77,9 @@
 ---
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc(
-        "{\"a\": 1, \"b\": [1,2,3], \"c\": {\"d\":4}}"))
-      print(ts_tree_select(tree, c("b", "c")))
+      tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3], \"c\": {\"d\":4}}") %>%
+        ts_tree_format()
+      tree %>% ts_tree_select(c("b", "c")) %>% print()
     Output
       # jsonc (11 lines, 2 selected elements)
          1 | {
@@ -94,8 +97,8 @@
 ---
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc("[1,2,3,4,5,6,7]"))
-      print(ts_tree_select(tree, 1:5), n = 3)
+      tree <- tsjsonc::ts_parse_jsonc("[1,2,3,4,5,6,7]") %>% ts_tree_format()
+      tree %>% ts_tree_select(1:5) %>% print(n = 3)
     Output
       # jsonc (9 lines, 5 selected elements)
         1   | [
@@ -113,7 +116,7 @@
 
     Code
       tree <- tstoml::ts_parse_toml(tstoml::toml_example_text())
-      ts_tree_select(tree, "owner")
+      tree %>% ts_tree_select("owner")
     Output
       # toml (23 lines, 1 selected element)
          2  | 

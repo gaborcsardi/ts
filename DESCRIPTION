@@ -14,6 +14,7 @@ Imports:
   cli,
   utils
 Suggests:
+  magrittr,
   pillar,
   roxygen2,
   testthat (>= 3.0.0),

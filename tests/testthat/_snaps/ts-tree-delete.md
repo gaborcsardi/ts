@@ -2,12 +2,12 @@
 
     Code
       tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}")
-      ts_tree_delete(ts_tree_select(tree, "a"))
+      tree %>% ts_tree_select("a") %>% ts_tree_delete()
     Output
       # jsonc (1 line)
       1 | {"b": [1,2,3]}
     Code
-      ts_tree_delete(ts_tree_select(tree, "b", -1L))
+      tree %>% ts_tree_select("b", -1L) %>% ts_tree_delete()
     Output
       # jsonc (1 line)
       1 | {"a": 1, "b": [1,2]}

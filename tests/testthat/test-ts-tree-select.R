@@ -1,36 +1,40 @@
 test_that("ts_tree_select", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
-    tree |> ts_tree_select("a") |> ts_tree_unserialize()
-    tree |> ts_tree_select("b", 2) |> ts_tree_unserialize()
-    tree |> ts_tree_select("b", -1L) |> ts_tree_unserialize()
-    tree |> ts_tree_select("b", c(1L, 3L)) |> ts_tree_unserialize()
-    tree |> ts_tree_select("b", TRUE) |> ts_tree_unserialize()
+    tree %>% ts_tree_select("a") %>% ts_tree_unserialize()
+    tree %>% ts_tree_select("b", 2) %>% ts_tree_unserialize()
+    tree %>% ts_tree_select("b", -1L) %>% ts_tree_unserialize()
+    tree %>% ts_tree_select("b", c(1L, 3L)) %>% ts_tree_unserialize()
+    tree %>% ts_tree_select("b", TRUE) %>% ts_tree_unserialize()
   })
 })
 
 test_that("ts_tree_select NULL", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
-    tree |> ts_tree_select(NULL)
-    tree |> ts_tree_select("a") |> ts_tree_select(NULL, refine = TRUE)
+    tree %>% ts_tree_select(NULL)
+    tree %>% ts_tree_select("a") %>% ts_tree_select(NULL, refine = TRUE)
   })
 })
 
 test_that("ts_tree_select refine", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
-    tree |>
-      ts_tree_select("b") |>
-      ts_tree_select(1, refine = TRUE) |>
+    tree %>%
+      ts_tree_select("b") %>%
+      ts_tree_select(1, refine = TRUE) %>%
       ts_tree_unserialize()
   })
 })
 
 test_that("ts_tree_select regex", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"apple": 1, "banana": 2, "apricot": 3}')
   expect_snapshot({
-    tree |> ts_tree_select(regex = "^a.*") |> ts_tree_unserialize()
+    tree %>% ts_tree_select(regex = "^a.*") %>% ts_tree_unserialize()
   })
 })
 
@@ -41,48 +45,54 @@ test_that("normalize_selectors", {
 })
 
 test_that("ts_tree_select ids", {
-  tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}') |> ts_tree_format()
+  library(magrittr)
+  tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}') %>% ts_tree_format()
   numbers <- which(tree$type == "number")
   expect_snapshot({
-    tree |> ts_tree_select(I(numbers)) |> ts_tree_unserialize()
+    tree %>% ts_tree_select(I(numbers)) %>% ts_tree_unserialize()
   })
 })
 
 test_that("ts_tree_select unknown selector", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
-    tree |> ts_tree_select(raw(2))
+    tree %>% ts_tree_select(raw(2))
   })
 })
 
 test_that("ts_tree_select NULL", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
-    tree |> ts_tree_select("a", NULL)
+    tree %>% ts_tree_select("a", NULL)
   })
 })
 
 test_that("ts_tree_select keys from non-object", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{ "a": [1,2,3] }')
   expect_snapshot({
-    tree |> ts_tree_select("a", "b")
+    tree %>% ts_tree_select("a", "b")
   })
   expect_snapshot({
-    tree |> ts_tree_select("a", regex = "^b")
+    tree %>% ts_tree_select("a", regex = "^b")
   })
 })
 
 test_that("ts_tree_select zero index", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
-    tree |> ts_tree_select("b", 0)
+    tree %>% ts_tree_select("b", 0)
   })
 })
 
 test_that("ts_tree_select invalid logical selector", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
-    tree |> ts_tree_select("b", c(TRUE, FALSE))
+    tree %>% ts_tree_select("b", c(TRUE, FALSE))
   })
 })
 
@@ -99,30 +109,31 @@ test_that("[[", {
 
 
 test_that("TS query", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc(
     '{"a": {"b": [1,2,3]}, "c": {"b": [4,5,6]}}'
-  ) |>
+  ) %>%
     ts_tree_format()
   expect_snapshot({
-    tree |> ts_tree_select(query = "(number) @num")
-    tree |> ts_tree_select(query = "(number) @num") |> ts_tree_unserialize()
+    tree %>% ts_tree_select(query = "(number) @num")
+    tree %>% ts_tree_select(query = "(number) @num") %>% ts_tree_unserialize()
   })
 
   expect_snapshot({
-    tree |> ts_tree_select(query = "(null) @foo")
+    tree %>% ts_tree_select(query = "(null) @foo")
   })
 
   # invalid capture name
   expect_snapshot(error = TRUE, {
-    tree |> ts_tree_select(query = list("(null) @foo", "bar"))
+    tree %>% ts_tree_select(query = list("(null) @foo", "bar"))
   })
 
   # query with a captures parameter
   expect_snapshot({
-    tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": 2, "c": 3, "d": 4 }') |>
+    tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": 2, "c": 3, "d": 4 }') %>%
       ts_tree_format()
     ts_tree_sexpr(tree)
-    tree |>
+    tree %>%
       ts_tree_select(
         query = list(
           "((pair (string (string_content) @key) (number) @num)
@@ -154,12 +165,13 @@ test_that("ts_tree_delete", {
 })
 
 test_that("ts_tree_select<- can insert", {
+  library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
     ts_tree_select(tree, "x") <- 42
     tree
     tree[[list("y", "z")]] <- TRUE
-    tree |> print(n = 100)
+    tree %>% print(n = 100)
   })
 })
 

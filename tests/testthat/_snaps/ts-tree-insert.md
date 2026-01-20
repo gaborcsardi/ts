@@ -2,7 +2,7 @@
 
     Code
       tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": [1,2,3]}")
-      print(ts_tree_insert(tree, key = "x", list(1, 2, 3)), n = 100)
+      tree %>% ts_tree_insert(key = "x", list(1, 2, 3)) %>% print(n = 100)
     Output
       # jsonc (13 lines)
        1 | {
@@ -19,7 +19,7 @@
       12 |     ]
       13 | }
     Code
-      ts_tree_insert(ts_tree_select(tree, "b"), "boo!", at = 1)
+      tree %>% ts_tree_select("b") %>% ts_tree_insert("boo!", at = 1)
     Output
       # jsonc (6 lines)
       1 | {"a": 1, "b": [

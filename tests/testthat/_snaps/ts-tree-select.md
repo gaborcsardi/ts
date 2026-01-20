@@ -1,25 +1,25 @@
 # ts_tree_select
 
     Code
-      ts_tree_unserialize(ts_tree_select(tree, "a"))
+      tree %>% ts_tree_select("a") %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 0
       
     Code
-      ts_tree_unserialize(ts_tree_select(tree, "b", 2))
+      tree %>% ts_tree_select("b", 2) %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 2
       
     Code
-      ts_tree_unserialize(ts_tree_select(tree, "b", -1L))
+      tree %>% ts_tree_select("b", -1L) %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 3
       
     Code
-      ts_tree_unserialize(ts_tree_select(tree, "b", c(1L, 3L)))
+      tree %>% ts_tree_select("b", c(1L, 3L)) %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -28,7 +28,7 @@
       [1] 3
       
     Code
-      ts_tree_unserialize(ts_tree_select(tree, "b", TRUE))
+      tree %>% ts_tree_select("b", TRUE) %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -43,12 +43,12 @@
 # ts_tree_select NULL
 
     Code
-      ts_tree_select(tree, NULL)
+      tree %>% ts_tree_select(NULL)
     Output
       # jsonc (1 line)
       1 | {"a": 0, "b": [1,2,3]}
     Code
-      ts_tree_select(ts_tree_select(tree, "a"), NULL, refine = TRUE)
+      tree %>% ts_tree_select("a") %>% ts_tree_select(NULL, refine = TRUE)
     Output
       # jsonc (1 line)
       1 | {"a": 0, "b": [1,2,3]}
@@ -56,7 +56,7 @@
 ---
 
     Code
-      ts_tree_select(tree, "a", NULL)
+      tree %>% ts_tree_select("a", NULL)
     Output
       # jsonc (1 line, 0 selected elements)
       1 | {"a": 1, "b": [1,2,3]}
@@ -64,7 +64,8 @@
 # ts_tree_select refine
 
     Code
-      ts_tree_unserialize(ts_tree_select(ts_tree_select(tree, "b"), 1, refine = TRUE))
+      tree %>% ts_tree_select("b") %>% ts_tree_select(1, refine = TRUE) %>%
+        ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -73,7 +74,7 @@
 # ts_tree_select regex
 
     Code
-      ts_tree_unserialize(ts_tree_select(tree, regex = "^a.*"))
+      tree %>% ts_tree_select(regex = "^a.*") %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -117,7 +118,7 @@
 # ts_tree_select ids
 
     Code
-      ts_tree_unserialize(ts_tree_select(tree, I(numbers)))
+      tree %>% ts_tree_select(I(numbers)) %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -135,7 +136,7 @@
 # ts_tree_select unknown selector
 
     Code
-      ts_tree_select(tree, raw(2))
+      tree %>% ts_tree_select(raw(2))
     Condition
       Error in `ts_tree_select1.default()`:
       ! Don't know how to select nodes from a `ts_tree` (JSONC) object using selector of class `raw`.
@@ -143,7 +144,7 @@
 # ts_tree_select keys from non-object
 
     Code
-      ts_tree_select(tree, "a", "b")
+      tree %>% ts_tree_select("a", "b")
     Output
       # jsonc (1 line, 0 selected elements)
       1 | { "a": [1,2,3] }
@@ -151,7 +152,7 @@
 ---
 
     Code
-      ts_tree_select(tree, "a", regex = "^b")
+      tree %>% ts_tree_select("a", regex = "^b")
     Output
       # jsonc (1 line, 0 selected elements)
       1 | { "a": [1,2,3] }
@@ -159,7 +160,7 @@
 # ts_tree_select zero index
 
     Code
-      ts_tree_select(tree, "b", 0)
+      tree %>% ts_tree_select("b", 0)
     Condition
       Error in `ts_tree_select1.ts_tree.integer()`:
       ! Zero indices are not allowed in ts selectors.
@@ -167,7 +168,7 @@
 # ts_tree_select invalid logical selector
 
     Code
-      ts_tree_select(tree, "b", c(TRUE, FALSE))
+      tree %>% ts_tree_select("b", c(TRUE, FALSE))
     Condition
       Error in `ts_tree_select1.ts_tree.logical()`:
       ! Invalid logical selector in `ts_tree_select()`: only scalar `TRUE` is supported.
@@ -209,7 +210,7 @@
 # TS query
 
     Code
-      ts_tree_select(tree, query = "(number) @num")
+      tree %>% ts_tree_select(query = "(number) @num")
     Output
       # jsonc (16 lines, 6 selected elements)
          1 | {
@@ -229,7 +230,7 @@
         15 |     }
         16 | }
     Code
-      ts_tree_unserialize(ts_tree_select(tree, query = "(number) @num"))
+      tree %>% ts_tree_select(query = "(number) @num") %>% ts_tree_unserialize()
     Output
       [[1]]
       [1] 1
@@ -253,7 +254,7 @@
 ---
 
     Code
-      ts_tree_select(tree, query = "(null) @foo")
+      tree %>% ts_tree_select(query = "(null) @foo")
     Output
       # jsonc (16 lines, 0 selected elements)
        1 | {
@@ -272,7 +273,7 @@
 ---
 
     Code
-      ts_tree_select(tree, query = list("(null) @foo", "bar"))
+      tree %>% ts_tree_select(query = list("(null) @foo", "bar"))
     Condition
       Error in `select_query()`:
       ! Invalid capture names in `select_query()`: bar.
@@ -280,13 +281,13 @@
 ---
 
     Code
-      tree <- ts_tree_format(tsjsonc::ts_parse_jsonc(
-        "{\"a\": 1, \"b\": 2, \"c\": 3, \"d\": 4 }"))
+      tree <- tsjsonc::ts_parse_jsonc("{\"a\": 1, \"b\": 2, \"c\": 3, \"d\": 4 }") %>%
+        ts_tree_format()
       ts_tree_sexpr(tree)
     Output
       [1] "(document (object (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number)) (pair key: (string (string_content)) value: (number))))"
     Code
-      ts_tree_select(tree, query = list(
+      tree %>% ts_tree_select(query = list(
         "((pair (string (string_content) @key) (number) @num)\n           (#not-eq? @key \"c\") )",
         "num"))
     Output
@@ -346,7 +347,7 @@
       9 | }
     Code
       tree[[list("y", "z")]] <- TRUE
-      print(tree, n = 100)
+      tree %>% print(n = 100)
     Output
       # jsonc (12 lines)
        1 | {
