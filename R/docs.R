@@ -10,6 +10,50 @@ is_rcmd_check <- function() {
     Sys.getenv("_R_RD_MACROS_PACKAGE_DIR_", "") != ""
 }
 
+doc_has_method <- function(method, package) {
+  method <- paste0(method, ".ts_tree_", sub("^ts", "", package))
+  length(utils::help(
+    topic = (method),
+    package = (package),
+    help_type = "text"
+  )) >
+    0
+}
+
+doc_seealso <- function(method) {
+  ts_package <- get_env("R_TS_PACKAGE")
+  if (is.null(ts_package)) {
+    psrs <- ts_list_parsers()
+    psrs <- psrs[!duplicated(psrs$package), ]
+    links <- vapply(
+      psrs$package,
+      function(pkg) {
+        if (doc_has_method(method, pkg)) {
+          glue(
+            "\\code{{\\link[{pkg}:{method}.{pkg}]{{{method}(<ts_tree_{pkg}>)}}}}",
+          )
+        } else {
+          ""
+        }
+      },
+      ""
+    )
+    links <- links[links != ""]
+    if (length(links) > 0) {
+      s <- if (length(links) > 1) "s"
+      glue("Method{s} in installed package{s}: {ts_collapse(links)}.")
+    } else {
+      ""
+    }
+  } else {
+    paste0(
+      "The generic of this method in the ts package: ",
+      glue("\\code{{\\link[ts:{method}]{{{method}()}}}}"),
+      "."
+    )
+  }
+}
+
 doc_insert <- function(key, manpkg = NULL) {
   if (is_rcmd_check()) {
     return("Placeholder.")

@@ -11,7 +11,8 @@ Description: Common tree-sitter parsing tools for R. It is meant to be
     used by other packages that specialize in particular languages.
 License: MIT + file LICENSE
 Imports:
-  cli
+  cli,
+  utils
 Suggests:
   pillar,
   roxygen2,

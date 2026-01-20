@@ -1,20 +1,63 @@
-#' Run tree-sitter queries on a file or string
+#' Run tree-sitter queries on tree-sitter trees
+#'
+#' @ts ts_tree_query_description
+#' Use \href{https://tree-sitter.github.io/tree-sitter/}{
+#' tree-sitter's query language} to find nodes in a tree-sitter tree.
+#' @description
+#' \eval{ts:::doc_insert("ts_tree_query_description")}
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_query")}
+#'
+#' @ts ts_tree_query_details
+#' You probably need to know some details about the specific tree-sitter
+#' parser you are using, to write effective queries. See the documentation
+#' of the parser package you are using for details about the node types
+#' and the query language support. See links below.
 #'
 #' @details
-#' See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
-#' queries.
+#' \eval{ts:::doc_insert("ts::ts_tree_query_details")}
+#' \eval{ts:::doc_tabs("ts_tree_query_details_examples")}
+#' \eval{ts:::doc_extra()}
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
-#' @param query Character string, the tree-sitter query to run.
-#' @return A list with entries `patterns` and `matched_captures`.
-#'   `patterns` contains information about all patterns in the queries and
-#'   it is a data frame with columns: `id`, `name`, `pattern`, `match_count`.
-#'   `matched_captures` contains information about all matches, and it has
-#'   columns `id`, `pattern`, `match`, `start_byte`, `end_byte`, `start_row`,
-#'   `start_column`, `end_row`, `end_column`, `name`, `code`. The `pattern`
-#'   column of `matched_captured` refers to the `id` column of `patterns`.
+#' @ts ts_tree_query_param_tree
+#' A `ts_tree` object.
+#' @ts ts_tree_query_param_query
+#' Character string, the tree-sitter query to run.
 #'
+#' @param tree \eval{ts:::doc_insert("ts::ts_tree_query_param_tree")}
+#' @param query \eval{ts:::doc_insert("ts::ts_tree_query_param_query")}
+#'
+#' @ts ts_tree_query_return
+#' A list with entries `patterns` and `matched_captures`.
+#'
+#' <p>
+#'
+#' `patterns` contains information about all patterns in the queries and
+#' it is a data frame with columns: `id`, `name`, `pattern`, `match_count`.
+#'
+#' <p>
+#'
+#' `matched_captures` contains information about all matches, and it has
+#' columns `id`, `pattern`, `match`, `start_byte`, `end_byte`, `start_row`,
+#' `start_column`, `end_row`, `end_column`, `name`, `code`.
+#'
+#' <p>
+#'
+#' The `pattern` column of `matched_captured` refers to the `id` column of
+#' `patterns`.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_query_return")}
+#'
+#' @seealso [ts_tree_select()] to select the nodes matching a query.
+#'
+#'  \eval{ts:::doc_seealso("ts_tree_query")}
 #' @export
+#' @family `ts_tree` exploration
+#' @family `ts_tree` generics
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Select all numbers in a JSONC document ------------------------------------
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+#' )
+#' json |> ts_tree_query("(number) @number")
 
 ts_tree_query <- function(tree, query) {
   UseMethod("ts_tree_query")

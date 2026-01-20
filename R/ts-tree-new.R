@@ -8,12 +8,11 @@
 #' ts parser implemented in another package.
 #' \eval{ts:::doc_insert("ts_tree_new_description", "ts")}
 #'
-#' ## Installed ts parsers
-#'
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @ts ts_tree_new_details
 #' \eval{ts:::doc_tabs("tsjsonc::ts_tree_new_examples")}
+#'
 #' @details
 #' A package that implements a tree-sitter parser provides a function that
 #' creates a `ts_language` object for that parser. E.g.
@@ -62,10 +61,15 @@
 #' \eval{ts:::doc_insert("ts::ts_tree_new_return", "ts")}
 #'
 #' @export
-#' @family ts_tree methods
+#' @family `ts_tree` generics
 #' @seealso The tree-sitter parser packages typically include shortcuts to
 #'   create parse trees from strings and file, e.g.
 #'   [tsjsonc::ts_parse_jsonc()] and [tsjsonc::ts_read_jsonc()].
+#'
+#'   <p>
+#'
+#'   \eval{ts:::doc_seealso("ts_tree_new")}
+#'
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #'
 #' # JSONC example, needs the tsjsonc package -----------------------------

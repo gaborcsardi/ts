@@ -1,17 +1,39 @@
 #' Print a tree-sitter tree
 #'
-#' Calls [format.ts_tree()] to format the ts_tree object, writes the
-#' formatted object to the standard output, and returns the original object
-#' invisibly.
+#' @ts print_description
+#' Print a `ts_tree` object to the screen.
+#' @description \eval{ts:::doc_insert("ts::print_description")}
 #'
-#' @param x ts_tree object.
-#' @param n Number of lines, or number of selections to print.
-#' @param ... Ignored.
-#' @return `x`, invisibly.
+#' @ts print_details
+#' Calls \code{\link[ts:format.ts_tree]{format.ts_tree()}} to format the
+#' ts_tree object, writes the formatted object to the standard output, and
+#' returns the original object invisibly.
 #'
+#' <p>
+#'
+#' \eval{ts:::doc_tabs("print_examples")}
+#' @details \eval{ts:::doc_insert("ts::print_details")}
+#'
+#' @ts print_param_x
+#' `ts_tree` object to print.
+#' @ts print_param_dots
+#' Not used currently.
+#' @param x \eval{ts:::doc_insert("ts::print_param_x")}
+#' @param n \eval{ts:::doc_insert("ts::format_param_n")}
+#' @param ... \eval{ts:::doc_insert("ts::print_param_dots")}
+#'
+#' @ts print_return
+#' Invisibly returns the original `ts_tree` object.
+#' @return \eval{ts:::doc_insert("ts::print_return")}
+#'
+#' @family `ts_tree` generics
 #' @export
-#' @examples
-#' # TODO
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+#' )
+#' print(json)
 
 print.ts_tree <- function(x, n = 10, ...) {
   writeLines(format(x, n = n, ...))
@@ -20,19 +42,49 @@ print.ts_tree <- function(x, n = 10, ...) {
 
 #' Format tree-sitter trees
 #'
-#' Format a ts_tree object for printing.
+#' @ts format_description
+#' Format a `ts_tree` object for printing.
+#' @description \eval{ts:::doc_insert("ts::format_description")}
 #'
-#' This is the engine of [print.ts_tree()], possibly useful to obtain a
-#' printed representation without doing the actual printing.
+#' @ts format_details
+#' This is the engine of \code{\link[ts:print.ts_tree]{print.ts_tree()}},
+#' possibly useful to obtain a printed representation without doing the
+#' actual printing.
 #'
-#' @param x ts_tree  object.
-#' @param n Number of lines, or number of selections to print.
-#' @param ... Ignored.
-#' @return Character vector.
+#' <p>
+#' If there are selected nodes in the tree, those will be highlighted
+#' in the output. See \code{\link[ts:ts_tree_select]{ts_tree_select()}} to
+#' select nodes in a tree.
 #'
+#' <p>
+#'
+#' \eval{ts:::doc_tabs("format_examples")}
+#'
+#' @details \eval{ts:::doc_insert("ts::format_details")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts format_param_x
+#' `ts_tree` object.
+#' @ts format_param_n
+#' Number of lines, or number of selections to print.
+#' @ts format_param_dots
+#' Currently ignored.
+#' @param x \eval{ts:::doc_insert("ts::format_param_x")}
+#' @param n \eval{ts:::doc_insert("ts::format_param_n")}
+#' @param ... \eval{ts:::doc_insert("ts::format_param_dots")}
+#'
+#' @ts format_return
+#' Character vector of lines to print.
+#' @return \eval{ts:::doc_insert("ts::format_return")}
+#'
+#' @family `ts_tree` generics
 #' @export
-#' @examples
-#' # TODO
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' json <- tsjsonc::ts_parse_jsonc(
+#'   '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+#' )
+#' format(json)
 
 format.ts_tree <- function(x, n = 10, ...) {
   sel <- ts_tree_selected_nodes(x, default = FALSE)

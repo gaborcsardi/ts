@@ -7,87 +7,45 @@
 ts_tree_ast(tree)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_ast_param_tree")}}
 }
 \value{
-Character vector, the formatted annotated syntax tree, line by
-line. It has class \link[cli:tree]{cli_tree}, from the cli package. It
-may contain ANSI escape sequences for coloring and hyperlinks.
+\eval{ts:::doc_insert("ts::ts_tree_ast_return")}
 }
 \description{
-\code{ts_tree_ast()} prints the annotated syntax tree of a ts_tree object.
-This syntax tree contains all tree-sitter nodes, and it shows the
-source code associated with each node, along with line numbers.
+\eval{ts:::doc_insert("ts_tree_ast_description")}
+
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_ast")}
 }
 \details{
-\subsection{The ts and ts* packages:}{
-
-Language implementations may override the default \code{ts_tree_ast()} method,
-to provide language-specific features. Make sure you read the correct
-documentation for the language you are using.
+\eval{ts:::doc_insert("ts::ts_tree_ast_details")}
+\eval{ts:::doc_extra()}
 }
-
-\subsection{The syntax tree and the DOM tree}{
-
-This syntax tree contains all nodes of the tree-sitter parse tree,
-including both named and unnamed nodes and comments. E.g. for a JSON(C)
-document it includes the pairs, brackets, braces, commas, colons,
-double quotes and string escape sequences as separate nodes.
-
-See \code{\link[=ts_tree_dom]{ts_tree_dom()}} for a tree that shows the semantic structure of the
-parsed document.
-}
-}
-\section{Example output}{
-
-
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{tree <- tsjsonc::ts_parse_jsonc('\{"foo": 42, "bar": [1, 2, 3]\}')
-ts_tree_ast(tree)
-#> document (1)                   1|
-#> \\-object (2)                    |
-#>   +-\{ (3)                       |\{
-#>   +-pair (4)                    |
-#>   | +-string (5)                |
-#>   | | +-" (6)                   | "
-#>   | | +-string_content (7)      |  foo
-#>   | | \\-" (8)                   |     "
-#>   | +-: (9)                     |      :
-#>   | \\-number (10)               |        42
-#>   +-, (11)                      |          ,
-#>   +-pair (12)                   |
-#>   | +-string (13)               |
-#>   | | +-" (14)                  |            "
-#>   | | +-string_content (15)     |             bar
-#>   | | \\-" (16)                  |                "
-#>   | +-: (17)                    |                 :
-#>   | \\-array (18)                |
-#>   |   +-[ (19)                  |                   [
-#>   |   +-number (20)             |                    1
-#>   |   +-, (21)                  |                     ,
-#>   |   +-number (22)             |                       2
-#>   |   +-, (23)                  |                        ,
-#>   |   +-number (24)             |                          3
-#>   |   \\-] (25)                  |                           ]
-#>   \\-\} (26)                      |                            \}
-}\if{html}{\out{</div>}}
-
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_tree_dom(tree)
-#> document (1)
-#> \\-object (2)
-#>   +-number (10) # foo
-#>   \\-array (18) # bar
-#>     +-number (20)
-#>     +-number (22)
-#>     \\-number (24)
-}\if{html}{\out{</div>}}
-}
-
 \examples{
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
-# see the output above
+# Create a parse tree with tsjsonc -------------------------------------
 tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
+
 tree
+
 ts_tree_ast(tree)
+
+ts_tree_dom(tree)
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# Create a parse tree with tstoml --------------------------------------
+tree <- tstoml::ts_parse_toml(r"(
+  title = "TOML Example"
+  [owner]
+  name = "Tom Preston-Werner"
+  dob = 1979-05-27T07:32:00-08:00
+)")
+
+tree
+
+ts_tree_ast(tree)
+
 ts_tree_dom(tree)
 \dontshow{\}) # examplesIf}
 }
@@ -95,7 +53,31 @@ ts_tree_dom(tree)
 \code{\link[=ts_tree_dom]{ts_tree_dom()}} to show the document object model (DOM) of a
 ts_tree object.
 
-Other ts_tree functions: 
-\code{\link{ts_tree_dom}()}
+\eval{ts:::doc_seealso("ts_tree_ast")}
+
+Other \code{ts_tree} exploration: 
+\code{\link{ts_tree-brackets}},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_sexpr}()}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
 }
-\concept{ts_tree functions}
+\concept{\code{ts_tree} exploration}
+\concept{\code{ts_tree} generics}

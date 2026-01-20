@@ -4,32 +4,63 @@
 \alias{select-set}
 \alias{ts_tree_select<-}
 \alias{ts_tree_deleted}
-\title{TODO}
+\title{Edit parts of a tree-sitter tree}
 \usage{
 ts_tree_select(tree, ...) <- value
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts_tree_select_set_param_tree")}}
 
-\item{...}{Selection expressions, see details.}
+\item{...}{\eval{ts:::doc_insert("ts_tree_select_set_param_dots")}}
 
-\item{value}{An R expression to serialize or \code{ts_tree_deleted()}.}
+\item{value}{\eval{ts:::doc_insert("ts_tree_select_set_param_value")}}
 }
 \value{
-The modified \code{ts_tree} object.
+\eval{ts:::doc_insert("ts::ts_tree_select_set_return")}
 
 \code{ts_tree_deleted()} returns a marker object to be used at the right
 hand side of the \verb{ts_tree_select<-} or the double bracket replacement
 functions, see examples below.
 }
 \description{
-TODO
+\eval{ts:::doc_insert("ts_tree_select_set_description")}
 }
 \details{
-\code{ts_tree_deleted()} is a special marker to delete elements from a tree-sitter
+\eval{ts:::doc_insert("ts::ts_tree_select_set_details")}
+\eval{ts:::doc_extra()}
+
+\code{ts_tree_deleted()} is a special marker to delete elements from a
 ts_tree object with \verb{ts_tree_select<-} or the double bracket operator.
 }
 \examples{
-# TODO
-# TODO
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+tree
+
+ts_tree_select(tree, "a") <- 42
+ts_tree_select(tree, "b", -1) <- ts_tree_deleted()
+
+tree
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} generics}

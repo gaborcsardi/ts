@@ -101,7 +101,8 @@
 }
 
 .w3-border {
-  border: 1px solid #ccc!important
+  border: 1px solid #ccc!important;
+  margin-bottom: 10px;
 }
 
 .w3-border-top {

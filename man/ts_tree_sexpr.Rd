@@ -2,16 +2,68 @@
 % Please edit documentation in R/ts-tree-sexpr.R
 \name{ts_tree_sexpr}
 \alias{ts_tree_sexpr}
-\title{Show the syntax tree structure of a file or string}
+\title{Show the syntax tree of a tree-sitter tree}
 \usage{
 ts_tree_sexpr(tree)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_sexpr_param_tree")}}
+}
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_sexpr_return")}
 }
 \description{
-Show the syntax tree structure of a file or string
+\eval{ts:::doc_insert("ts_tree_sexpr_description")}
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_sexpr")}
+}
+\details{
+\eval{ts:::doc_insert("ts_tree_sexpr_details")}
 }
 \examples{
-# TODO
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc(
+  "{ \"a\": //comment\ntrue, \"b\": [1, 2, 3] }"
+)
+
+ts_tree_sexpr(tree)
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# Create a parse tree with tstoml --------------------------------------
+tree <- tstoml::ts_parse_toml(r"(
+  [servers]
+  alpha = { ip = "127.0.0.1", dc = "eqdc10" }
+  beta = { ip = "127.0.0.2", dc = "eqdc20" }
+)")
+
+ts_tree_sexpr(tree)
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Other \code{ts_tree} exploration: 
+\code{\link{ts_tree-brackets}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_query}()}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} exploration}
+\concept{\code{ts_tree} generics}

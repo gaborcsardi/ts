@@ -7,22 +7,48 @@
 \method{format}{ts_tree}(x, n = 10, ...)
 }
 \arguments{
-\item{x}{ts_tree  object.}
+\item{x}{\eval{ts:::doc_insert("ts::format_param_x")}}
 
-\item{n}{Number of lines, or number of selections to print.}
+\item{n}{\eval{ts:::doc_insert("ts::format_param_n")}}
 
-\item{...}{Ignored.}
+\item{...}{\eval{ts:::doc_insert("ts::format_param_dots")}}
 }
 \value{
-Character vector.
+\eval{ts:::doc_insert("ts::format_return")}
 }
 \description{
-Format a ts_tree object for printing.
+\eval{ts:::doc_insert("ts::format_description")}
 }
 \details{
-This is the engine of \code{\link[=print.ts_tree]{print.ts_tree()}}, possibly useful to obtain a
-printed representation without doing the actual printing.
+\eval{ts:::doc_insert("ts::format_details")}
+\eval{ts:::doc_extra()}
 }
 \examples{
-# TODO
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+json <- tsjsonc::ts_parse_jsonc(
+  '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+)
+format(json)
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} generics}

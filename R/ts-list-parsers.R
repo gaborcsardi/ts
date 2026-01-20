@@ -82,33 +82,140 @@ ts_list_parsers <- function(lib_path = .libPaths()) {
 }
 
 format_rd_parser_list <- function(lst, method = NULL) {
+  if (is.null(method)) {
+    format_rd_parser_list_no_method(lst)
+  } else {
+    format_rd_parser_list_method(lst, method)
+  }
+}
+
+no_ts_package_message <- function() {
+  avail <- read.dcf(file.path(doc_path("ts"), "ts-packages.dcf"))
+  paste0(
+    "No tree-sitter parser packages are installed.\n",
+    "Available tree-sitter parser packages:\n",
+    "\\itemize{\n",
+    paste0(
+      collapse = "\n",
+      "\\item \\strong{\\href{",
+      avail[, "URL"],
+      "}{",
+      avail[, "Package"],
+      "}}: ",
+      avail[, 'Title'],
+      "\\if{text}{ (",
+      avail[, "URL"],
+      ")}."
+    ),
+    "\n}\n"
+  )
+}
+
+format_rd_parser_list_no_method <- function(lst) {
   if (nrow(lst) == 0) {
-    return("No tree-sitter parsers are installed.")
+    return(no_ts_package_message())
   }
   lst <- lst[!duplicated(lst[, c("package", "version")]), ]
+
+  hd <- "Available tree-sitter parsers"
+  align <- "lll"
+  loaded_hd <- ""
+  loaded <- rep("", nrow(lst))
+  if (Sys.getenv("IN_PKGDOWN") != "true") {
+    hd <- "Installed tree-sitter parsers"
+    align <- "llcl"
+    loaded_hd <- "\\strong{Loaded} \\tab "
+    loaded <- paste0(ifelse(lst$loaded, "yes", "no"), " \\tab ")
+  }
+
   lines <- map_chr(
     seq_len(nrow(lst)),
     function(i) {
       pkg <- lst$package[i]
       ver <- lst$version[i]
       title <- lst$title[i]
-      loaded <- if (lst$loaded[i]) " (loaded)" else ""
-      method <- method %&&%
-        glue(
-          "\\cr \\
-          Method:
-           \\code{{\\link[{pkg}:{method}.{pkg}]{{{method}(<ts_tree_{pkg}>)}}}}"
-        )
       glue(
-        "\\item \\strong{{\\link[{pkg}:{pkg}-package]{{{pkg}}}}} \\
-        {ver}{loaded}: {title}.{method}"
+        "\\link[{pkg}:{pkg}-package]{{ {pkg}} \\tab \\
+         {ver} \\tab \\
+         {loaded[i]} \\
+         {title}.
+         "
+      )
+    }
+  )
+
+  paste0(
+    "\\subsection{",
+    hd,
+    "}{\n",
+    "\\tabular{",
+    align,
+    "}{\n",
+    "\\strong{Package} \\tab \\strong{Version} \\tab ",
+    loaded_hd,
+    "\\strong{Title} \\cr\n",
+    paste(lines, collapse = "\\cr\n"),
+    "\n}\n",
+    "}\n"
+  )
+}
+
+format_rd_parser_list_method <- function(lst, method) {
+  if (nrow(lst) == 0) {
+    return(no_ts_package_message())
+  }
+  lst <- lst[!duplicated(lst[, c("package", "version")]), ]
+
+  hd <- "Available tree-sitter parsers"
+  loaded_hd <- ""
+  loaded <- rep("", nrow(lst))
+  align <- "llll"
+  if (Sys.getenv("IN_PKGDOWN") != "true") {
+    hd <- "Installed tree-sitter parsers"
+    align <- "llcll"
+    loaded_hd <- "\\strong{Loaded} \\tab "
+    loaded <- paste0(ifelse(lst$loaded, "yes", "no"), " \\tab ")
+  }
+
+  lines <- map_chr(
+    seq_len(nrow(lst)),
+    function(i) {
+      pkg <- lst$package[i]
+      ver <- lst$version[i]
+      title <- lst$title[i]
+      method <- if (doc_has_method(method, pkg)) {
+        cls <- sub("^ts", "ts_tree_", pkg)
+        glue(
+          "\\code{{\\link[{pkg}:{method}.{cls}]{{{method}(<ts_tree_{pkg}>)}}}}"
+        )
+      }
+      glue(
+        "\\strong{{\\link[{pkg}:{pkg}-package]{{{pkg}}}}} \\tab \\
+         {ver} \\tab \\
+         {loaded[i]} \\
+         {title}. \\tab \\
+         {method}"
       )
     }
   )
   paste0(
-    "\\itemize{\n",
-    paste(lines, collapse = "\n"),
-    "\n}\n"
+    "\\subsection{",
+    hd,
+    "}{\n",
+    "This is the manual page of the \\code{",
+    method,
+    "()} S3 generic function.\n",
+    "Methods in parser packages may override this generic.\n",
+    "For the ones that do see the links to their manual pages in the table.\n",
+    "\\tabular{",
+    align,
+    "}{\n",
+    "\\strong{Package} \\tab \\strong{Version} \\tab ",
+    loaded_hd,
+    "\\strong{Title} \\tab \\strong{Method} \\cr\n",
+    paste(lines, collapse = "\\cr\n"),
+    "\n}\n",
+    "}\n"
   )
 }
 

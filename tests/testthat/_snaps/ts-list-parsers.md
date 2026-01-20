@@ -14,9 +14,12 @@
     Code
       writeLines(format_rd_parser_list(ts_list_parsers()))
     Output
-      \itemize{
-      \item \strong{\link[tsjsonc:tsjsonc-package]{tsjsonc}} 0.0.0.9000 (loaded): Edit JSON Files.
-      \item \strong{\link[tstoml:tstoml-package]{tstoml}} 0.0.0.9000 (loaded): Edit TOML files.
+      \subsection{Installed tree-sitter parsers}{
+      \tabular{llcl}{
+      \strong{Package} \tab \strong{Version} \tab \strong{Loaded} \tab \strong{Title} \cr
+      \link[tsjsonc:tsjsonc-package]{ tsjsonc} \tab 0.0.0.9000 \tab yes \tab  Edit JSON Files.\cr
+      \link[tstoml:tstoml-package]{ tstoml} \tab 0.0.0.9000 \tab yes \tab  Edit TOML files.
+      }
       }
       
 
@@ -25,5 +28,5 @@
     Code
       format_rd_parser_list(ts_list_parsers()[integer(), ])
     Output
-      [1] "No tree-sitter parsers are installed."
+      [1] "No tree-sitter parser packages are installed.\nAvailable tree-sitter parser packages:\n\\itemize{\n\\item \\strong{\\href{https://github.com/gaborcsardi/tsjsonc}{tsjsonc}}: Edit JSON Files\\if{text}{ (https://github.com/gaborcsardi/tsjsonc)}.\n\\item \\strong{\\href{https://github.com/gaborcsardi/tstoml}{tstoml}}: Edit TOML Files\\if{text}{ (https://github.com/gaborcsardi/tstoml)}.\n}\n"
 

@@ -2,17 +2,81 @@
 % Please edit documentation in R/ts-tree-format.R
 \name{ts_tree_format}
 \alias{ts_tree_format}
-\title{Format a tree sitter tree for printing}
+\title{Format the selected elements of a tree sitter tree for printing}
 \usage{
 ts_tree_format(tree, options, ...)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_format_param_tree")}}
 
-\item{options}{A list of options for the formatting, see methods.}
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_format_param_options")}\if{html}{\out{
+<p>
+}}
+
+
+See details in the manual of the specific parser.}
 
 \item{...}{Extra arguments for methods.}
 }
-\description{
-Format a tree sitter tree for printing
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_format_return")}
 }
+\description{
+\eval{ts:::doc_insert("ts_tree_format_description")}
+
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_format")}
+}
+\details{
+\eval{ts:::doc_insert("ts::ts_tree_format_details")}
+\eval{ts:::doc_extra()}
+}
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{ "a":true, "b": [1,2,3] }')
+tree
+
+# Format whole document
+tree |> ts_tree_format()
+
+# Format each top element under the document node in one line
+tree |> ts_tree_format() |>
+  ts_tree_select(TRUE) |>
+  ts_tree_format(options = list(format = "oneline"))
+
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tstoml --------------------------------------
+tree <- tstoml::ts_parse_toml(r"(
+  [servers]
+  alpha = { ip = "127.0.0.1", dc = "eqdc10" }
+  beta = { ip = "127.0.0.2", dc = "eqdc20" }
+)")
+
+tree
+
+tree |> ts_tree_format()
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\eval{ts:::doc_seealso("ts_tree_format")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} generics}

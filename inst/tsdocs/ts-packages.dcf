@@ -1,0 +1,7 @@
+Package: tsjsonc
+Title: Edit JSON Files
+URL: https://github.com/gaborcsardi/tsjsonc
+
+Package: tstoml
+Title: Edit TOML Files
+URL: https://github.com/gaborcsardi/tstoml

@@ -2,17 +2,161 @@
 % Please edit documentation in R/ts-tree-select.R
 \name{ts_tree_select1}
 \alias{ts_tree_select1}
-\title{TODO}
+\alias{ts_tree_select1.ts_tree.ts_tree_selector_default}
+\alias{ts_tree_select1.ts_tree.NULL}
+\alias{ts_tree_select1.ts_tree.ts_tree_selector_ids}
+\alias{ts_tree_select1.ts_tree.ts_tree_selector_tsquery}
+\alias{ts_tree_select1.ts_tree.character}
+\alias{ts_tree_select1.ts_tree.integer}
+\alias{ts_tree_select1.ts_tree.numeric}
+\alias{ts_tree_select1.ts_tree.ts_tree_selector_regex}
+\alias{ts_tree_select1.ts_tree.logical}
+\title{Select nodes from a tree-sitter tree (internal)}
 \usage{
-ts_tree_select1(tree, node, slt)
+\method{ts_tree_select1}{ts_tree.ts_tree_selector_default}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.NULL}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.ts_tree_selector_ids}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.ts_tree_selector_tsquery}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.character}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.integer}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.numeric}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.ts_tree_selector_regex}(tree, node, slt)
+
+\method{ts_tree_select1}{ts_tree.logical}(tree, node, slt)
 }
 \arguments{
 \item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
 
-\item{node}{Integer, the node id to select from.}
+\item{node}{Integer scalar, the node id to select from.}
 
 \item{slt}{A selector object, see details in \code{\link[=ts_tree_select]{ts_tree_select()}}.}
 }
 \description{
-TODO
+This function is for packages implementing new parsers based on the ts
+package. It is very unlikely that you will need to call this function
+directly.
+}
+\details{
+A parser package may implement methods for this generic to change the
+behavior of \code{\link[ts:ts_tree_select]{ts_tree_select()}} for a
+certain selector type, or even add new selector types.
+
+Each new method should be named as
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ts_tree_select.<ts_tree_class>.<selector_class>
+}\if{html}{\out{</div>}}
+
+The ts package implement deault methods for the selector types described
+in the \code{\link[ts:ts_tree_select]{ts_tree_select()}} manual page.
+
+\subsection{\code{ts_tree_selector_default} selector}{
+
+Method: \code{ts_tree_select1.ts_tree.ts_tree_selector_default}
+
+This method is used to select the default element(s), when there is no
+selected element. E.g. when starting a new selection from the root of
+the DOM tree.
+
+The default implementation returns the ids of all children of the
+document root in the AST, except comments. If there are no such
+children, it returns the id of the document root of the AST itself
+(always id 1).
+}
+
+\subsection{\code{NULL} selector}{
+
+Method: \code{ts_tree_select1.ts_tree.NULL}
+
+This method is used for the  \code{NULL} selector, that is supposed to
+clear the selection. You probably do not need to override this method.
+The default implementation returns an empty integer vector.
+}
+
+\subsection{\code{ts_tree_selector_ids} selector}{
+
+Method: \code{ts_tree_select1.ts_tree.ts_tree_selector_ids}
+
+This method is used to select nodes by their ids directly.
+You probably do not need to override this method.
+The default implementation returns the ids stored in the selector.
+\subsection{Note}{
+
+This behaviour may change in the future to select only nodes
+in the subtree of the current node.
+}
+
+}
+
+\subsection{\code{ts_tree_selector_tsquery} selector}{
+
+Method: \code{ts_tree_select1.ts_tree.ts_tree_selector_tsquery}
+
+This method is used to select nodes matching a tree-sitter query.
+You probably do not need to override this method.
+The default implementation returns the ids stored in the selector.
+\subsection{Note}{
+
+This behaviour may change in the future to select only nodes
+in the subtree of the current node.
+}
+
+}
+
+\subsection{\code{character} (character vector) selector}{
+
+Method: \code{ts_tree_select1.ts_tree.character}
+
+This method is used when the selector is a character vector.
+The default implementation selects DOM children of \code{node} whose names
+are in the character vector. If not all children o \code{node} are named,
+it returns an empty integer vector. (E.g. in a JSONC document it returns
+an empty integer vector when nodes is an array.)
+}
+
+\subsection{\code{integer} (integer vector) selector}{
+
+Method: \code{ts_tree_select1.ts_tree.integer}
+
+This method is used when the selector is an integer vector.
+The default implementation selects DOM children of \code{node} by position.
+Positive indices count from the start, negative indices count from the
+end. Zero indices are not allowed and an error is raised if any are
+used.
+}
+
+\subsection{\code{numeric} (numeric, double vector) selector}{
+
+Method: \code{ts_tree_select1.ts_tree.numeric}
+
+This method is used when the selector is a numeric (double) vector.
+It currrently coerces the numeric vector to integer and calls the
+integer method.
+}
+
+\subsection{\code{ts_tree_selector_regex} (regular expression) selector}{
+
+Method: \code{ts_tree_select1.ts_tree.ts_tree_selector_regex}
+
+This method is used when the selector is a regular expression.
+The default implementation selects DOM children of \code{node} whose names
+match the regular expression. If not all children o \code{node} are named,
+it returns an empty integer vector. (E.g. in a JSONC document it
+returns an empty integer vector when nodes is an array.)
+}
+
+\subsection{\code{logical} (logical vector) selector}{
+
+Method: \code{ts_tree_select1.ts_tree.logical}
+
+This method is used when the selector is a logical vector.
+The default implementation only supports scalar \code{TRUE}, which selects
+all DOM children of \code{node}. Other values raise an error.
+}
 }

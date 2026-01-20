@@ -7,15 +7,48 @@
 ts_tree_write(tree, file = NULL)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_write_param_tree")}}
 
-\item{file}{Character string, connection, or \code{NULL}. The file or connection
-to write to. By default it writes to the same file that was used in
-\code{\link[=ts_tree_new]{ts_tree_new()}}, if \code{tree} was read from a file.}
+\item{file}{\eval{ts:::doc_insert("ts::ts_tree_write_param_file")}}
+}
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_write_return")}
 }
 \description{
-Writes the text content of a ts \code{ts_tree} object to a file or connection.
+\eval{ts:::doc_insert("ts_tree_write_description")}
+}
+\details{
+\eval{ts:::doc_insert("ts::ts_tree_write_details")}
+\eval{ts:::doc_extra()}
 }
 \examples{
-# TODO
+\dontshow{if (Sys.getenv("IN_PKGDOWN") == "true") withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
+
+# Format and write to file
+tree |> ts_tree_format() |> ts_tree_write("example.json")
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+\eval{ts:::doc_seealso("ts_tree_write")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()}
+}
+\concept{\code{ts_tree} generics}

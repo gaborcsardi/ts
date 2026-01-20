@@ -33,10 +33,8 @@ ts_tree_new(
 This is the main function to create a tree-sitter parse tree, using a
 ts parser implemented in another package.
 \eval{ts:::doc_insert("ts_tree_new_description", "ts")}
-\subsection{Installed ts parsers}{
 
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
-}
 }
 \details{
 A package that implements a tree-sitter parser provides a function that
@@ -81,6 +79,29 @@ toml |> ts_tree_format()
 \seealso{
 The tree-sitter parser packages typically include shortcuts to
 create parse trees from strings and file, e.g.
-\code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_parse_jsonc()}} and \code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_read_jsonc()}}.
+\code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_parse_jsonc()}} and \code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_read_jsonc()}}.\if{html}{\out{
+  <p>
+}}
+
+
+\eval{ts:::doc_seealso("ts_tree_new")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
 }
-\concept{ts_tree methods}
+\concept{\code{ts_tree} generics}

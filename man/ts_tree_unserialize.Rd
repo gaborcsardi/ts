@@ -2,13 +2,61 @@
 % Please edit documentation in R/ts-tree-unserialize.R
 \name{ts_tree_unserialize}
 \alias{ts_tree_unserialize}
-\title{TODO}
+\title{Unserialize selected elements of a tree-sitter tree}
 \usage{
 ts_tree_unserialize(tree)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_unserialize_param_tree")}}
 }
 \description{
-TODO
+\eval{ts:::doc_insert("ts_tree_unserialize_description")}
+
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(),
+"ts_tree_unserialize")}
 }
+\details{
+\eval{ts:::doc_insert("ts::ts_tree_unserialize_details")}
+\eval{ts:::doc_extra()}
+For the details on how the selected elements are mapped to R objects,
+see the documentation of the methods in the parser packages. The methods
+in the installed parser packages are linked below.
+}
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+
+tree
+
+tree |> ts_tree_select(c("b", "c")) |> ts_tree_unserialize()
+
+tree |> ts_tree_select("b") |> ts_tree_unserialize()
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\eval{ts:::doc_seealso("ts_tree_unserialize")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+
+Other serialization functions: 
+\code{\link{[[.ts_tree}()}
+}
+\concept{\code{ts_tree} generics}
+\concept{serialization functions}

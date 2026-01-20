@@ -2,28 +2,64 @@
 % Please edit documentation in R/ts-tree-query.R
 \name{ts_tree_query}
 \alias{ts_tree_query}
-\title{Run tree-sitter queries on a file or string}
+\title{Run tree-sitter queries on tree-sitter trees}
 \usage{
 ts_tree_query(tree, query)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object as returned by \code{\link[=ts_tree_new]{ts_tree_new()}}.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_query_param_tree")}}
 
-\item{query}{Character string, the tree-sitter query to run.}
+\item{query}{\eval{ts:::doc_insert("ts::ts_tree_query_param_query")}}
 }
 \value{
-A list with entries \code{patterns} and \code{matched_captures}.
-\code{patterns} contains information about all patterns in the queries and
-it is a data frame with columns: \code{id}, \code{name}, \code{pattern}, \code{match_count}.
-\code{matched_captures} contains information about all matches, and it has
-columns \code{id}, \code{pattern}, \code{match}, \code{start_byte}, \code{end_byte}, \code{start_row},
-\code{start_column}, \code{end_row}, \code{end_column}, \code{name}, \code{code}. The \code{pattern}
-column of \code{matched_captured} refers to the \code{id} column of \code{patterns}.
+\eval{ts:::doc_insert("ts::ts_tree_query_return")}
 }
 \description{
-Run tree-sitter queries on a file or string
+\eval{ts:::doc_insert("ts_tree_query_description")}
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_query")}
 }
 \details{
-See https://tree-sitter.github.io/tree-sitter/ on writing tree-sitter
-queries.
+\eval{ts:::doc_insert("ts::ts_tree_query_details")}
+\eval{ts:::doc_tabs("ts_tree_query_details_examples")}
+\eval{ts:::doc_extra()}
 }
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Select all numbers in a JSONC document ------------------------------------
+json <- tsjsonc::ts_parse_jsonc(
+  '{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'
+)
+json |> ts_tree_query("(number) @number")
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{\link[=ts_tree_select]{ts_tree_select()}} to select the nodes matching a query.
+
+\eval{ts:::doc_seealso("ts_tree_query")}
+
+Other \code{ts_tree} exploration: 
+\code{\link{ts_tree-brackets}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_sexpr}()}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} exploration}
+\concept{\code{ts_tree} generics}

@@ -2,24 +2,103 @@
 % Please edit documentation in R/ts-tree-insert.R
 \name{ts_tree_insert}
 \alias{ts_tree_insert}
-\title{Insert a new element into a tree sitter tree}
+\title{Insert a new element into a tree-sitter tree}
 \usage{
 ts_tree_insert(tree, new, key, at, options, ...)
 }
 \arguments{
-\item{tree}{A \code{ts_tree} object.}
+\item{tree}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_tree")}}
 
-\item{new}{The new element to insert.}
+\item{new}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_new")}\if{html}{\out{
+<p>
+}}
 
-\item{key}{The key of the new element, if inserting into a keyed element.}
 
-\item{at}{The position to insert the new element at. The interpretation of
-this argument depends on the method that implements the insertion.}
+The type of \code{new} depends on the parser and the method that implements
+the insertion. See details in the manual of the specific parser.}
 
-\item{options}{A list of options for the insertion, see methods.}
+\item{key}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_key")}\if{html}{\out{
+<p>
+}}
+
+
+For example a JSON(C) object or a TOML table are keyed elements.}
+
+\item{at}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_at")}\if{html}{\out{
+<p>
+}}
+
+
+The interpretation of this argument depends on the method that
+implements the insertion. Typically the followings are supported:
+\itemize{
+\item \code{0} inserts at the beginning.
+\item \code{Inf} inserts at the end.
+\item A positive integer \code{n} inserts \emph{after} the \code{n}-th element.
+\item A character scalar inserts \emph{after} the element with the given key,
+in keyed elements.
+}
+
+See the details in the manual of the specific parser.}
+
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_options")}\if{html}{\out{
+<p>
+}}
+
+
+See details in the manual of the specific parser.}
 
 \item{...}{Extra arguments for methods.}
 }
 \description{
-TODO
+\eval{ts:::doc_insert("ts_tree_insert_description")}
+
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_insert")}
 }
+\details{
+\eval{ts:::doc_insert("ts::ts_tree_insert_details")}
+\eval{ts:::doc_extra()}
+}
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{ "a": true, "b": [1, 2, 3] }')
+
+tree |> ts_tree_select("b") |> ts_tree_insert(4, at = Inf)
+\dontshow{\}) # examplesIf}
+\dontshow{if (requireNamespace("tstoml", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+
+# Create a parse tree with tstoml --------------------------------------
+tree <- tstoml::ts_parse_toml(r"(
+  [servers]
+  alpha = { ip = "127.0.0.1", dc = "eqdc10" }
+  beta = { ip = "127.0.0.2", dc = "eqdc20" }
+)")
+
+tree |>
+  ts_tree_select("servers", TRUE) |>
+  ts_tree_insert(key = "active", TRUE)
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\eval{ts:::doc_seealso("ts_tree_insert")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_select}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} generics}

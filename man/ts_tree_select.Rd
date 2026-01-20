@@ -18,21 +18,14 @@ ts_tree_select(tree, ..., refine = FALSE)
 }
 \description{
 \eval{ts:::doc_insert("ts::ts_tree_select_description")}
-\subsection{Installed ts parsers}{
-
-This is the manual page of the \code{ts_tree_select()} S3 generic function.
-See the S3 methods in the installed ts parser packages (if any):
 
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")}
-}
 }
 \details{
 \eval{ts:::doc_insert("ts::ts_tree_select_details")}
 \eval{ts:::doc_extra()}
 }
 \examples{
-# See more examples above
-
 \dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # ----------------------------------------------------------------------
 # Create a JSONC tree, needs the tsjsonc package
@@ -55,3 +48,25 @@ toml <- ts_tree_new(
 toml |> ts_tree_select("servers", TRUE, "ip")
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+\eval{ts:::doc_seealso("ts_tree_select")}
+
+Other \code{ts_tree} generics: 
+\code{\link{[[.ts_tree}()},
+\code{\link{[[<-.ts_tree}()},
+\code{\link{format.ts_tree}()},
+\code{\link{print.ts_tree}()},
+\code{\link{select-set}},
+\code{\link{ts_tree_ast}()},
+\code{\link{ts_tree_delete}()},
+\code{\link{ts_tree_dom}()},
+\code{\link{ts_tree_format}()},
+\code{\link{ts_tree_insert}()},
+\code{\link{ts_tree_new}()},
+\code{\link{ts_tree_query}()},
+\code{\link{ts_tree_sexpr}()},
+\code{\link{ts_tree_unserialize}()},
+\code{\link{ts_tree_update}()},
+\code{\link{ts_tree_write}()}
+}
+\concept{\code{ts_tree} generics}

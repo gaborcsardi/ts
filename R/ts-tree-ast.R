@@ -1,15 +1,15 @@
 #' Show the annotated syntax tree of a tree-sitter tree
 #'
+#' @ts ts_tree_ast_description
 #' `ts_tree_ast()` prints the annotated syntax tree of a ts_tree object.
 #' This syntax tree contains all tree-sitter nodes, and it shows the
 #' source code associated with each node, along with line numbers.
+#' @description
+#' \eval{ts:::doc_insert("ts_tree_ast_description")}
 #'
-#' @details
-#' ## The ts and ts* packages:
-#' Language implementations may override the default `ts_tree_ast()` method,
-#' to provide language-specific features. Make sure you read the correct
-#' documentation for the language you are using.
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_ast")}
 #'
+#' @ts ts_tree_ast_details
 #' ## The syntax tree and the DOM tree
 #'
 #' This syntax tree contains all nodes of the tree-sitter parse tree,
@@ -17,32 +17,62 @@
 #' document it includes the pairs, brackets, braces, commas, colons,
 #' double quotes and string escape sequences as separate nodes.
 #'
-#' See [ts_tree_dom()] for a tree that shows the semantic structure of the
-#' parsed document.
+#' <p>
 #'
-#' @section Example output:
-#' ```{r}
-#' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
-#' ts_tree_ast(tree)
-#' ```
+#' See \code{\link[ts:ts_tree_dom]{ts::ts_tree_dom()}} for a tree that
+#' shows the semantic structure of the parsed document, which may be
+#' different from the syntax tree.
 #'
-#' ```{r}
-#' ts_tree_dom(tree)
-#' ```
+#' <p>
 #'
-#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
-#' @return Character vector, the formatted annotated syntax tree, line by
-#'   line. It has class [cli_tree][cli::tree()], from the cli package. It
-#'   may contain ANSI escape sequences for coloring and hyperlinks.
-#' @export
+#' \eval{ts:::doc_tabs("ts_tree_ast_details_syntax_vs_dom")}
+#'
+#' @details
+#' \eval{ts:::doc_insert("ts::ts_tree_ast_details")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts ts_tree_ast_param_tree
+#' A `ts_tree` object.
+#'
+#' @param tree \eval{ts:::doc_insert("ts::ts_tree_ast_param_tree")}
+#'
+#' @ts ts_tree_ast_return
+#' Character vector, the formatted annotated syntax tree, line by
+#' line. It has class [cli_tree][cli::tree()], from the cli package. It
+#' may contain ANSI escape sequences for coloring and hyperlinks.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_ast_return")}
+#'
+#' @family `ts_tree` exploration
+#' @family `ts_tree` generics
 #' @seealso [ts_tree_dom()] to show the document object model (DOM) of a
 #'   ts_tree object.
-#' @family ts_tree functions
+#'
+#'  \eval{ts:::doc_seealso("ts_tree_ast")}
+#' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
-#' # see the output above
+#' # Create a parse tree with tsjsonc -------------------------------------
 #' tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
+#'
 #' tree
+#'
 #' ts_tree_ast(tree)
+#'
+#' ts_tree_dom(tree)
+#'
+#' @examplesIf requireNamespace("tstoml", quietly = TRUE)
+#'
+#' # Create a parse tree with tstoml --------------------------------------
+#' tree <- tstoml::ts_parse_toml(r"(
+#'   title = "TOML Example"
+#'   [owner]
+#'   name = "Tom Preston-Werner"
+#'   dob = 1979-05-27T07:32:00-08:00
+#' )")
+#'
+#' tree
+#'
+#' ts_tree_ast(tree)
+#'
 #' ts_tree_dom(tree)
 
 ts_tree_ast <- function(tree) {

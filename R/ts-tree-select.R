@@ -115,11 +115,6 @@ NULL
 #' @description
 #' \eval{ts:::doc_insert("ts::ts_tree_select_description")}
 #'
-#' ## Installed ts parsers
-#'
-#' This is the manual page of the `ts_tree_select()` S3 generic function.
-#' See the S3 methods in the installed ts parser packages (if any):
-#'
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_select")}
 #'
 #' @details
@@ -140,10 +135,10 @@ NULL
 #' @ts ts_tree_select_return
 #' A `ts_tree` object with the selected parts.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_select_return")}
-#' @export
-#' @examples
-#' # See more examples above
 #'
+#' @family `ts_tree` generics
+#' @seealso \eval{ts:::doc_seealso("ts_tree_select")}
+#' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # ----------------------------------------------------------------------
 #' # Create a JSONC tree, needs the tsjsonc package
@@ -224,10 +219,27 @@ normalize_selectors <- function(tree, slts) {
   unlist(slts, recursive = FALSE, use.names = FALSE)
 }
 
-#' TODO
+#' Select nodes from a tree-sitter tree (internal)
 #'
+#' This function is for packages implementing new parsers based on the ts
+#' package. It is very unlikely that you will need to call this function
+#' directly.
+#'
+#' A parser package may implement methods for this generic to change the
+#' behavior of \code{\link[ts:ts_tree_select]{ts_tree_select()}} for a
+#' certain selector type, or even add new selector types.
+#'
+#' Each new method should be named as
+#' ```
+#' ts_tree_select.<ts_tree_class>.<selector_class>
+#' ```
+#'
+#' The ts package implement deault methods for the selector types described
+#' in the \code{\link[ts:ts_tree_select]{ts_tree_select()}} manual page.
+#'
+#' @usage NULL
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
-#' @param node Integer, the node id to select from.
+#' @param node Integer scalar, the node id to select from.
 #' @param slt A selector object, see details in [ts_tree_select()].
 #' @export
 
@@ -249,6 +261,20 @@ ts_tree_select1.default <- function(tree, node, slt) {
   ))
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `ts_tree_selector_default` selector
+#'
+#' Method: `ts_tree_select1.ts_tree.ts_tree_selector_default`
+#'
+#' This method is used to select the default element(s), when there is no
+#' selected element. E.g. when starting a new selection from the root of
+#' the DOM tree.
+#'
+#' The default implementation returns the ids of all children of the
+#' document root in the AST, except comments. If there are no such
+#' children, it returns the id of the document root of the AST itself
+#' (always id 1).
 #' @export
 
 ts_tree_select1.ts_tree.ts_tree_selector_default <- function(tree, node, slt) {
@@ -257,12 +283,35 @@ ts_tree_select1.ts_tree.ts_tree_selector_default <- function(tree, node, slt) {
   if (length(top) > 0) top else 1L
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `NULL` selector
+#'
+#' Method: `ts_tree_select1.ts_tree.NULL`
+#'
+#' This method is used for the  `NULL` selector, that is supposed to
+#' clear the selection. You probably do not need to override this method.
+#' The default implementation returns an empty integer vector.
 #' @export
 
 ts_tree_select1.ts_tree.NULL <- function(tree, node, slt) {
   integer()
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `ts_tree_selector_ids` selector
+#'
+#' Method: `ts_tree_select1.ts_tree.ts_tree_selector_ids`
+#'
+#' This method is used to select nodes by their ids directly.
+#' You probably do not need to override this method.
+#' The default implementation returns the ids stored in the selector.
+#'
+#' ### Note
+#'
+#' This behaviour may change in the future to select only nodes
+#' in the subtree of the current node.
 #' @export
 
 ts_tree_select1.ts_tree.ts_tree_selector_ids <- function(tree, node, slt) {
@@ -270,6 +319,20 @@ ts_tree_select1.ts_tree.ts_tree_selector_ids <- function(tree, node, slt) {
   slt$ids
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `ts_tree_selector_tsquery` selector
+#'
+#' Method: `ts_tree_select1.ts_tree.ts_tree_selector_tsquery`
+#'
+#' This method is used to select nodes matching a tree-sitter query.
+#' You probably do not need to override this method.
+#' The default implementation returns the ids stored in the selector.
+#'
+#' ### Note
+#'
+#' This behaviour may change in the future to select only nodes
+#' in the subtree of the current node.
 #' @export
 
 ts_tree_select1.ts_tree.ts_tree_selector_tsquery <- function(tree, node, slt) {
@@ -277,6 +340,17 @@ ts_tree_select1.ts_tree.ts_tree_selector_tsquery <- function(tree, node, slt) {
   slt$nodes
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `character` (character vector) selector
+#'
+#' Method: `ts_tree_select1.ts_tree.character`
+#'
+#' This method is used when the selector is a character vector.
+#' The default implementation selects DOM children of `node` whose names
+#' are in the character vector. If not all children o `node` are named,
+#' it returns an empty integer vector. (E.g. in a JSONC document it returns
+#' an empty integer vector when nodes is an array.)
 #' @export
 
 ts_tree_select1.ts_tree.character <- function(tree, node, slt) {
@@ -287,6 +361,17 @@ ts_tree_select1.ts_tree.character <- function(tree, node, slt) {
   chdn[names(chdn) %in% slt]
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `integer` (integer vector) selector
+#'
+#' Method: `ts_tree_select1.ts_tree.integer`
+#'
+#' This method is used when the selector is an integer vector.
+#' The default implementation selects DOM children of `node` by position.
+#' Positive indices count from the start, negative indices count from the
+#' end. Zero indices are not allowed and an error is raised if any are
+#' used.
 #' @export
 
 ts_tree_select1.ts_tree.integer <- function(tree, node, slt) {
@@ -307,12 +392,32 @@ ts_tree_select1.ts_tree.integer <- function(tree, node, slt) {
   res
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `numeric` (numeric, double vector) selector
+#'
+#' Method: `ts_tree_select1.ts_tree.numeric`
+#'
+#' This method is used when the selector is a numeric (double) vector.
+#' It currrently coerces the numeric vector to integer and calls the
+#' integer method.
 #' @export
 
 ts_tree_select1.ts_tree.numeric <- function(tree, node, slt) {
   ts_tree_select1.ts_tree.integer(tree, node, as.integer(slt))
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `ts_tree_selector_regex` (regular expression) selector
+#'
+#' Method: `ts_tree_select1.ts_tree.ts_tree_selector_regex`
+#'
+#' This method is used when the selector is a regular expression.
+#' The default implementation selects DOM children of `node` whose names
+#' match the regular expression. If not all children o `node` are named,
+#' it returns an empty integer vector. (E.g. in a JSONC document it
+#' returns an empty integer vector when nodes is an array.)
 #' @export
 
 ts_tree_select1.ts_tree.ts_tree_selector_regex <- function(tree, node, slt) {
@@ -323,6 +428,15 @@ ts_tree_select1.ts_tree.ts_tree_selector_regex <- function(tree, node, slt) {
   chdn[grepl(slt$pattern, names(chdn))]
 }
 
+#' @rdname ts_tree_select1
+#' @details
+#' ## `logical` (logical vector) selector
+#'
+#' Method: `ts_tree_select1.ts_tree.logical`
+#'
+#' This method is used when the selector is a logical vector.
+#' The default implementation only supports scalar `TRUE`, which selects
+#' all DOM children of `node`. Other values raise an error.
 #' @export
 
 ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
@@ -336,14 +450,76 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
   }
 }
 
-#' Unserialize selected parts of a tree-sitter tree
+#' Unserialize parts of a tree-sitter tree
 #'
-#' TODO
-#' @param x A `ts_tree` object as returned by [ts_tree_new()].
-#' @param i Selection expressions, see details in [ts_tree_select()].
-#' @param ... Passed to [ts_tree_select()].
+#' @ts ts_tree_double_bracket_description
+#' The `[[` operator works similarly to the combination of
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+#' \code{\link[ts:ts_tree_unserialize]{ts_tree_unserialize()}}, but it
+#' might be more readable.
+#' @description
+#' \eval{ts:::doc_insert("ts_tree_double_bracket_description")}
+#'
+#' @ts ts_tree_double_bracket_details
+#' The following two expressions are equivalent:
+#' ```r
+#' ts_tree_select(tree, <selectors>) |> ts_tree_unserialize()
+#' ```
+#' and
+#' ```r
+#' tree[[list(<selectors>)]]
+#' ```
+#'
+#' <p>
+#'
+#' \eval{ts:::doc_tabs("ts_tree_select_brackets")}
+#'
+#' ## The `[[<-` replacement operator
+#'
+#' The `[[<-` operator works similarly to the combination of
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+#' \code{\link[ts:ts_tree_update]{ts_tree_update()}}, (and also to the
+#' replacement function \code{\link[ts:ts_tree_select<-]{ts_tree_select<-()}}),
+#' but it might be more readable.
+#'
+#' \eval{ts:::doc_tabs("ts_tree_select_brackets_set")}
+#'
+#' @details
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_details")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts ts_tree_double_bracket_param_x
+#' A `ts_tree` object.
+#' @ts ts_tree_double_bracket_param_i
+#' Selection expressions in a list, see details in
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}}.
+#' @ts ts_tree_double_bracket_param_dots
+#' Additional arguments, passed to
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}}.
+#'
+#'
+#' @param x \eval{ts:::doc_insert("ts::ts_tree_double_bracket_param_x")}
+#' @param i \eval{ts:::doc_insert("ts::ts_tree_double_bracket_param_i")}
+#' @param ...
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_param_dots")}
+#'
+#' @ts ts_tree_double_bracket_return
+#' List of R objects, with one entry for each selected element.
+#'
+#' @family `ts_tree` generics
+#' @family serialization functions
 #' @rdname double-bracket-ts-tree
 #' @export
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+#'
+#' tree
+#'
+#' tree[[list("a")]]
+#'
+#' # Last two elements of "b"
+#' tree[[list("b", -(1:2))]]
 
 `[[.ts_tree` <- function(x, i, ...) {
   if (missing(i)) {
@@ -464,16 +640,59 @@ ts_tree_selector_default <- function(tree) {
   ))
 }
 
-#' TODO
+#' Edit parts of a tree-sitter tree
+#'
+#' @ts ts_tree_select_set_description
+#' The \code{\link[ts:ts_tree_select<-]{ts_tree_select<-()}} replacement
+#' function works similarly to the combination of
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+#' \code{\link[ts:ts_tree_update]{ts_tree_update()}}, but
+#' it might be more readable.
+#' @description \eval{ts:::doc_insert("ts_tree_select_set_description")}
+#'
+#' @ts ts_tree_select_set_details
+#' The following two expressions are equivalent:
+#' ```r
+#' tree <- ts_tree_select(tree, <selectors>) |> ts_tree_update(value)
+#' ```
+#' and
+#' ```r
+#' ts_tree_select(tree, <selectors>) <- value
+#' ```
+#' \eval{ts:::doc_tabs("ts_tree_select_set")}
+#' @details \eval{ts:::doc_insert("ts::ts_tree_select_set_details")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts ts_tree_select_set_param_tree
+#' A `ts_tree` object as returned by
+#' \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
+#' @ts ts_tree_select_set_param_dots
+#' Selection expressions, see \code{\link[ts:ts_tree_select]{ts_tree_select()}}.
+#' @ts ts_tree_select_set_param_value
+#' An R expression to serialize or
+#' \code{\link[ts:ts_tree_deleted]{ts_tree_deleted()}}.
+#' @param tree \eval{ts:::doc_insert("ts_tree_select_set_param_tree")}
+#' @param ... \eval{ts:::doc_insert("ts_tree_select_set_param_dots")}
+#' @param value \eval{ts:::doc_insert("ts_tree_select_set_param_value")}
+#'
+#' @ts ts_tree_select_set_return
+#' A `ts_tree` object with the selected parts updated.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_select_set_return")}
+#'
 #' @name select-set
 #' @rdname select-set
-#' @param tree A `ts_tree` object as returned by [ts_tree_new()].
-#' @param ... Selection expressions, see details.
-#' @param value An R expression to serialize or `ts_tree_deleted()`.
-#' @return The modified `ts_tree` object.
+#' @family `ts_tree` generics
 #' @export
-#' @examples
-#' # TODO
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+#
+#' tree
+#'
+#' ts_tree_select(tree, "a") <- 42
+#' ts_tree_select(tree, "b", -1) <- ts_tree_deleted()
+#'
+#' tree
 
 `ts_tree_select<-` <- function(tree, ..., value) {
   UseMethod("ts_tree_select<-")
@@ -495,13 +714,61 @@ ts_tree_selector_default <- function(tree) {
 
 #' Edit parts of a tree-sitter tree
 #'
-#' TODO
+#' @ts ts_tree_double_bracket_set_description
+#' The `[[<-` operator works similarly to the combination of
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
+#' \code{\link[ts:ts_tree_update]{ts_tree_update()}}, (and also to the
+#' replacement function \code{\link[ts:ts_tree_select<-]{ts_tree_select<-()}}),
+#' but it might be more readable.
+#' @description
+#' \eval{ts:::doc_insert("ts_tree_double_bracket_set_description")}
+#'
+#' @ts ts_tree_double_bracket_set_details
+#' The following two expressions are equivalent:
+#' ```r
+#' tree <- ts_tree_select(tree, <selectors>) |> ts_tree_update(value)
+#' ```
+#' and
+#' ```r
+#' tree[[list(<selectors>)]] <- value
+#' ```
+#' \eval{ts:::doc_tabs("ts_tree_double_brackets_set")}
+#' @details
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_details")}
+#' \eval{ts:::doc_extra()}
+#'
+#' @ts ts_tree_double_bracket_set_param_x
+#' A `ts_tree` object.
+#' @ts ts_tree_double_bracket_set_param_i
+#' A list with selection expressions, see
+#' \code{\link[ts:ts_tree_select]{ts_tree_select()}} for details.
+#' @ts ts_tree_double_bracket_set_param_value
+#' An R expression to serialize or
+#' \code{\link[ts:ts_tree_deleted]{ts_tree_deleted()}}.
+#'
+#' @param x
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_param_x")}
+#' @param i
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_param_i")}
+#' @param value
+#' \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_param_value")}
+#'
+#' @ts ts_tree_double_bracket_set_return
+#' The modified `ts_tree` object.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_return")}
 #' @rdname double-bracket-set-ts-tree
-#' @param x A `ts_tree` object as returned by [ts_tree_new()].
-#' @param i A list with selection expressions, see details.
-#' @param value An R expression to serialize or `ts_tree_deleted()`.
-#' @return The modified `ts_tree` object.
+#' @family `ts_tree` generics
 #' @export
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+#'
+#' tree
+#'
+#' tree[[list("a")]] <- 42
+#' tree[[list("b", -1)]] <- ts_tree_deleted()
+#'
+#' tree
 
 `[[<-.ts_tree` <- function(x, i, value) {
   # nocov start -- not sure if still is still needed, if [[ are not nested
@@ -523,7 +790,7 @@ ts_tree_selector_default <- function(tree) {
 #' @rdname select-set
 #' @usage NULL
 #' @details
-#' `ts_tree_deleted()` is a special marker to delete elements from a tree-sitter
+#' `ts_tree_deleted()` is a special marker to delete elements from a
 #' ts_tree object with `ts_tree_select<-` or the double bracket operator.
 #'
 #' @return `ts_tree_deleted()` returns a marker object to be used at the right
@@ -531,8 +798,6 @@ ts_tree_selector_default <- function(tree) {
 #'   functions, see examples below.
 #'
 #' @export
-#' @examples
-#' # TODO
 
 ts_tree_deleted <- function() {
   structure(

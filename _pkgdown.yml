@@ -19,7 +19,7 @@ navbar:
 reference:
 - title: About ts
   desc: |
-    * See [about](about.html) for an overview of ts.
+    * See ['About ts'](about.html) for an overview of ts.
     * If you want to edit a document start at `ts_tree_new()` and
       `ts_tree_select()`.
     * For more see the sections below.
@@ -70,7 +70,11 @@ reference:
   - ts_tree_query
   - ts_tree_sexpr
 
-- title: Functions for ts* packages
+- title: Functions for tree-sitter parser packages
+  desc: |
+    These functions are intended to be used by packages that
+    implement tree-sitter parsers and use the `ts` package as a backend.
+    It is unlikely that you will need to use these functions directly.
   contents:
   - as_ts_caller_arg
   - ts_caller_arg
