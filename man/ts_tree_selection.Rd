@@ -3,7 +3,7 @@
 \name{ts_tree_selection}
 \alias{ts_tree_selection}
 \alias{ts_tree_selected_nodes}
-\title{Helper functions for tree-sitter tree selections}
+\title{Helper functions for tree-sitter tree selections (internal)}
 \usage{
 ts_tree_selection(tree, default = TRUE)
 
@@ -22,8 +22,9 @@ is no explicit selection, or \code{NULL}.}
 selected nodes.
 }
 \description{
-It is unlikely that you will need to use these functions directly, except
-when implementing a new language for the ts package.
+These functions are for packages implementing new parsers based on the ts
+package. It is very unlikely that you will need to call these functions
+directly.
 }
 \details{
 \code{ts_tree_selection()} returns the current selection, as a list

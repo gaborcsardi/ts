@@ -2,18 +2,32 @@
 % Please edit documentation in R/print.R
 \name{ts_tree_mark_selection1}
 \alias{ts_tree_mark_selection1}
-\title{TODO}
+\alias{ts_tree_mark_selection1.ts_tree}
+\title{Helper function to decide which AST nodes to highlight for a selection
+(internal)}
 \usage{
 ts_tree_mark_selection1(tree, node)
+
+\method{ts_tree_mark_selection1}{ts_tree}(tree, node)
 }
 \arguments{
 \item{tree}{Tree-sitter tree.}
 
-\item{node}{Node id.}
+\item{node}{Node id, integer scalar.}
 }
 \value{
 Integer vector of node ids to highlight.
 }
 \description{
-TODO
+This function are for packages implementing new parsers based on the ts
+package. It is very unlikely that you will need to call this function
+directly.
+}
+\details{
+In parsers where AST nodes do not correspond one-to-one to DOM nodes
+it is useful to highlight multiple AST nodes for a single selected
+DOM node. This generic function can be overridden in such parsers to
+return multiple AST node ids for a single selected (DOM) node id.
+
+The default implementation simply returns the input node id.
 }

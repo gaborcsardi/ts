@@ -13,6 +13,8 @@
 \alias{ts_tree_select1.ts_tree.logical}
 \title{Select nodes from a tree-sitter tree (internal)}
 \usage{
+ts_tree_select1(tree, node, slt)
+
 \method{ts_tree_select1}{ts_tree.ts_tree_selector_default}(tree, node, slt)
 
 \method{ts_tree_select1}{ts_tree.NULL}(tree, node, slt)

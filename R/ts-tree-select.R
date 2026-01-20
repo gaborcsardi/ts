@@ -237,7 +237,6 @@ normalize_selectors <- function(tree, slts) {
 #' The ts package implement deault methods for the selector types described
 #' in the \code{\link[ts:ts_tree_select]{ts_tree_select()}} manual page.
 #'
-#' @usage NULL
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param node Integer scalar, the node id to select from.
 #' @param slt A selector object, see details in [ts_tree_select()].
@@ -587,10 +586,11 @@ minimize_selection <- function(tree, ids) {
 # 2. otherwise the top element is selected (or elements if many)
 # 3. otherwise the document node is selected
 
-#' Helper functions for tree-sitter tree selections
+#' Helper functions for tree-sitter tree selections (internal)
 #'
-#' It is unlikely that you will need to use these functions directly, except
-#' when implementing a new language for the ts package.
+#' These functions are for packages implementing new parsers based on the ts
+#' package. It is very unlikely that you will need to call these functions
+#' directly.
 #'
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param default Logical, whether to return the default selection if there

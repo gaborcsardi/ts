@@ -129,10 +129,20 @@ ts_tree_mark_selection <- function(tree, node) {
   unlist(lapply(node, ts_tree_mark_selection1, tree = tree))
 }
 
-#' TODO
+#' Helper function to decide which AST nodes to highlight for a selection
+#' (internal)
+#'
+#' This function are for packages implementing new parsers based on the ts
+#' package. It is very unlikely that you will need to call this function
+#' directly.
+#'
+#' In parsers where AST nodes do not correspond one-to-one to DOM nodes
+#' it is useful to highlight multiple AST nodes for a single selected
+#' DOM node. This generic function can be overridden in such parsers to
+#' return multiple AST node ids for a single selected (DOM) node id.
 #'
 #' @param tree Tree-sitter tree.
-#' @param node Node id.
+#' @param node Node id, integer scalar.
 #' @return Integer vector of node ids to highlight.
 #' @export
 
@@ -140,6 +150,9 @@ ts_tree_mark_selection1 <- function(tree, node) {
   UseMethod("ts_tree_mark_selection1")
 }
 
+#' @rdname ts_tree_mark_selection1
+#' @details
+#' The default implementation simply returns the input node id.
 #' @export
 
 ts_tree_mark_selection1.ts_tree <- function(tree, node) {

@@ -9,7 +9,7 @@
 \alias{ts_caller_env}
 \alias{ts_check_named_arg}
 \alias{ts_parse_error_cnd}
-\title{Utility functions for ts language implementations}
+\title{Utility functions for ts language implementations (internal)}
 \usage{
 ts_collapse(
   s,
@@ -103,8 +103,9 @@ was named, otherwise it raises an error.
 \code{ts_parse_error_cnd()} returns a ts_parse_error condition
 }
 \description{
-It is unlikely that you will need to use these functions directly, except
-when implementing a new language for the ts package.
+These functions are for packages implementing new parsers based on the ts
+package. It is very unlikely that you will need to call these functions
+directly.
 }
 \details{
 \code{ts_collapse()} collapses a character vector into a single string,
