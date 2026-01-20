@@ -47,7 +47,6 @@ argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
 }}
 
 
-\eval{ts:::doc_tabs("ts_tree_new_examples")}
 \eval{ts:::doc_extra()}
 }
 \examples{

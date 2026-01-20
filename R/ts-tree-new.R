@@ -11,7 +11,7 @@
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #'
 #' @ts ts_tree_new_details
-#' \eval{ts:::doc_tabs("tsjsonc::ts_tree_new_examples")}
+#' \eval{ts:::doc_tabs("ts_tree_new_examples")}
 #'
 #' @details
 #' A package that implements a tree-sitter parser provides a function that
@@ -23,7 +23,6 @@
 #'
 #' <p>
 #'
-#' \eval{ts:::doc_tabs("ts_tree_new_examples")}
 #' \eval{ts:::doc_extra()}
 #'
 #' @ts ts_tree_new_param_language
