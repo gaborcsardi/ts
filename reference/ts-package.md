@@ -3,13 +3,15 @@
 Common tree-sitter parsing tools for R. It is meant to be used by other
 packages that specialize in particular languages.
 
-## Installed ts parsers
+## Details
 
-- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
-  0.0.0.9000 (loaded): Edit JSON Files.
+### Available tree-sitter parsers
 
-- **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
-  0.0.0.9000: Edit TOML files.
+|                                                                                 |             |                  |
+|---------------------------------------------------------------------------------|-------------|------------------|
+| **Package**                                                                     | **Version** | **Title**        |
+| [tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html) | 0.0.0.9000  | Edit JSON Files. |
+| [tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)    | 0.0.0.9000  | Edit TOML files. |
 
 ## See also
 

@@ -3,26 +3,20 @@
 ts parser implemented in another package.
 The result is a ts_tree object. A ts_tree object may be queried,
 edited, formatted, written to file, etc. using ts_tree methods.
-Installed ts parsers
 
-
-
-tsjsonc 0.0.0.9000 (loaded): Edit JSON Files.
-tstoml 0.0.0.9000 (loaded): Edit TOML files.
-
-
+Available tree-sitter parsers
+PackageVersionTitle
+ tsjsonc0.0.0.9000Edit JSON Files.
+ tstoml0.0.0.9000Edit TOML files.
 "><meta property="og:description" content="This is the main function to create a tree-sitter parse tree, using a
 ts parser implemented in another package.
 The result is a ts_tree object. A ts_tree object may be queried,
 edited, formatted, written to file, etc. using ts_tree methods.
-Installed ts parsers
 
-
-
-tsjsonc 0.0.0.9000 (loaded): Edit JSON Files.
-tstoml 0.0.0.9000 (loaded): Edit TOML files.
-
-
+Available tree-sitter parsers
+PackageVersionTitle
+ tsjsonc0.0.0.9000Edit JSON Files.
+ tstoml0.0.0.9000Edit TOML files.
 "></head><body>
     <a href="#container" class="visually-hidden-focusable">Skip to content</a>
 
@@ -61,14 +55,9 @@ tstoml 0.0.0.9000 (loaded): Edit TOML files.
     <p>This is the main function to create a tree-sitter parse tree, using a
 ts parser implemented in another package.
 The result is a <code>ts_tree</code> object. A <code>ts_tree</code> object may be queried,
-edited, formatted, written to file, etc. using <code>ts_tree</code> methods.</p><div class="section">
-<h3 id="installed-ts-parsers">Installed ts parsers<a class="anchor" aria-label="anchor" href="#installed-ts-parsers"></a></h3>
-
-
-<p></p><ul><li><p><strong><a href="https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html">tsjsonc</a></strong> 0.0.0.9000 (loaded): Edit JSON Files.</p></li>
-<li><p><strong><a href="https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html">tstoml</a></strong> 0.0.0.9000 (loaded): Edit TOML files.</p></li>
-</ul></div>
-
+edited, formatted, written to file, etc. using <code>ts_tree</code> methods.</p>
+<p></p><div class="section">
+<h3 id="available-tree-sitter-parsers">Available tree-sitter parsers<a class="anchor" aria-label="anchor" href="#available-tree-sitter-parsers"></a></h3><table class="table table"><tr><td><strong>Package</strong></td><td><strong>Version</strong></td><td><strong>Title</strong></td></tr><tr><td><a href="https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html"> tsjsonc</a></td><td>0.0.0.9000</td><td>Edit JSON Files.</td></tr><tr><td><a href="https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html"> tstoml</a></td><td>0.0.0.9000</td><td>Edit TOML files.</td></tr></table></div>
     </div>
 
     <div class="section level2">
@@ -249,7 +238,8 @@ function openCity(evt, language) {
 }.w3-border-0 {
   border: 0!important
 }.w3-border {
-  border: 1px solid #ccc!important
+  border: 1px solid #ccc!important;
+  margin-bottom: 10px;
 }.w3-border-top {
   border-top: 1px solid #ccc!important
 }.w3-border-bottom {
@@ -261,6 +251,7 @@ function openCity(evt, language) {
 }/* undo the gradient in tidytemplate, but add it to the whole tab */
 .ts-package {
   background-image: linear-gradient(-160deg, #f8f8f8 0, #f1f1f1 100%);
+  margin-bottom: 10px;
 }
 .ts-package pre, code {
   background-image: none;
@@ -271,7 +262,27 @@ function openCity(evt, language) {
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>The tree-sitter parser packages typically include shortcuts to
 create parse trees from strings and file, e.g.
-<code><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">tsjsonc::ts_parse_jsonc()</a></code> and <code><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">tsjsonc::ts_read_jsonc()</a></code>.</p></div>
+<code><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">tsjsonc::ts_parse_jsonc()</a></code> and <code><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">tsjsonc::ts_read_jsonc()</a></code>.
+  </p><p></p>
+
+<p></p>
+<p>Other <code>ts_tree</code> generics:
+<code><a href="double-bracket-ts-tree.html">[[.ts_tree()</a></code>,
+<code>[[&lt;-.ts_tree()</code>,
+<code><a href="format.ts_tree.html">format.ts_tree()</a></code>,
+<code><a href="print.ts_tree.html">print.ts_tree()</a></code>,
+<code><a href="select-set.html">select-set</a></code>,
+<code><a href="ts_tree_ast.html">ts_tree_ast()</a></code>,
+<code><a href="ts_tree_delete.html">ts_tree_delete()</a></code>,
+<code><a href="ts_tree_dom.html">ts_tree_dom()</a></code>,
+<code><a href="ts_tree_format.html">ts_tree_format()</a></code>,
+<code><a href="ts_tree_insert.html">ts_tree_insert()</a></code>,
+<code><a href="ts_tree_query.html">ts_tree_query()</a></code>,
+<code><a href="ts_tree_select.html">ts_tree_select()</a></code>,
+<code><a href="ts_tree_sexpr.html">ts_tree_sexpr()</a></code>,
+<code><a href="ts_tree_unserialize.html">ts_tree_unserialize()</a></code>,
+<code><a href="ts_tree_update.html">ts_tree_update()</a></code>,
+<code><a href="ts_tree_write.html">ts_tree_write()</a></code></p></div>
     </div>
 
     <div class="section level2">

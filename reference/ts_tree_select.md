@@ -3,19 +3,17 @@
 This function is the heart of ts. To edit a tree-sitter tree, you first
 need to select the parts you want to delete or update.
 
-### Installed ts parsers
+### Available tree-sitter parsers
 
 This is the manual page of the `ts_tree_select()` S3 generic function.
-See the S3 methods in the installed ts parser packages (if any):
+Methods in parser packages may override this generic. For the ones that
+do see the links to their manual pages in the table.
 
-- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
-  0.0.0.9000 (loaded): Edit JSON Files.  
-  Method: `ts_tree_select(<ts_tree_tsjsonc>)`
-
-- **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
-  0.0.0.9000 (loaded): Edit TOML files.  
-  Method:
-  [`ts_tree_select(<ts_tree_tstoml>)`](https://gaborcsardi.github.io/tstoml/reference/ts_tree_select.tstoml.html)
+|                                                                                     |             |                  |                                                                                                                          |
+|-------------------------------------------------------------------------------------|-------------|------------------|--------------------------------------------------------------------------------------------------------------------------|
+| **Package**                                                                         | **Version** | **Title**        | **Method**                                                                                                               |
+| **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)** | 0.0.0.9000  | Edit JSON Files. | [`ts_tree_select(<ts_tree_tsjsonc>)`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.ts_tree_jsonc.html) |
+| **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**    | 0.0.0.9000  | Edit TOML files. |                                                                                                                          |
 
 ## Usage
 
@@ -571,11 +569,31 @@ TOML
     #> 3 | b = [100.0, 20, 30]
     #> 4 | c = { c1 = true, c2 = [] }
 
+## See also
+
+Method in installed package: `ts_tree_select(<ts_tree_tsjsonc>)`.
+
+Other `ts_tree` generics:
+[`[[.ts_tree()`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md),
+`[[<-.ts_tree()`,
+[`format.ts_tree()`](https://gaborcsardi.github.io/ts/reference/format.ts_tree.md),
+[`print.ts_tree()`](https://gaborcsardi.github.io/ts/reference/print.ts_tree.md),
+[`select-set`](https://gaborcsardi.github.io/ts/reference/select-set.md),
+[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md),
+[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md),
+[`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md),
+[`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md),
+[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md),
+[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
+[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.md)
+
 ## Examples
 
 ``` r
-# See more examples above
-
 # ----------------------------------------------------------------------
 # Create a JSONC tree, needs the tsjsonc package
 json <- ts_tree_new(

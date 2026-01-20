@@ -15,15 +15,17 @@ x[i, j, drop = FALSE]
 
 - x:
 
-  ts_tree object.
+  A `ts_tree` object.
 
 - i, j:
 
-  indices.
+  Incides, passed to the regular data.frame indexing method, see
+  [`'Extract'`](https://rdrr.io/r/base/Extract.html).
 
 - drop:
 
-  Ignored.
+  Passed to the regular data.frame indexing method, see
+  [`'Extract'`](https://rdrr.io/r/base/Extract.html).
 
 ## Value
 
@@ -69,14 +71,66 @@ A data frame with one row per token, and columns:
 Other, undocumented columns may also be present, these are considered
 internal and may change without notice.
 
-A data frame with columns: TODO.
+## Details
+
+A tree-sitter tree object has at least four classes:
+
+- `ts_tree_<parser_name>`, e.g. `ts_tree_tsjsonc`,
+
+- `ts_tree`,
+
+- `tbl`, from the pillar package, for better printing when converted to
+  a data frame, and
+
+- `data.frame`, since it is a data frame internally.
+
+The `ts_tree` class has custom
+[`format()`](https://rdrr.io/r/base/format.html) and
+[`print()`](https://rdrr.io/r/base/print.html) methods, that show (part
+of) the underlying document, and also the selected elements, if any.
+
+It is sometimes useful to treat a `tree` `ts_tree` object as a data
+frame, and drop the `ts_tree` classes. This can be done by indexing with
+single brackets, e.g. `tree[]`. This returns a data frame with one row
+per token, and various columns with information about the tokens. See
+details in the 'Value' section or this page.
 
 ## See also
 
-TODO
+Other `ts_tree` exploration:
+[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md)
 
 ## Examples
 
 ``` r
-# TODO
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{"foo": 42, "bar": [1, 2, 3]}')
+
+tree
+#> # jsonc (1 line)
+#> 1 | {"foo": 42, "bar": [1, 2, 3]}
+
+tree[]
+#> # A data frame: 26 × 20
+#>       id parent field_name type     code  start_byte end_byte start_row
+#>    <int>  <int> <chr>      <chr>    <chr>      <int>    <int>     <int>
+#>  1     1     NA NA         "docume…  NA            0       29         0
+#>  2     2      1 NA         "object"  NA            0       29         0
+#>  3     3      2 NA         "{"      "{"            0        1         0
+#>  4     4      2 NA         "pair"    NA            1       10         0
+#>  5     5      4 key        "string"  NA            1        6         0
+#>  6     6      5 NA         "\""     "\""           1        2         0
+#>  7     7      5 NA         "string… "foo"          2        5         0
+#>  8     8      5 NA         "\""     "\""           5        6         0
+#>  9     9      4 NA         ":"      ":"            6        7         0
+#> 10    10      4 value      "number" "42"           8       10         0
+#> # ℹ 16 more rows
+#> # ℹ 12 more variables: start_column <int>, end_row <int>,
+#> #   end_column <int>, is_missing <lgl>, has_error <lgl>,
+#> #   expected <list>, children <I<list>>, tws <chr>,
+#> #   dom_children <list>, dom_parent <int>, dom_name <chr>,
+#> #   dom_type <chr>
 ```

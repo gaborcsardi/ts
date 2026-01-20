@@ -607,8 +607,8 @@ MIT © Posit Software, PBC
 
 ## About ts
 
-- See [about](https://gaborcsardi.github.io/ts/reference/about.md) for
-  an overview of ts.
+- See [‘About ts’](https://gaborcsardi.github.io/ts/reference/about.md)
+  for an overview of ts.
 - If you want to edit a document start at
   [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md)
   and
@@ -633,11 +633,11 @@ MIT © Posit Software, PBC
 - [`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md)
   : Delete selected elements from a tree-sitter tree
 - [`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md)
-  : Format a tree sitter tree for printing
+  : Format the selected elements of a tree sitter tree for printing
 - [`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md)
-  : Insert a new element into a tree sitter tree
+  : Insert a new element into a tree-sitter tree
 - [`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md)
-  : TODO
+  : Replace selected elements with a new element in a tree-sitter tree
 
 ## Manipulation
 
@@ -646,7 +646,7 @@ Another way to edit a tree-sitter tree is “in place”, using the
 operator.
 
 - [`` `ts_tree_select<-`() ``](https://gaborcsardi.github.io/ts/reference/select-set.md)
-  : TODO
+  : Edit parts of a tree-sitter tree
 - [`` `[[<-`( ``*`<ts_tree>`*`)`](https://gaborcsardi.github.io/ts/reference/double-bracket-set-ts-tree.md)
   : Edit parts of a tree-sitter tree
 
@@ -660,9 +660,9 @@ operator.
 ## Unserialize
 
 - [`` `[[`( ``*`<ts_tree>`*`)`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md)
-  : Unserialize selected parts of a tree-sitter tree
+  : Unserialize parts of a tree-sitter tree
 - [`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
-  : TODO
+  : Unserialize selected elements of a tree-sitter tree
 - [`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.md)
   : Write a tree-sitter tree to a file
 
@@ -675,11 +675,15 @@ operator.
 - [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md)
   : Print the document object model (DOM) of a tree-sitter tree
 - [`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md)
-  : Run tree-sitter queries on a file or string
+  : Run tree-sitter queries on tree-sitter trees
 - [`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md)
-  : Show the syntax tree structure of a file or string
+  : Show the syntax tree of a tree-sitter tree
 
-## Functions for ts\* packages
+## Functions for tree-sitter parser packages
+
+These functions are intended to be used by packages that implement
+tree-sitter parsers and use the `ts` package as a backend. It is
+unlikely that you will need to use these functions directly.
 
 - [`ts_collapse()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   [`ts_cnd()`](https://gaborcsardi.github.io/ts/reference/internal.md)
@@ -692,8 +696,16 @@ operator.
   : Utility functions for ts language implementations
 - [`ts_tree_mark_selection1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_mark_selection1.md)
   : TODO
-- [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  : TODO
+- [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_default>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.NULL>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_ids>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_tsquery>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.character>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.integer>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.numeric>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_regex>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  [`ts_tree_select1(`*`<ts_tree.logical>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  : Select nodes from a tree-sitter tree (internal)
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   : Helper functions for tree-sitter tree selections

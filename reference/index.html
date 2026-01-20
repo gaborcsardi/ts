@@ -34,7 +34,7 @@
     <div class="section level2">
       <h2 id="about-ts">About ts<a class="anchor" aria-label="anchor" href="#about-ts"></a></h2>
 
-      <div class="section-desc"><ul><li>See <a href="about.html">about</a> for an overview of ts.</li>
+      <div class="section-desc"><ul><li>See <a href="about.html">‘About ts’</a> for an overview of ts.</li>
 <li>If you want to edit a document start at <code><a href="../reference/ts_tree_new.html">ts_tree_new()</a></code> and <code><a href="../reference/ts_tree_select.html">ts_tree_select()</a></code>.</li>
 <li>For more see the sections below.</li>
 </ul></div>
@@ -104,21 +104,21 @@
           <code><a href="ts_tree_format.html">ts_tree_format()</a></code>
 
         </dt>
-        <dd>Format a tree sitter tree for printing</dd>
+        <dd>Format the selected elements of a tree sitter tree for printing</dd>
 
         <dt>
 
           <code><a href="ts_tree_insert.html">ts_tree_insert()</a></code>
 
         </dt>
-        <dd>Insert a new element into a tree sitter tree</dd>
+        <dd>Insert a new element into a tree-sitter tree</dd>
 
         <dt>
 
           <code><a href="ts_tree_update.html">ts_tree_update()</a></code>
 
         </dt>
-        <dd>TODO</dd>
+        <dd>Replace selected elements with a new element in a tree-sitter tree</dd>
       </dl></div><div class="section level2">
       <h2 id="manipulation">Manipulation<a class="anchor" aria-label="anchor" href="#manipulation"></a></h2>
 
@@ -134,7 +134,7 @@
           <code><a href="select-set.html">`ts_tree_select&lt;-`()</a></code>
 
         </dt>
-        <dd>TODO</dd>
+        <dd>Edit parts of a tree-sitter tree</dd>
 
         <dt>
 
@@ -180,14 +180,14 @@
           <code><a href="double-bracket-ts-tree.html">`[[`(<i>&lt;ts_tree&gt;</i>)</a></code>
 
         </dt>
-        <dd>Unserialize selected parts of a tree-sitter tree</dd>
+        <dd>Unserialize parts of a tree-sitter tree</dd>
 
         <dt>
 
           <code><a href="ts_tree_unserialize.html">ts_tree_unserialize()</a></code>
 
         </dt>
-        <dd>TODO</dd>
+        <dd>Unserialize selected elements of a tree-sitter tree</dd>
 
         <dt>
 
@@ -231,18 +231,18 @@
           <code><a href="ts_tree_query.html">ts_tree_query()</a></code>
 
         </dt>
-        <dd>Run tree-sitter queries on a file or string</dd>
+        <dd>Run tree-sitter queries on tree-sitter trees</dd>
 
         <dt>
 
           <code><a href="ts_tree_sexpr.html">ts_tree_sexpr()</a></code>
 
         </dt>
-        <dd>Show the syntax tree structure of a file or string</dd>
+        <dd>Show the syntax tree of a tree-sitter tree</dd>
       </dl></div><div class="section level2">
-      <h2 id="functions-for-ts-packages">Functions for ts* packages<a class="anchor" aria-label="anchor" href="#functions-for-ts-packages"></a></h2>
+      <h2 id="functions-for-tree-sitter-parser-packages">Functions for tree-sitter parser packages<a class="anchor" aria-label="anchor" href="#functions-for-tree-sitter-parser-packages"></a></h2>
 
-
+      <div class="section-desc"><p>These functions are intended to be used by packages that implement tree-sitter parsers and use the <code>ts</code> package as a backend. It is unlikely that you will need to use these functions directly.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -265,10 +265,10 @@
 
         <dt>
 
-          <code><a href="ts_tree_select1.html">ts_tree_select1()</a></code>
+          <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.ts_tree_selector_default&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.NULL&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.ts_tree_selector_ids&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.ts_tree_selector_tsquery&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.character&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.integer&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.numeric&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.ts_tree_selector_regex&gt;</i>)</a></code> <code><a href="ts_tree_select1.html">ts_tree_select1(<i>&lt;ts_tree.logical&gt;</i>)</a></code>
 
         </dt>
-        <dd>TODO</dd>
+        <dd>Select nodes from a tree-sitter tree (internal)</dd>
 
         <dt>
 

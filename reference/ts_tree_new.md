@@ -5,13 +5,13 @@ parser implemented in another package. The result is a `ts_tree` object.
 A `ts_tree` object may be queried, edited, formatted, written to file,
 etc. using `ts_tree` methods.
 
-### Installed ts parsers
+### Available tree-sitter parsers
 
-- **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)**
-  0.0.0.9000 (loaded): Edit JSON Files.
-
-- **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**
-  0.0.0.9000 (loaded): Edit TOML files.
+|                                                                                 |             |                  |
+|---------------------------------------------------------------------------------|-------------|------------------|
+| **Package**                                                                     | **Version** | **Title**        |
+| [tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html) | 0.0.0.9000  | Edit JSON Files. |
+| [tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)    | 0.0.0.9000  | Edit TOML files. |
 
 ## Usage
 
@@ -107,6 +107,24 @@ parse trees from strings and file, e.g.
 [`tsjsonc::ts_parse_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html)
 and
 [`tsjsonc::ts_read_jsonc()`](https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html).
+
+Other `ts_tree` generics:
+[`[[.ts_tree()`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md),
+`[[<-.ts_tree()`,
+[`format.ts_tree()`](https://gaborcsardi.github.io/ts/reference/format.ts_tree.md),
+[`print.ts_tree()`](https://gaborcsardi.github.io/ts/reference/print.ts_tree.md),
+[`select-set`](https://gaborcsardi.github.io/ts/reference/select-set.md),
+[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md),
+[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md),
+[`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md),
+[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md),
+[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md),
+[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
+[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.md)
 
 ## Examples
 
