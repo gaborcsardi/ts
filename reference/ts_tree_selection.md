@@ -1,7 +1,8 @@
-# Helper functions for tree-sitter tree selections
+# Helper functions for tree-sitter tree selections (internal)
 
-It is unlikely that you will need to use these functions directly,
-except when implementing a new language for the ts package.
+These functions are for packages implementing new parsers based on the
+ts package. It is very unlikely that you will need to call these
+functions directly.
 
 ## Usage
 

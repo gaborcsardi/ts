@@ -7,6 +7,8 @@ directly.
 ## Usage
 
 ``` r
+ts_tree_select1(tree, node, slt)
+
 # S3 method for class 'ts_tree.ts_tree_selector_default'
 ts_tree_select1(tree, node, slt)
 

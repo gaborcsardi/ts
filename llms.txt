@@ -693,20 +693,13 @@ unlikely that you will need to use these functions directly.
   [`ts_caller_env()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   [`ts_check_named_arg()`](https://gaborcsardi.github.io/ts/reference/internal.md)
   [`ts_parse_error_cnd()`](https://gaborcsardi.github.io/ts/reference/internal.md)
-  : Utility functions for ts language implementations
+  : Utility functions for ts language implementations (internal)
 - [`ts_tree_mark_selection1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_mark_selection1.md)
-  : TODO
-- [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_default>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.NULL>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_ids>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_tsquery>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.character>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.integer>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.numeric>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.ts_tree_selector_regex>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
-  [`ts_tree_select1(`*`<ts_tree.logical>`*`)`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
+  : Helper function to decide which AST nodes to highlight for a
+  selection (internal)
+- [`ts_tree_select1()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select1.md)
   : Select nodes from a tree-sitter tree (internal)
 - [`ts_tree_selection()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
   [`ts_tree_selected_nodes()`](https://gaborcsardi.github.io/ts/reference/ts_tree_selection.md)
-  : Helper functions for tree-sitter tree selections
+  : Helper functions for tree-sitter tree selections (internal)
 
