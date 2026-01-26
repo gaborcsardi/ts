@@ -13,7 +13,7 @@ do see the links to their manual pages in the table.
 |-------------------------------------------------------------------------------------|-------------|------------------|--------------------------------------------------------------------------------------------------------------------------|
 | **Package**                                                                         | **Version** | **Title**        | **Method**                                                                                                               |
 | **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)** | 0.0.0.9000  | Edit JSON Files. | [`ts_tree_select(<ts_tree_tsjsonc>)`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_select.ts_tree_jsonc.html) |
-| **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**    | 0.0.0.9000  | Edit TOML files. |                                                                                                                          |
+| **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**    | 0.0.0.9000  | Edit TOML files. | [`ts_tree_select(<ts_tree_tstoml>)`](https://gaborcsardi.github.io/tstoml/reference/ts_tree_select.ts_tree_toml.html)    |
 
 ## Usage
 
@@ -571,7 +571,8 @@ TOML
 
 ## See also
 
-Method in installed package: `ts_tree_select(<ts_tree_tsjsonc>)`.
+Methods in installed packages: `ts_tree_select(<ts_tree_tsjsonc>)` and
+`ts_tree_select(<ts_tree_tstoml>)`.
 
 Other `ts_tree` generics:
 [`[[.ts_tree()`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md),
