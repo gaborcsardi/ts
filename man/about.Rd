@@ -3,6 +3,9 @@
 \name{about}
 \alias{about}
 \title{About ts}
+\value{
+Not applicable.
+}
 \description{
 ts is a common interface to \href{https://tree-sitter.github.io/tree-sitter/}{tree-sitter} parsers, implemented in
 other R packages. It has a common API to
@@ -619,4 +622,8 @@ Print the structural summary of a tree:
 }}
 
 }
+}
+\examples{
+# See above please.
+
 }

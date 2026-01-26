@@ -9,6 +9,9 @@ ts_tree_unserialize(tree)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_unserialize_param_tree")}}
 }
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_unserialize_return")}
+}
 \description{
 \eval{ts:::doc_insert("ts_tree_unserialize_description")}
 

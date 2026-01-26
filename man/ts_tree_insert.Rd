@@ -50,6 +50,9 @@ See details in the manual of the specific parser.}
 
 \item{...}{Extra arguments for methods.}
 }
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_insert_return")}
+}
 \description{
 \eval{ts:::doc_insert("ts_tree_insert_description")}
 

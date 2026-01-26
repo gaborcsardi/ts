@@ -145,6 +145,10 @@ ts_tree_mark_selection <- function(tree, node) {
 #' @param node Node id, integer scalar.
 #' @return Integer vector of node ids to highlight.
 #' @export
+#' @examples
+#' # This is an internal generic for parser implementations, see the
+#' # tsjsonc and tstoml packages for examples of methods implementing
+#' # custom behavior.
 
 ts_tree_mark_selection1 <- function(tree, node) {
   UseMethod("ts_tree_mark_selection1")

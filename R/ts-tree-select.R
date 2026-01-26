@@ -240,7 +240,14 @@ normalize_selectors <- function(tree, slts) {
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param node Integer scalar, the node id to select from.
 #' @param slt A selector object, see details in [ts_tree_select()].
+#'
+#' @return Must return an integer vector of selected node ids.
+#'
 #' @export
+#' @examples
+#' # This is an internal generic for parser implementations, see the
+#' # tsjsonc and tstoml packages for examples of methods implementing
+#' # selector types.
 
 ts_tree_select1 <- function(tree, node, slt) {
   treesel <- structure(
@@ -504,6 +511,7 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #'
 #' @ts ts_tree_double_bracket_return
 #' List of R objects, with one entry for each selected element.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_return")}
 #'
 #' @family `ts_tree` generics
 #' @family serialization functions
@@ -601,6 +609,11 @@ minimize_selection <- function(tree, ids) {
 #'   of selectors.
 #'
 #' @export
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+#' tree <- ts_tree_select(tree, "b", -1)
+#' ts_tree_selection(tree)
 
 ts_tree_selection <- function(tree, default = TRUE) {
   sel <- attr(tree, "selection")

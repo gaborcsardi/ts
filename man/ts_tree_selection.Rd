@@ -33,3 +33,11 @@ of selectors.
 \code{ts_tree_selected_nodes()} returns the ids of the currently
 selected nodes.
 }
+\examples{
+\dontshow{if (requireNamespace("tsjsonc", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+# Create a parse tree with tsjsonc -------------------------------------
+tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+tree <- ts_tree_select(tree, "b", -1)
+ts_tree_selection(tree)
+\dontshow{\}) # examplesIf}
+}

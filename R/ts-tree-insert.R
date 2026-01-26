@@ -75,6 +75,10 @@
 #' See details in the manual of the specific parser.
 #' @param ... Extra arguments for methods.
 #'
+#' @ts ts_tree_insert_return
+#' A `ts_tree` object representing the modified parse tree.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_insert_return")}
+#'
 #' @family `ts_tree` generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_insert")}
 #' @export

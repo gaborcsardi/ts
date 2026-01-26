@@ -1,6 +1,10 @@
 #' @details
 #' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 #' @keywords internal
+#' @return
+#' Not applicable.
+#' @examples
+#' # See help("about", package = "ts")
 "_PACKAGE"
 
 ## usethis namespace: start
@@ -25,6 +29,12 @@ NULL
 #' - unserialize
 #'
 #' tree-sitter parse trees.
+#'
+#' @return
+#' Not applicable.
+#'
+#' @examples
+#' # See above please.
 #'
 #' @details
 #'

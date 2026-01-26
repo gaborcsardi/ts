@@ -13,6 +13,9 @@
 
 \item{...}{\eval{ts:::doc_insert("ts::ts_tree_double_bracket_param_dots")}}
 }
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_double_bracket_return")}
+}
 \description{
 \eval{ts:::doc_insert("ts_tree_double_bracket_description")}
 }

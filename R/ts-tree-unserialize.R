@@ -43,6 +43,7 @@
 #'
 #' @ts ts_tree_unserialize_return
 #' List of R objects, with one entry for each selected element.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_unserialize_return")}
 #'
 #' @family `ts_tree` generics
 #' @family serialization functions

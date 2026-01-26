@@ -5,11 +5,17 @@
 \alias{ts}
 \alias{ts-package}
 \title{ts: Tree-Sitter Parsing Tools}
+\value{
+Not applicable.
+}
 \description{
-Common tree-sitter parsing tools for R. It is meant to be used by other packages that specialize in particular languages.
+Common tree-sitter parsing tools for R. It is meant to be used by other packages that specialize in particular languages and file formats.
 }
 \details{
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
+}
+\examples{
+# See help("about", package = "ts")
 }
 \seealso{
 Useful links:
