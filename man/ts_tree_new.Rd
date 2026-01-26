@@ -32,7 +32,7 @@ ts_tree_new(
 \description{
 This is the main function to create a tree-sitter parse tree, using a
 ts parser implemented in another package.
-\eval{ts:::doc_insert("ts_tree_new_description", "ts")}
+\eval{ts:::doc_insert("ts_tree_new_description")}
 
 \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers())}
 }
@@ -41,12 +41,12 @@ A package that implements a tree-sitter parser provides a function that
 creates a \code{ts_language} object for that parser. E.g.
 \link[tsjsonc:tsjsonc-package]{tsjsonc} has \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}}.
 You need to use the returned \code{ts_language} object as the \code{language}
-argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
-\eval{ts:::doc_insert("ts_tree_new_details", "ts")}\if{html}{\out{
+argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.\if{html}{\out{
 <p>
 }}
 
 
+\eval{ts:::doc_insert("ts_tree_new_details")}
 \eval{ts:::doc_extra()}
 }
 \examples{
