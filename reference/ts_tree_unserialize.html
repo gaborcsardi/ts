@@ -82,7 +82,10 @@ For the ones that do see the links to their manual pages in the table.</p><table
 unserialized.</p><div><div class="w3-bar">
   <button class="w3-bar-item w3-button tablink w3-active" onclick="openCity(event,'jsonc')">
   JSONC
-</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="st">"{ \"a\": true, \"b\": [1, 2, 3] }"</span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre></div>
+</button>
+<button class="w3-bar-item w3-button tablink " onclick="openCity(event,'toml')">
+  TOML
+</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">"{ \"a\": true, \"b\": [1, 2, 3] }"</span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; [[1]]
 #&gt; [[1]]$a
@@ -100,11 +103,47 @@ unserialized.</p><div><div class="w3-bar">
 #&gt;
 #&gt;
 #&gt;
+</pre></div></div></div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tstoml</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tstoml/reference/ts_parse_toml.html">ts_parse_toml</a></span><span class="op">(</span></span>
+<span><span class="st">"a = 1\nb = [10.0, 20, 30]\nc = { c1 = true, c2 = [] }"</span></span>
+<span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; [[1]]
+#&gt; [[1]]$a
+#&gt; [1] 1
+#&gt;
+#&gt; [[1]]$b
+#&gt; [[1]]$b[[1]]
+#&gt; [1] 10
+#&gt;
+#&gt; [[1]]$b[[2]]
+#&gt; [1] 20
+#&gt;
+#&gt; [[1]]$b[[3]]
+#&gt; [1] 30
+#&gt;
+#&gt;
+#&gt; [[1]]$c
+#&gt; [[1]]$c$c1
+#&gt; [1] TRUE
+#&gt;
+#&gt; [[1]]$c$c2
+#&gt; list()
+#&gt;
+#&gt;
+#&gt;
 </pre></div></div></div></div>
 <p>If the tree has an empty selection, then an empty list is returned.</p><div><div class="w3-bar">
   <button class="w3-bar-item w3-button tablink w3-active" onclick="openCity(event,'jsonc')">
   JSONC
-</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="st">"{ \"a\": true, \"b\": [1, 2, 3] }"</span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"nope"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</button>
+<button class="w3-bar-item w3-button tablink " onclick="openCity(event,'toml')">
+  TOML
+</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">"{ \"a\": true, \"b\": [1, 2, 3] }"</span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"nope"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; list()
+</pre></div></div></div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tstoml</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tstoml/reference/ts_parse_toml.html">ts_parse_toml</a></span><span class="op">(</span></span>
+<span>  <span class="st">"a = 1\nb = [10.0, 20, 30]\nc = { c1 = true, c2 = [] }"</span></span>
+<span><span class="op">)</span></span></code></pre></div><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_select.html">ts_tree_select</a></span><span class="op">(</span><span class="st">"nope"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_unserialize.html">ts_tree_unserialize</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
 #&gt; list()
 </pre></div></div></div></div>

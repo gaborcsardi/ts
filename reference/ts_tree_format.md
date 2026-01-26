@@ -48,6 +48,8 @@ formatted.
 
 JSONC
 
+TOML
+
  
 
     jsonc <- tsjsonc::ts_parse_jsonc("{ \"a\": [1,2,3] }")
@@ -62,9 +64,19 @@ JSONC
     #> 6 |     ]
     #> 7 | }
 
+ 
+
+    toml <- tstoml::ts_parse_toml("a = [1,2,3]")
+    toml |> ts_tree_format()
+
+    #> # toml (1 line)
+    #> 1 | a = [ 1, 2, 3 ]
+
 If `tree` has an empty selection, then it is returned unchanged.
 
 JSONC
+
+TOML
 
  
 
@@ -73,6 +85,14 @@ JSONC
 
     #> # jsonc (1 line)
     #> 1 | { "a": [1,2,3] }
+
+ 
+
+    toml <- tstoml::ts_parse_toml("a = [1,2,3]")
+    toml |> ts_tree_select("c") |> ts_tree_format()
+
+    #> # toml (1 line)
+    #> 1 | a = [1,2,3]
 
 Some parsers support options to customize the formatting. See details in
 the manual of the specific parser.

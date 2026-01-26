@@ -76,22 +76,33 @@ insertion is not possible, an error is raised.
 
 JSONC
 
+TOML
+
  
 
-    json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
     json |> ts_tree_select("a") |> ts_tree_insert("foo")
 
     #>   Cannot insert into a 'true' JSON element. Can only insert into 'array' and 'ob
     #> ject' elements and empty JSON documents.
+
+ 
+
+    toml <- tstoml::ts_parse_toml("a = true\nb = [1, 2, 3]")
+    toml |> ts_tree_select("a") |> ts_tree_insert("foo")
+
+    #> Error in FUN(X[[i]], ...) : Cannot insert into a `value` TOML element.
 
 If `tree` does not have a selection, the new element is inserted into at
 the top level.
 
 JSONC
 
+TOML
+
  
 
-    json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
     json |> ts_tree_insert(key = "c", new = "foo")
 
     #> # jsonc (9 lines)
@@ -105,18 +116,39 @@ JSONC
     #> 8 |     "c": "foo"
     #> 9 | }
 
+ 
+
+    toml <- tstoml::ts_parse_toml("a = true\nb = [1, 2, 3]")
+    toml |> ts_tree_insert(key = "c", new = "foo")
+
+    #> # toml (3 lines)
+    #> 1 | a = true
+    #> 2 | b = [1, 2, 3]
+    #> 3 | c = "foo"
+
 If `tree` has an empty selection, then it is returned unchanged, i.e. no
 new element is inserted.
 
 JSONC
 
+TOML
+
  
 
-    json <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    json <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
     json |> ts_tree_select("nonexistent") |> ts_tree_insert("foo")
 
     #> # jsonc (1 line, 0 selected elements)
     #> 1 | { "a": true, "b": [1, 2, 3] }
+
+ 
+
+    toml <- tstoml::ts_parse_toml("a = true\nb = [1, 2, 3]")
+    toml |> ts_tree_select("nonexistent") |> ts_tree_insert("foo")
+
+    #> # toml (2 lines, 0 selected elements)
+    #> 1 | a = true
+    #> 2 | b = [1, 2, 3]
 
 ## See also
 

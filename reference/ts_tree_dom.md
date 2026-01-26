@@ -47,6 +47,8 @@ including syntax elements like brackets and commas.
 
 JSONC
 
+TOML
+
  
 
     tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
@@ -93,6 +95,49 @@ JSONC
     #>     ├─number (20)
     #>     ├─number (22)
     #>     └─number (24)
+
+ 
+
+    tree <- ts_parse_toml("
+      [package]
+      name = 'tstoml'
+      version = '0.1.0'"
+    )
+
+ 
+
+    ts_tree_ast(tree)
+
+    #> document (1)                             1|
+    #> └─table (2)                              2|
+    #>   ├─[ (3)                                 |  [
+    #>   ├─bare_key (4)                          |   package
+    #>   ├─] (5)                                 |          ]
+    #>   ├─pair (6)                             3|
+    #>   │ ├─bare_key (7)                        |  name
+    #>   │ ├─= (8)                               |       =
+    #>   │ └─string (9)                          |
+    #>   │   └─literal_string (10)               |
+    #>   │     ├─' (11)                          |         '
+    #>   │     ├─literal_string_content (12)     |          tstoml
+    #>   │     └─' (13)                          |                '
+    #>   └─pair (14)                            4|
+    #>     ├─bare_key (15)                       |  version
+    #>     ├─= (16)                              |          =
+    #>     └─string (17)                         |
+    #>       └─literal_string (18)               |
+    #>         ├─' (19)                          |            '
+    #>         ├─literal_string_content (20)     |             0.1.0
+    #>         └─' (21)                          |                  '
+
+ 
+
+    ts_tree_dom(tree)
+
+    #> document (1)
+    #> └─table (2) # package
+    #>   ├─value (9) # name
+    #>   └─value (17) # version
 
 ## See also
 

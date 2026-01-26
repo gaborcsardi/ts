@@ -34,11 +34,20 @@ specified.
 
 JSONC
 
+TOML
+
 Format a JSONC file:
 
  
 
     tree <- tsjsonc::ts_read_jsonc("config.json")
+    tree |> ts_tree_format() |> ts_tree_write()
+
+Format a TOML file:
+
+ 
+
+    tree <- tstoml::ts_parse_toml("config.toml")
     tree |> ts_tree_format() |> ts_tree_write()
 
 To write to a connection, pass a connection object to the `file`

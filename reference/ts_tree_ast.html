@@ -98,6 +98,9 @@ different from the syntax tree.
 </p><p></p><p></p><div><div class="w3-bar">
   <button class="w3-bar-item w3-button tablink w3-active" onclick="openCity(event,'jsonc')">
   JSONC
+</button>
+<button class="w3-bar-item w3-button tablink " onclick="openCity(event,'toml')">
+  TOML
 </button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">ts_parse_jsonc</span><span class="op">(</span><span class="st">"{ \"a\": true, \"b\": [1, 2, 3] }"</span><span class="op">)</span></span></code></pre><p></p></div>
 <p></p><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_ast.html">ts_tree_ast</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre><p></p></div>
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
@@ -136,6 +139,40 @@ different from the syntax tree.
 #&gt;     ├─number (20)
 #&gt;     ├─number (22)
 #&gt;     └─number (24)
+</pre></div></div></div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  <div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">ts_parse_toml</span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="st">  [package]</span></span>
+<span><span class="st">  name = 'tstoml'</span></span>
+<span><span class="st">  version = '0.1.0'"</span></span>
+<span><span class="op">)</span></span></code></pre><p></p></div>
+<p></p><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_ast.html">ts_tree_ast</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; document (1)                             1|
+#&gt; └─table (2)                              2|
+#&gt;   ├─[ (3)                                 |  [
+#&gt;   ├─bare_key (4)                          |   package
+#&gt;   ├─] (5)                                 |          ]
+#&gt;   ├─pair (6)                             3|
+#&gt;   │ ├─bare_key (7)                        |  name
+#&gt;   │ ├─= (8)                               |       =
+#&gt;   │ └─string (9)                          |
+#&gt;   │   └─literal_string (10)               |
+#&gt;   │     ├─' (11)                          |         '
+#&gt;   │     ├─literal_string_content (12)     |          tstoml
+#&gt;   │     └─' (13)                          |                '
+#&gt;   └─pair (14)                            4|
+#&gt;     ├─bare_key (15)                       |  version
+#&gt;     ├─= (16)                              |          =
+#&gt;     └─string (17)                         |
+#&gt;       └─literal_string (18)               |
+#&gt;         ├─' (19)                          |            '
+#&gt;         ├─literal_string_content (20)     |             0.1.0
+#&gt;         └─' (21)                          |                  '
+</pre></div></div><p></p><div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="fu"><a href="../reference/ts_tree_dom.html">ts_tree_dom</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span></code></pre><p></p></div>
+<div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><div class="sourceCode"><pre>
+#&gt; document (1)
+#&gt; └─table (2)<span style="color: #6F7783;"> # package</span>
+#&gt;   ├─value (9)<span style="color: #6F7783;"> # name</span>
+#&gt;   └─value (17)<span style="color: #6F7783;"> # version</span>
 </pre></div></div></div>
 <p></p></div>
 </div>

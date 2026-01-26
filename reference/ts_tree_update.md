@@ -45,7 +45,7 @@ JSONC
 
  
 
-    tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
     tree |> ts_tree_update(as.list(4:6))
 
     #> # jsonc (5 lines)
@@ -60,9 +60,11 @@ position of where the selected elements would be.
 
 JSONC
 
+TOML
+
  
 
-    tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
     tree |> ts_tree_select("new") |> ts_tree_update(as.list(4:6))
 
     #> # jsonc (13 lines)
@@ -78,6 +80,16 @@ JSONC
     #> 10 |         5,
     #> ℹ 3 more lines
     #> ℹ Use `print(n = ...)` to see more lines
+
+ 
+
+    tree <- tstoml::ts_parse_toml("a = true\nb = [1, 2, 3]")
+    tree |> ts_tree_select("new") |> ts_tree_update(as.list(4:6))
+
+    #> # toml (3 lines)
+    #> 1 | a = true
+    #> 2 | b = [1, 2, 3]
+    #> 3 | new = [ 4, 5, 6 ]
 
 ## See also
 

@@ -43,6 +43,8 @@ The formatting of the rest of the document is left as is.
 
 JSONC
 
+TOML
+
  
 
     jsonc <- tsjsonc::ts_parse_jsonc(
@@ -74,10 +76,35 @@ JSONC
     #> 6 |     ]
     #> 7 | }
 
+ 
+
+    toml <- tstoml::ts_parse_toml("
+      [package]
+      name = 'tstoml'
+      version = '0.1.0'
+    ")
+    toml
+
+    #> # toml (4 lines)
+    #> 1 | 
+    #> 2 |   [package]
+    #> 3 |   name = 'tstoml'
+    #> 4 |   version = '0.1.0'
+
+ 
+
+    toml |> ts_tree_select("package", "name") |> ts_tree_delete()
+
+    #> # toml (2 lines)
+    #> 1 | [package]
+    #> 2 |   version = '0.1.0'
+
 If the tree does not have a selection, the tree corresponding to the
 empty document is returned, i.e. the whole content is deleted.
 
 JSONC
+
+TOML
 
  
 
@@ -86,10 +113,23 @@ JSONC
 
     #> # jsonc (0 lines)
 
+ 
+
+    toml <- tstoml::ts_parse_toml("
+      [package]
+      name = 'tstoml'
+      version = '0.1.0'
+    ") |> ts::ts_tree_format()
+    toml |> ts_tree_delete()
+
+    #> # toml (0 lines)
+
 If the tree has a selection, but it is the empty selection, then the
 tree is returned unchanged.
 
 JSONC
+
+TOML
 
  
 
@@ -99,11 +139,27 @@ JSONC
     #> # jsonc (1 line)
     #> 1 | { "a": true, "b": [1, 2, 3] }
 
+ 
+
+    toml <- tstoml::ts_parse_toml("
+      [package]
+      name = 'tstoml'
+      version = '0.1.0'
+    ") |> ts::ts_tree_format()
+    toml |> ts_tree_select("nothere") |> ts_tree_delete()
+
+    #> # toml (3 lines)
+    #> 1 | [package]
+    #> 2 | name = 'tstoml'
+    #> 3 | version = '0.1.0'
+
 For parsers that support comments, deleting elements that include
 comments typically delete the comments as well. Other comments are kept
 as is. See details in the manual of the specific parser.
 
 JSONC
+
+TOML
 
  
 
@@ -139,6 +195,33 @@ JSONC
     #> 6 |         3
     #> 7 |     ]
     #> 8 | }
+
+ 
+
+    toml <- tstoml::ts_parse_toml("
+      # top comment
+      [package]
+      name = 'tstoml' # inline comment
+      version = '0.1.0'
+    ") |> ts::ts_tree_format()
+    toml
+
+    #> # toml (5 lines)
+    #> 1 | # top comment
+    #> 2 | 
+    #> 3 | [package]
+    #> 4 | name = 'tstoml' # inline comment
+    #> 5 | version = '0.1.0'
+
+ 
+
+    toml |> ts_tree_select("package", "name") |> ts_tree_delete()
+
+    #> # toml (4 lines)
+    #> 1 | # top comment
+    #> 2 | 
+    #> 3 | [package]
+    #> 4 | version = '0.1.0'
 
 ## See also
 

@@ -69,7 +69,12 @@ writes it back to the same file. Otherwise, the <code>file</code> argument must 
 specified.</p><div><div class="w3-bar">
   <button class="w3-bar-item w3-button tablink w3-active" onclick="openCity(event,'jsonc')">
   JSONC
+</button>
+<button class="w3-bar-item w3-button tablink " onclick="openCity(event,'toml')">
+  TOML
 </button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  Format a JSONC file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_read_jsonc</a></span><span class="op">(</span><span class="st">"config.json"</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_format.html">ts_tree_format</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_write.html">ts_tree_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  Format a TOML file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tstoml</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tstoml/reference/ts_parse_toml.html">ts_parse_toml</a></span><span class="op">(</span><span class="st">"config.toml"</span><span class="op">)</span></span>
 <span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_format.html">ts_tree_format</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_write.html">ts_tree_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div></div>
 <p>To write to a connection, pass a connection object to the <code>file</code>

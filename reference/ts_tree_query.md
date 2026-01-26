@@ -14,7 +14,7 @@ do see the links to their manual pages in the table.
 |-------------------------------------------------------------------------------------|-------------|------------------|------------------------------------------------------------------------------------------------------------------------|
 | **Package**                                                                         | **Version** | **Title**        | **Method**                                                                                                             |
 | **[tsjsonc](https://gaborcsardi.github.io/tsjsonc/reference/tsjsonc-package.html)** | 0.0.0.9000  | Edit JSON Files. | [`ts_tree_query(<ts_tree_tsjsonc>)`](https://gaborcsardi.github.io/tsjsonc/reference/ts_tree_query.ts_tree_jsonc.html) |
-| **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**    | 0.0.0.9000  | Edit TOML files. |                                                                                                                        |
+| **[tstoml](https://gaborcsardi.github.io/tstoml/reference/tstoml-package.html)**    | 0.0.0.9000  | Edit TOML files. | [`ts_tree_query(<ts_tree_tstoml>)`](https://gaborcsardi.github.io/tstoml/reference/ts_tree_query.ts_tree_toml.html)    |
 
 ## Usage
 
@@ -55,6 +55,8 @@ the query language support. See links below.
 
 JSONC
 
+TOML
+
  
 
     json <- tsjsonc::ts_parse_jsonc(
@@ -87,12 +89,44 @@ JSONC
     #> #   code <chr>
     #>
 
+ 
+
+    toml <- tstoml::ts_parse_toml(
+      'a = 1\nb = [10.0, 20, 30]\nc = { c1 = true, c2 = 100 }'
+    )
+    toml |> ts_tree_query("[(float) (integer)] @number")
+
+    #> $patterns
+    #> # A data frame: 1 × 4
+    #>      id name  pattern                         match_count
+    #>   <int> <chr> <chr>                                 <int>
+    #> 1     1 NA    "[(float) (integer)] @number\n"           5
+    #>
+    #> $captures
+    #> # A data frame: 1 × 2
+    #>      id name
+    #>   <int> <chr>
+    #> 1     1 number
+    #>
+    #> $matched_captures
+    #> # A data frame: 5 × 12
+    #>      id pattern match type    start_byte end_byte start_row start_column end_row
+    #>   <int>   <int> <int> <chr>        <int>    <int>     <int>        <int>   <int>
+    #> 1     1       1     1 integer          4        5         0            4       0
+    #> 2     1       1     2 float           11       15         1            5       1
+    #> 3     1       1     3 integer         17       19         1           11       1
+    #> 4     1       1     4 integer         21       23         1           15       1
+    #> 5     1       1     5 integer         47       50         2           22       2
+    #> # ℹ 3 more variables: end_column <int>, name <chr>, code <chr>
+    #>
+
 ## See also
 
 [`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md)
 to select the nodes matching a query.
 
-Method in installed package: `ts_tree_query(<ts_tree_tsjsonc>)`.
+Methods in installed packages: `ts_tree_query(<ts_tree_tsjsonc>)` and
+`ts_tree_query(<ts_tree_tstoml>)`.
 
 Other `ts_tree` exploration:
 [`ts_tree-brackets`](https://gaborcsardi.github.io/ts/reference/ts_tree-brackets.md),

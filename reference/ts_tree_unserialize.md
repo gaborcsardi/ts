@@ -34,9 +34,11 @@ unserialized.
 
 JSONC
 
+TOML
+
  
 
-    tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
 
  
 
@@ -59,13 +61,62 @@ JSONC
     #>
     #>
 
+ 
+
+    tree <- tstoml::ts_parse_toml(
+    "a = 1\nb = [10.0, 20, 30]\nc = { c1 = true, c2 = [] }"
+    )
+
+ 
+
+    ts_tree_unserialize(tree)
+
+    #> [[1]]
+    #> [[1]]$a
+    #> [1] 1
+    #>
+    #> [[1]]$b
+    #> [[1]]$b[[1]]
+    #> [1] 10
+    #>
+    #> [[1]]$b[[2]]
+    #> [1] 20
+    #>
+    #> [[1]]$b[[3]]
+    #> [1] 30
+    #>
+    #>
+    #> [[1]]$c
+    #> [[1]]$c$c1
+    #> [1] TRUE
+    #>
+    #> [[1]]$c$c2
+    #> list()
+    #>
+    #>
+    #>
+
 If the tree has an empty selection, then an empty list is returned.
 
 JSONC
 
+TOML
+
  
 
-    tree <- ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+    tree <- tsjsonc::ts_parse_jsonc("{ \"a\": true, \"b\": [1, 2, 3] }")
+
+ 
+
+    tree |> ts_tree_select("nope") |> ts_tree_unserialize()
+
+    #> list()
+
+ 
+
+    tree <- tstoml::ts_parse_toml(
+      "a = 1\nb = [10.0, 20, 30]\nc = { c1 = true, c2 = [] }"
+    )
 
  
 
