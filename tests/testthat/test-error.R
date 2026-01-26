@@ -59,6 +59,7 @@ test_that("ts_check_named_arg", {
 })
 
 test_that("ts_parse_error_cnd", {
+  skip_if_not_installed("tsjsonc")
   txt <- '{"a": 1, "b": [true, false, error]}'
   tree <- tsjsonc::ts_parse_jsonc(txt, fail_on_parse_error = FALSE)
   expect_snapshot(error = TRUE, {
@@ -67,6 +68,7 @@ test_that("ts_parse_error_cnd", {
 })
 
 test_that("format_ts_parse_error_1", {
+  skip_if_not_installed("tsjsonc")
   withr::local_options(cli.width = 40)
   txt <- '{"a": 1, "b": [true, false, "very", error, "this", "is", "ok"]}'
   tree <- tsjsonc::ts_parse_jsonc(txt, fail_on_parse_error = FALSE)
@@ -101,6 +103,7 @@ test_that("format_ts_parse_error_1", {
 })
 
 test_that("format.ts_parse_error, print.ts_parse_error", {
+  skip_if_not_installed("tsjsonc")
   txt <- '{"a": 1, "b": [true, false, error]}'
   tree <- tsjsonc::ts_parse_jsonc(txt, fail_on_parse_error = FALSE)
   err <- ts_parse_error_cnd(tree = tree, text = charToRaw(txt))

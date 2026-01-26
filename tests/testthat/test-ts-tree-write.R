@@ -1,4 +1,5 @@
 test_that("ts_tree_write", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tmp <- file.path(tempfile(), "test.jsonc")
   on.exit(unlink(dirname(tmp), recursive = TRUE), add = TRUE)

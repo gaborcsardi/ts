@@ -92,6 +92,7 @@ test_that("imap", {
 })
 
 test_that("get_tree_lang", {
+  skip_if_not_installed("tsjsonc")
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_equal(get_tree_lang(tree), "jsonc")
   expect_equal(get_tree_lang(list()), "<unknown>")

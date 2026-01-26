@@ -1,4 +1,5 @@
 test_that("format.ts_tree", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   expect_snapshot({
     tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}') %>%
@@ -39,6 +40,7 @@ test_that("format.ts_tree", {
 })
 
 test_that("end_column == 0", {
+  skip_if_not_installed("tsjtoml")
   library(magrittr)
   expect_snapshot({
     tree <- tstoml::ts_parse_toml(tstoml::toml_example_text())
