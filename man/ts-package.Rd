@@ -14,9 +14,9 @@ Common tree-sitter parsing tools for R. It is meant to be used by other packages
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/gaborcsardi/ts}
-  \item \url{https://gaborcsardi.github.io/ts/}
-  \item Report bugs at \url{https://github.com/gaborcsardi/ts/issues}
+  \item \url{https://github.com/r-lib/ts}
+  \item \url{https://r-lib.github.io/ts/}
+  \item Report bugs at \url{https://github.com/r-lib/ts/issues}
 }
 
 }

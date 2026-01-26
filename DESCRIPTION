@@ -22,11 +22,11 @@ Suggests:
   tsjsonc,
   tstoml,
   withr
-Additional_repositories: https://github.com/gaborcsardi/ts/releases/download
+Additional_repositories: https://github.com/r-lib/ts/releases/download
 Encoding: UTF-8
 RoxygenNote: 7.3.3
-URL: https://github.com/gaborcsardi/ts, https://gaborcsardi.github.io/ts/
-BugReports: https://github.com/gaborcsardi/ts/issues
+URL: https://github.com/r-lib/ts, https://r-lib.github.io/ts/
+BugReports: https://github.com/r-lib/ts/issues
 Config/testthat/edition: 3
 Config/Needs/website:
   r-lib/asciicast,
