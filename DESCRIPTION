@@ -10,6 +10,7 @@ Authors@R: c(
 Description: Common tree-sitter parsing tools for R. It is meant to be
     used by other packages that specialize in particular languages.
 License: MIT + file LICENSE
+Depends: R (>= 3.5.0)
 Imports:
   cli,
   utils
