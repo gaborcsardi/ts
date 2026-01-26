@@ -22,6 +22,9 @@ Suggests:
   tsjsonc,
   tstoml,
   withr
+Remotes:
+  gaborcsardi/tsjsonc,
+  gaborcsardi/tstoml
 Additional_repositories: https://github.com/r-lib/ts/releases/download
 Encoding: UTF-8
 RoxygenNote: 7.3.3
