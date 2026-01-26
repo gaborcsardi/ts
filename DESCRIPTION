@@ -8,7 +8,8 @@ Authors@R: c(
         comment = c(ROR = "03wc8by49"))
   )
 Description: Common tree-sitter parsing tools for R. It is meant to be
-    used by other packages that specialize in particular languages.
+    used by other packages that specialize in particular languages and
+    file formats.
 License: MIT + file LICENSE
 Depends: R (>= 3.5.0)
 Imports:
