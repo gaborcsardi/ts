@@ -23,8 +23,6 @@
 #' shows the semantic structure of the parsed document, which may be
 #' different from the syntax tree.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("ts_tree_ast_details_syntax_vs_dom")}
 #'
 #' @details

@@ -9,25 +9,16 @@ ts_tree_insert(tree, new, key, at, options, ...)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_tree")}}
 
-\item{new}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_new")}\if{html}{\out{
-<p>
-}}
-
+\item{new}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_new")}
 
 The type of \code{new} depends on the parser and the method that implements
 the insertion. See details in the manual of the specific parser.}
 
-\item{key}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_key")}\if{html}{\out{
-<p>
-}}
-
+\item{key}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_key")}
 
 For example a JSON(C) object or a TOML table are keyed elements.}
 
-\item{at}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_at")}\if{html}{\out{
-<p>
-}}
-
+\item{at}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_at")}
 
 The interpretation of this argument depends on the method that
 implements the insertion. Typically the followings are supported:
@@ -41,10 +32,7 @@ in keyed elements.
 
 See the details in the manual of the specific parser.}
 
-\item{options}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_options")}\if{html}{\out{
-<p>
-}}
-
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_insert_param_options")}
 
 See details in the manual of the specific parser.}
 

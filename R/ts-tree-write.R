@@ -12,8 +12,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_write_details_file")}
 #'
-#' <p>
-#'
 #' To write to a connection, pass a connection object to the `file`
 #' argument. If the connection is opened in binary mode, the raw bytes
 #' are written using [base::writeBin()]. Otherwise, the raw bytes are

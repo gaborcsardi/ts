@@ -20,8 +20,6 @@
 #' You need to use the returned `ts_language` object as the `language`
 #' argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_insert("ts_tree_new_details")}
 #' \eval{ts:::doc_extra()}
 #'
@@ -64,8 +62,6 @@
 #' @seealso The tree-sitter parser packages typically include shortcuts to
 #'   create parse trees from strings and file, e.g.
 #'   [tsjsonc::ts_parse_jsonc()] and [tsjsonc::ts_read_jsonc()].
-#'
-#'   <p>
 #'
 #'   \eval{ts:::doc_seealso("ts_tree_new")}
 #'

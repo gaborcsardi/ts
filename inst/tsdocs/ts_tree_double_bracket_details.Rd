@@ -8,10 +8,7 @@ The following two expressions are equivalent:
 and
 
 \if{html}{\out{<div class="sourceCode r"><p style="display:none">&nbsp;}}\preformatted{tree[[list(<selectors>)]]
-}\if{html}{\out{</div>}}\if{html}{\out{
-<p>
-}}
-
+}\if{html}{\out{</div>}}
 
 \eval{ts:::doc_tabs("ts_tree_select_brackets")}
 \subsection{The \verb{[[<-} replacement operator}{

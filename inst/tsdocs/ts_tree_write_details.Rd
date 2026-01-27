@@ -4,10 +4,7 @@ If \code{tree} was created from a file, then \code{ts_tree_write()} by default
 writes it back to the same file. Otherwise, the \code{file} argument must be
 specified.
 
-\eval{ts:::doc_tabs("ts_tree_write_details_file")}\if{html}{\out{
-<p>
-}}
-
+\eval{ts:::doc_tabs("ts_tree_write_details_file")}
 
 To write to a connection, pass a connection object to the \code{file}
 argument. If the connection is opened in binary mode, the raw bytes

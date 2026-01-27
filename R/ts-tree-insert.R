@@ -15,14 +15,10 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_insert_details_errors")}
 #'
-#' <p>
-#'
 #' If `tree` does not have a selection, the new element is inserted into
 #' at the top level.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_insert_details_no_selection")}
-#'
-#' <p>
 #'
 #' If `tree` has an empty selection, then it is returned unchanged, i.e.
 #' no new element is inserted.
@@ -46,18 +42,12 @@
 #' @param tree \eval{ts:::doc_insert("ts::ts_tree_insert_param_tree")}
 #' @param new \eval{ts:::doc_insert("ts::ts_tree_insert_param_new")}
 #'
-#' <p>
-#'
 #' The type of `new` depends on the parser and the method that implements
 #' the insertion. See details in the manual of the specific parser.
 #' @param key \eval{ts:::doc_insert("ts::ts_tree_insert_param_key")}
 #'
-#' <p>
-#'
 #' For example a JSON(C) object or a TOML table are keyed elements.
 #' @param at \eval{ts:::doc_insert("ts::ts_tree_insert_param_at")}
-#'
-#' <p>
 #'
 #' The interpretation of this argument depends on the method that
 #' implements the insertion. Typically the followings are supported:
@@ -69,8 +59,6 @@
 #'
 #' See the details in the manual of the specific parser.
 #' @param options \eval{ts:::doc_insert("ts::ts_tree_insert_param_options")}
-#'
-#' <p>
 #'
 #' See details in the manual of the specific parser.
 #' @param ... Extra arguments for methods.

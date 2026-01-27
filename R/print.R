@@ -9,8 +9,6 @@
 #' ts_tree object, writes the formatted object to the standard output, and
 #' returns the original object invisibly.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("print_examples")}
 #' @details \eval{ts:::doc_insert("ts::print_details")}
 #'

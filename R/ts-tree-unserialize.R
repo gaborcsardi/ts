@@ -15,8 +15,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_unserialize_details_no_selection")}
 #'
-#' <p>
-#'
 #' If the tree has an empty selection, then an empty list is returned.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_unserialize_details_empty_selection")}

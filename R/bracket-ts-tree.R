@@ -14,8 +14,6 @@
 #'   to a data frame, and
 #' * `data.frame`, since it is a data frame internally.
 #'
-#' <p>
-#'
 #' The `ts_tree` class has custom [format()] and [print()] methods, that
 #' show (part of) the underlying document, and also the selected elements,
 #' if any.

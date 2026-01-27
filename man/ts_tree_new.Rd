@@ -41,10 +41,7 @@ A package that implements a tree-sitter parser provides a function that
 creates a \code{ts_language} object for that parser. E.g.
 \link[tsjsonc:tsjsonc-package]{tsjsonc} has \code{\link[tsjsonc:ts_language_jsonc]{tsjsonc::ts_language_jsonc()}}.
 You need to use the returned \code{ts_language} object as the \code{language}
-argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.\if{html}{\out{
-<p>
-}}
-
+argument of \code{\link[ts:ts_tree_new]{ts_tree_new()}}.
 
 \eval{ts:::doc_insert("ts_tree_new_details")}
 \eval{ts:::doc_extra()}
@@ -78,10 +75,7 @@ toml |> ts_tree_format()
 \seealso{
 The tree-sitter parser packages typically include shortcuts to
 create parse trees from strings and file, e.g.
-\code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_parse_jsonc()}} and \code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_read_jsonc()}}.\if{html}{\out{
-  <p>
-}}
-
+\code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_parse_jsonc()}} and \code{\link[tsjsonc:ts_parse_jsonc]{tsjsonc::ts_read_jsonc()}}.
 
 \eval{ts:::doc_seealso("ts_tree_new")}
 

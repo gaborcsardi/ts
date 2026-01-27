@@ -96,8 +96,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_brackets")}
 #'
-#' <p>
-#'
 #' The `[[<-` operator works similarly to the combination of
 #' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
 #' \code{\link[ts:ts_tree_update]{ts_tree_update()}}, (and also to the
@@ -475,8 +473,6 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #' ```r
 #' tree[[list(<selectors>)]]
 #' ```
-#'
-#' <p>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_brackets")}
 #'

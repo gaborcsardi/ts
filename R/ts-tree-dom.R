@@ -17,8 +17,6 @@
 #' tree-sitter syntax tree that includes all nodes, including syntax
 #' elements like brackets and commas.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("ts_tree_ast_details_syntax_vs_dom")}
 #'
 #' @details

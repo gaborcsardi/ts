@@ -11,8 +11,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_update_details_no_selection")}
 #'
-#' <p>
-#'
 #' If the tree has an empty selection, the new element is inserted at the
 #' position of where the selected elements would be.
 #'
@@ -32,13 +30,9 @@
 #' @param tree \eval{ts:::doc_insert("ts::ts_tree_update_param_tree")}
 #' @param new \eval{ts:::doc_insert("ts::ts_tree_update_param_new")}
 #'
-#' <p>
-#'
 #' The type of `new` depends on the parser and the method that implements
 #' the insertion. See details in the manual of the specific parser.
 #' @param options \eval{ts:::doc_insert("ts::ts_tree_update_param_options")}
-#'
-#' <p>
 #'
 #' See details in the manual of the specific parser.
 #' @param ... Extra arguments for methods.

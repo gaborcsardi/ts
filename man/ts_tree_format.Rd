@@ -9,10 +9,7 @@ ts_tree_format(tree, options, ...)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_format_param_tree")}}
 
-\item{options}{\eval{ts:::doc_insert("ts::ts_tree_format_param_options")}\if{html}{\out{
-<p>
-}}
-
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_format_param_options")}
 
 See details in the manual of the specific parser.}
 

@@ -7,10 +7,7 @@ A tree-sitter tree object has at least four classes:
 \item \code{tbl}, from the pillar package, for better printing when converted
 to a data frame, and
 \item \code{data.frame}, since it is a data frame internally.
-}\if{html}{\out{
-<p>
-}}
-
+}
 
 The \code{ts_tree} class has custom \code{\link[=format]{format()}} and \code{\link[=print]{print()}} methods, that
 show (part of) the underlying document, and also the selected elements,

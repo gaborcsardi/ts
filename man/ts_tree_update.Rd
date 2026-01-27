@@ -9,18 +9,12 @@ ts_tree_update(tree, new, options, ...)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_update_param_tree")}}
 
-\item{new}{\eval{ts:::doc_insert("ts::ts_tree_update_param_new")}\if{html}{\out{
-<p>
-}}
-
+\item{new}{\eval{ts:::doc_insert("ts::ts_tree_update_param_new")}
 
 The type of \code{new} depends on the parser and the method that implements
 the insertion. See details in the manual of the specific parser.}
 
-\item{options}{\eval{ts:::doc_insert("ts::ts_tree_update_param_options")}\if{html}{\out{
-<p>
-}}
-
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_update_param_options")}
 
 See details in the manual of the specific parser.}
 
