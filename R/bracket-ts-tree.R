@@ -73,7 +73,7 @@
 #' @return \eval{ts:::doc_insert("ts::ts_tree_brackets_return")}
 #'
 #' @name ts_tree-brackets
-#' @family `ts_tree` exploration
+#' @family ts_tree exploration
 #' @seealso \eval{ts:::doc_seealso("[")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)

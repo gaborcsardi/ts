@@ -66,7 +66,7 @@ tree |> ts_tree_select("package", "version") |> ts_tree_update("2.0.0")
 \seealso{
 \eval{ts:::doc_seealso("ts_tree_update")}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -84,4 +84,4 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_unserialize}()},
 \code{\link{ts_tree_write}()}
 }
-\concept{\code{ts_tree} generics}
+\concept{ts_tree generics}

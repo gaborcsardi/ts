@@ -54,7 +54,7 @@
 #' The `ts_tree` object of the reformatted document.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_format_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_format")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)

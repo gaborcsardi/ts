@@ -45,7 +45,7 @@
 #' Invisibly returns `NULL`.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_write_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_write")}
 #' @export
 #' @examplesIf Sys.getenv("IN_PKGDOWN") == "true"

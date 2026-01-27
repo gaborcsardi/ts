@@ -53,7 +53,7 @@ tree |> ts_tree_select("servers", TRUE, "dc") |> ts_tree_delete()
 \seealso{
 \eval{ts:::doc_seealso("ts_tree_delete")}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -71,4 +71,4 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_update}()},
 \code{\link{ts_tree_write}()}
 }
-\concept{\code{ts_tree} generics}
+\concept{ts_tree generics}

@@ -42,8 +42,8 @@
 #' may contain ANSI escape sequences for coloring and hyperlinks.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_ast_return")}
 #'
-#' @family `ts_tree` exploration
-#' @family `ts_tree` generics
+#' @family ts_tree exploration
+#' @family ts_tree generics
 #' @seealso [ts_tree_dom()] to show the document object model (DOM) of a
 #'   ts_tree object.
 #'

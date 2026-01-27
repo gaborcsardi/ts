@@ -33,7 +33,7 @@ tree |> ts_tree_format() |> ts_tree_write("example.json")
 \seealso{
 \eval{ts:::doc_seealso("ts_tree_write")}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -51,4 +51,4 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_unserialize}()},
 \code{\link{ts_tree_update}()}
 }
-\concept{\code{ts_tree} generics}
+\concept{ts_tree generics}

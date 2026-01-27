@@ -37,7 +37,7 @@ tree[[list("b", -(1:2))]]
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
 \code{\link{print.ts_tree}()},
@@ -58,5 +58,5 @@ Other \code{ts_tree} generics:
 Other serialization functions: 
 \code{\link{ts_tree_unserialize}()}
 }
-\concept{\code{ts_tree} generics}
 \concept{serialization functions}
+\concept{ts_tree generics}

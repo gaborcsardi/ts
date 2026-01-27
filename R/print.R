@@ -26,7 +26,7 @@
 #' Invisibly returns the original `ts_tree` object.
 #' @return \eval{ts:::doc_insert("ts::print_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
@@ -77,7 +77,7 @@ print.ts_tree <- function(x, n = 10, ...) {
 #' Character vector of lines to print.
 #' @return \eval{ts:::doc_insert("ts::format_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------

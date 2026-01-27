@@ -136,7 +136,7 @@ NULL
 #' A `ts_tree` object with the selected parts.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_select_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_select")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
@@ -513,7 +513,7 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #' List of R objects, with one entry for each selected element.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @family serialization functions
 #' @rdname double-bracket-ts-tree
 #' @export
@@ -694,7 +694,7 @@ ts_tree_selector_default <- function(tree) {
 #'
 #' @name select-set
 #' @rdname select-set
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
@@ -770,7 +770,7 @@ ts_tree_selector_default <- function(tree) {
 #' The modified `ts_tree` object.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_return")}
 #' @rdname double-bracket-set-ts-tree
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------

@@ -50,8 +50,8 @@
 #'
 #'  \eval{ts:::doc_seealso("ts_tree_query")}
 #' @export
-#' @family `ts_tree` exploration
-#' @family `ts_tree` generics
+#' @family ts_tree exploration
+#' @family ts_tree generics
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Select all numbers in a JSONC document ------------------------------------
 #' json <- tsjsonc::ts_parse_jsonc(
