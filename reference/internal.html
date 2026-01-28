@@ -23,7 +23,7 @@ directly."></head><body>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -33,7 +33,7 @@ directly."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Utility functions for ts language implementations (internal)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gaborcsardi/ts/blob/repo/R/collapse.R" class="external-link"><code>R/collapse.R</code></a>, <a href="https://github.com/gaborcsardi/ts/blob/repo/R/error.R" class="external-link"><code>R/error.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/ts/blob/main/R/collapse.R" class="external-link"><code>R/collapse.R</code></a>, <a href="https://github.com/r-lib/ts/blob/main/R/error.R" class="external-link"><code>R/error.R</code></a></small>
       <div class="d-none name"><code>internal.Rd</code></div>
     </div>
 
@@ -199,6 +199,14 @@ methods to display the error together with the relevant lines
 of the original text.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ts_collapse</span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a, b, and c"</span>
+<span class="r-in"><span><span class="fu">ts_collapse</span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, trunc <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a, b, c, ..., i, and j"</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

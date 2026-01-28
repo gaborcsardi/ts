@@ -56,15 +56,15 @@ A data frame with one row per token, and columns:
 - `children`: list of integer vectors, the ids of the children tokens.
 
 - `dom_type`: character, the type of the node in the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
+  [`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md).
   Nodes that are not part of the DOM tree have `NA_character_` here.
 
 - `dom_children`: list of integer vectors, the ids of the children in
   the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
+  [`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md).
 
 - `dom_parent`: integer, the parent of the node in the DOM tree. See
-  [`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md).
+  [`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md).
   Nodes that are not part of the DOM tree and the document node have
   have `NA_integer_` here.
 
@@ -97,11 +97,11 @@ details in the 'Value' section or this page.
 
 ## See also
 
-Other `ts_tree` exploration:
-[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
-[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
-[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
-[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md)
+Other ts_tree exploration:
+[`ts_tree_ast()`](https://r-lib.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_query()`](https://r-lib.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_sexpr()`](https://r-lib.github.io/ts/reference/ts_tree_sexpr.md)
 
 ## Examples
 

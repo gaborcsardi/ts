@@ -23,7 +23,7 @@ exploration and debugging."></head><body>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -33,7 +33,7 @@ exploration and debugging."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Convert ts_tree object to a data frame</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gaborcsardi/ts/blob/repo/R/bracket-ts-tree.R" class="external-link"><code>R/bracket-ts-tree.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/ts/blob/main/R/bracket-ts-tree.R" class="external-link"><code>R/bracket-ts-tree.R</code></a></small>
       <div class="d-none name"><code>ts_tree-brackets.Rd</code></div>
     </div>
 
@@ -103,10 +103,10 @@ internal and may change without notice.
 <li><p><code>tbl</code>, from the pillar package, for better printing when converted
 to a data frame, and</p></li>
 <li><p><code>data.frame</code>, since it is a data frame internally.</p></li>
-</ul><p>The <code>ts_tree</code> class has custom <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> and <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> methods, that
+</ul>The <code>ts_tree</code> class has custom <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code> and <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> methods, that
 show (part of) the underlying document, and also the selected elements,
 if any.
-</p><p>It is sometimes useful to treat a <code>tree</code> <code>ts_tree</code> object as a data
+<p><!-- ------------------------------------------------------>It is sometimes useful to treat a <code>tree</code> <code>ts_tree</code> object as a data
 frame, and drop the <code>ts_tree</code> classes. This can be done by indexing with
 single brackets, e.g. <code>tree[]</code>. This returns a data frame with one
 row per token, and various columns with information about the tokens.
@@ -115,7 +115,7 @@ See details in the 'Value' section or this page.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p></p>
-<p>Other <code>ts_tree</code> exploration:
+<p>Other ts_tree exploration:
 <code><a href="ts_tree_ast.html">ts_tree_ast()</a></code>,
 <code><a href="ts_tree_dom.html">ts_tree_dom()</a></code>,
 <code><a href="ts_tree_query.html">ts_tree_query()</a></code>,
@@ -125,7 +125,7 @@ See details in the 'Value' section or this page.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a parse tree with tsjsonc -------------------------------------</span></span></span>
-<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">tree</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;"># jsonc (1 line)</span></span>

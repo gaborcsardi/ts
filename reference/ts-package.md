@@ -1,7 +1,11 @@
 # ts: Tree-Sitter Parsing Tools
 
 Common tree-sitter parsing tools for R. It is meant to be used by other
-packages that specialize in particular languages.
+packages that specialize in particular languages and file formats.
+
+## Value
+
+Not applicable.
 
 ## Details
 
@@ -17,11 +21,11 @@ packages that specialize in particular languages.
 
 Useful links:
 
-- <https://github.com/gaborcsardi/ts>
+- <https://github.com/r-lib/ts>
 
-- <https://gaborcsardi.github.io/ts/>
+- <https://r-lib.github.io/ts/>
 
-- Report bugs at <https://github.com/gaborcsardi/ts/issues>
+- Report bugs at <https://github.com/r-lib/ts/issues>
 
 ## Author
 
@@ -31,3 +35,9 @@ Other contributors:
 
 - Posit Software, PBC ([ROR](https://ror.org/03wc8by49)) \[copyright
   holder, funder\]
+
+## Examples
+
+``` r
+# See help("about", package = "ts")
+```

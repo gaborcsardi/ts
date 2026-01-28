@@ -20,13 +20,13 @@ You can install the development version of ts from
 
 ``` r
 # install.packages("pak")
-pak::pak("gaborcsardi/ts")
+pak::pak("r-lib/ts")
 ```
 
 ## Documentation
 
 See at
-[`https://gaborcsardi.github.io/ts/`](https://gaborcsardi.github.io/ts/reference/index.html)
+[`https://r-lib.github.io/ts/`](https://r-lib.github.io/ts/reference/index.html)
 and also in the installed package:
 [`help(package = "ts")`](https://gaborcsardi.github.io/ts/reference).
 
@@ -431,7 +431,7 @@ json |> ts_tree_unserialize()
     #>
 
 Note that
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md)
 always returns a list, the first element of the list is the unserialized
 document.
 
@@ -461,7 +461,7 @@ json |> ts_tree_select("b") |> ts_tree_unserialize()
     #>
 
 Again,
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md)
 returns a list, with one element for each selected node.
 
 ### Exploring a tree-sitter tree

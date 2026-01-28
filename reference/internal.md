@@ -110,7 +110,7 @@ ts_parse_error_cnd(tree, text, call = ts_caller_env())
 - tree:
 
   A `ts_tree` object as returned by
-  [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md).
+  [`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md).
 
 - text:
 
@@ -171,3 +171,12 @@ information about the location of parse errors in the text. It also has
 [`format()`](https://rdrr.io/r/base/format.html) and
 [`print()`](https://rdrr.io/r/base/print.html) methods to display the
 error together with the relevant lines of the original text.
+
+## Examples
+
+``` r
+ts_collapse(letters[1:3])
+#> [1] "a, b, and c"
+ts_collapse(letters[1:10], trunc = 5)
+#> [1] "a, b, c, ..., i, and j"
+```

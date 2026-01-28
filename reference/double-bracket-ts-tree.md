@@ -1,9 +1,9 @@
 # Unserialize parts of a tree-sitter tree
 
 The `[[` operator works similarly to the combination of
-[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md)
+[`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md)
 and
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md),
 but it might be more readable.
 
 ## Usage
@@ -22,12 +22,16 @@ x[[i, ...]]
 - i:
 
   Selection expressions in a list, see details in
-  [`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md).
+  [`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md).
 
 - ...:
 
   Additional arguments, passed to
-  [`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md).
+  [`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md).
+
+## Value
+
+List of R objects, with one entry for each selected element.
 
 ## Details
 
@@ -89,11 +93,11 @@ TOML
 ### The `[[<-` replacement operator
 
 The `[[<-` operator works similarly to the combination of
-[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md)
+[`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md)
 and
-[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
+[`ts_tree_update()`](https://r-lib.github.io/ts/reference/ts_tree_update.md),
 (and also to the replacement function
-[`ts_tree_select<-()`](https://gaborcsardi.github.io/ts/reference/select-set.md)),
+[`ts_tree_select<-()`](https://r-lib.github.io/ts/reference/select-set.md)),
 but it might be more readable.
 
 JSONC
@@ -161,25 +165,25 @@ TOML
 
 ## See also
 
-Other `ts_tree` generics: `[[<-.ts_tree()`,
-[`format.ts_tree()`](https://gaborcsardi.github.io/ts/reference/format.ts_tree.md),
-[`print.ts_tree()`](https://gaborcsardi.github.io/ts/reference/print.ts_tree.md),
-[`select-set`](https://gaborcsardi.github.io/ts/reference/select-set.md),
-[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
-[`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md),
-[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
-[`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md),
-[`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md),
-[`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md),
-[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
-[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md),
-[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md),
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
-[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
-[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.md)
+Other ts_tree generics: `[[<-.ts_tree()`,
+[`format.ts_tree()`](https://r-lib.github.io/ts/reference/format.ts_tree.md),
+[`print.ts_tree()`](https://r-lib.github.io/ts/reference/print.ts_tree.md),
+[`select-set`](https://r-lib.github.io/ts/reference/select-set.md),
+[`ts_tree_ast()`](https://r-lib.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_delete()`](https://r-lib.github.io/ts/reference/ts_tree_delete.md),
+[`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_format()`](https://r-lib.github.io/ts/reference/ts_tree_format.md),
+[`ts_tree_insert()`](https://r-lib.github.io/ts/reference/ts_tree_insert.md),
+[`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md),
+[`ts_tree_query()`](https://r-lib.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md),
+[`ts_tree_sexpr()`](https://r-lib.github.io/ts/reference/ts_tree_sexpr.md),
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_update()`](https://r-lib.github.io/ts/reference/ts_tree_update.md),
+[`ts_tree_write()`](https://r-lib.github.io/ts/reference/ts_tree_write.md)
 
 Other serialization functions:
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md)
 
 ## Examples
 

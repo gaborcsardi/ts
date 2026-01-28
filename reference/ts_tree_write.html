@@ -19,7 +19,7 @@
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -29,7 +29,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Write a tree-sitter tree to a file</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gaborcsardi/ts/blob/repo/R/ts-tree-write.R" class="external-link"><code>R/ts-tree-write.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/ts/blob/main/R/ts-tree-write.R" class="external-link"><code>R/ts-tree-write.R</code></a></small>
       <div class="d-none name"><code>ts_tree_write.Rd</code></div>
     </div>
 
@@ -72,17 +72,16 @@ specified.</p><div><div class="w3-bar">
 </button>
 <button class="w3-bar-item w3-button tablink " onclick="openCity(event,'toml')">
   TOML
-</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  Format a JSONC file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_read_jsonc</a></span><span class="op">(</span><span class="st">"config.json"</span><span class="op">)</span></span>
+</button></div>  <div class="ts-package-jsonc w3-container w3-border ts-package" style="">  Format a JSONC file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html" class="external-link">ts_read_jsonc</a></span><span class="op">(</span><span class="st">"config.json"</span><span class="op">)</span></span>
 <span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_format.html">ts_tree_format</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_write.html">ts_tree_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-</div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  Format a TOML file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tstoml</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tstoml/reference/ts_parse_toml.html">ts_parse_toml</a></span><span class="op">(</span><span class="st">"config.toml"</span><span class="op">)</span></span>
+</div>  <div class="ts-package-toml w3-container w3-border ts-package" style="display:none">  Format a TOML file:<div class="sourceCode r"><p style="display:none"> </p><pre><code><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tstoml</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tstoml/reference/ts_parse_toml.html" class="external-link">ts_parse_toml</a></span><span class="op">(</span><span class="st">"config.toml"</span><span class="op">)</span></span>
 <span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_format.html">ts_tree_format</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ts_tree_write.html">ts_tree_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-</div></div>
-<p>To write to a connection, pass a connection object to the <code>file</code>
+</div></div>To write to a connection, pass a connection object to the <code>file</code>
 argument. If the connection is opened in binary mode, the raw bytes
 are written using <code><a href="https://rdrr.io/r/base/readBin.html" class="external-link">base::writeBin()</a></code>. Otherwise, the raw bytes are
 converted to characters using the system encoding before writing using
 <code><a href="https://rdrr.io/r/base/rawConversion.html" class="external-link">base::rawToChar()</a></code>.
-</p><p>Use <code>file = stdout()</code> to write to the standard output, i.e. to the
+<p><!-- ------------------------------------------------------>Use <code>file = stdout()</code> to write to the standard output, i.e. to the
 console in an interactive R session.
 
 <script>
@@ -200,7 +199,7 @@ function openCity(evt, language) {
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p></p>
-<p>Other <code>ts_tree</code> generics:
+<p>Other ts_tree generics:
 <code><a href="double-bracket-ts-tree.html">[[.ts_tree()</a></code>,
 <code>[[&lt;-.ts_tree()</code>,
 <code><a href="format.ts_tree.html">format.ts_tree()</a></code>,
@@ -222,7 +221,7 @@ function openCity(evt, language) {
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a parse tree with tsjsonc -------------------------------------</span></span></span>
-<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span><span class="st">'{"foo": 42, "bar": [1, 2, 3]}'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Format and write to file</span></span></span>
 <span class="r-in"><span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="ts_tree_format.html">ts_tree_format</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ts_tree_write</span><span class="op">(</span><span class="st">"example.json"</span><span class="op">)</span></span></span>

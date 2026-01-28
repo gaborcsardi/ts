@@ -67,6 +67,10 @@ ts_tree_insert(tree, new, key, at, options, ...)
 
   Extra arguments for methods.
 
+## Value
+
+A `ts_tree` object representing the modified parse tree.
+
 ## Details
 
 It is not always possible to insert a new element into a selected
@@ -154,23 +158,23 @@ TOML
 
 Method in installed package: `ts_tree_insert(<ts_tree_tsjsonc>)`.
 
-Other `ts_tree` generics:
-[`[[.ts_tree()`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md),
+Other ts_tree generics:
+[`[[.ts_tree()`](https://r-lib.github.io/ts/reference/double-bracket-ts-tree.md),
 `[[<-.ts_tree()`,
-[`format.ts_tree()`](https://gaborcsardi.github.io/ts/reference/format.ts_tree.md),
-[`print.ts_tree()`](https://gaborcsardi.github.io/ts/reference/print.ts_tree.md),
-[`select-set`](https://gaborcsardi.github.io/ts/reference/select-set.md),
-[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
-[`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md),
-[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
-[`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md),
-[`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md),
-[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
-[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md),
-[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md),
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
-[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md),
-[`ts_tree_write()`](https://gaborcsardi.github.io/ts/reference/ts_tree_write.md)
+[`format.ts_tree()`](https://r-lib.github.io/ts/reference/format.ts_tree.md),
+[`print.ts_tree()`](https://r-lib.github.io/ts/reference/print.ts_tree.md),
+[`select-set`](https://r-lib.github.io/ts/reference/select-set.md),
+[`ts_tree_ast()`](https://r-lib.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_delete()`](https://r-lib.github.io/ts/reference/ts_tree_delete.md),
+[`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_format()`](https://r-lib.github.io/ts/reference/ts_tree_format.md),
+[`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md),
+[`ts_tree_query()`](https://r-lib.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md),
+[`ts_tree_sexpr()`](https://r-lib.github.io/ts/reference/ts_tree_sexpr.md),
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_update()`](https://r-lib.github.io/ts/reference/ts_tree_update.md),
+[`ts_tree_write()`](https://r-lib.github.io/ts/reference/ts_tree_write.md)
 
 ## Examples
 

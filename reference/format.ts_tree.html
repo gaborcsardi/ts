@@ -19,7 +19,7 @@
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/gaborcsardi/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/ts/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -29,7 +29,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Format tree-sitter trees</h1>
-      <small class="dont-index">Source: <a href="https://github.com/gaborcsardi/ts/blob/repo/R/print.R" class="external-link"><code>R/print.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/ts/blob/main/R/print.R" class="external-link"><code>R/print.R</code></a></small>
       <div class="d-none name"><code>format.ts_tree.Rd</code></div>
     </div>
 
@@ -68,10 +68,10 @@
     <p>This is the engine of <code><a href="print.ts_tree.html">print.ts_tree()</a></code>,
 possibly useful to obtain a printed representation without doing the
 actual printing.
-</p><p>
-If there are selected nodes in the tree, those will be highlighted
-in the output. See \code{\link[ts:ts_tree_select]{ts_tree_select()}} to
-select nodes in a tree.</p><p>
+</p><p><!-- ------------------------------------------------------>If there are selected nodes in the tree, those will be highlighted
+in the output. See <code><a href="ts_tree_select.html">ts_tree_select()</a></code> to
+select nodes in a tree.
+</p><p><!-- ------------------------------------------------------>
 <script>
 function openCity(evt, language) {
   var currentTab = evt.srcElement.parentElement.parentElement;
@@ -186,7 +186,7 @@ function openCity(evt, language) {
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>Other <code>ts_tree</code> generics:
+    <div class="dont-index"><p>Other ts_tree generics:
 <code><a href="double-bracket-ts-tree.html">[[.ts_tree()</a></code>,
 <code>[[&lt;-.ts_tree()</code>,
 <code><a href="print.ts_tree.html">print.ts_tree()</a></code>,
@@ -208,7 +208,7 @@ function openCity(evt, language) {
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create a parse tree with tsjsonc -------------------------------------</span></span></span>
-<span class="r-in"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html">ts_parse_jsonc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu">tsjsonc</span><span class="fu">::</span><span class="fu"><a href="https://gaborcsardi.github.io/tsjsonc/reference/ts_parse_jsonc.html" class="external-link">ts_parse_jsonc</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">'{ "a": 1, "b": [10, 20, 30], "c": { "c1": true, "c2": 100 } }'</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span></span>

@@ -13,13 +13,13 @@ ts_tree_write(tree, file = NULL)
 - tree:
 
   A `ts_tree` object as returned by
-  [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md).
+  [`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md).
 
 - file:
 
   Character string, connection, or `NULL`. The file or connection to
   write to. By default it writes to the same file that was used in
-  [`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md),
+  [`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md),
   if `tree` was read from a file.
 
 ## Value
@@ -62,23 +62,23 @@ console in an interactive R session.
 
 ## See also
 
-Other `ts_tree` generics:
-[`[[.ts_tree()`](https://gaborcsardi.github.io/ts/reference/double-bracket-ts-tree.md),
+Other ts_tree generics:
+[`[[.ts_tree()`](https://r-lib.github.io/ts/reference/double-bracket-ts-tree.md),
 `[[<-.ts_tree()`,
-[`format.ts_tree()`](https://gaborcsardi.github.io/ts/reference/format.ts_tree.md),
-[`print.ts_tree()`](https://gaborcsardi.github.io/ts/reference/print.ts_tree.md),
-[`select-set`](https://gaborcsardi.github.io/ts/reference/select-set.md),
-[`ts_tree_ast()`](https://gaborcsardi.github.io/ts/reference/ts_tree_ast.md),
-[`ts_tree_delete()`](https://gaborcsardi.github.io/ts/reference/ts_tree_delete.md),
-[`ts_tree_dom()`](https://gaborcsardi.github.io/ts/reference/ts_tree_dom.md),
-[`ts_tree_format()`](https://gaborcsardi.github.io/ts/reference/ts_tree_format.md),
-[`ts_tree_insert()`](https://gaborcsardi.github.io/ts/reference/ts_tree_insert.md),
-[`ts_tree_new()`](https://gaborcsardi.github.io/ts/reference/ts_tree_new.md),
-[`ts_tree_query()`](https://gaborcsardi.github.io/ts/reference/ts_tree_query.md),
-[`ts_tree_select()`](https://gaborcsardi.github.io/ts/reference/ts_tree_select.md),
-[`ts_tree_sexpr()`](https://gaborcsardi.github.io/ts/reference/ts_tree_sexpr.md),
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md),
-[`ts_tree_update()`](https://gaborcsardi.github.io/ts/reference/ts_tree_update.md)
+[`format.ts_tree()`](https://r-lib.github.io/ts/reference/format.ts_tree.md),
+[`print.ts_tree()`](https://r-lib.github.io/ts/reference/print.ts_tree.md),
+[`select-set`](https://r-lib.github.io/ts/reference/select-set.md),
+[`ts_tree_ast()`](https://r-lib.github.io/ts/reference/ts_tree_ast.md),
+[`ts_tree_delete()`](https://r-lib.github.io/ts/reference/ts_tree_delete.md),
+[`ts_tree_dom()`](https://r-lib.github.io/ts/reference/ts_tree_dom.md),
+[`ts_tree_format()`](https://r-lib.github.io/ts/reference/ts_tree_format.md),
+[`ts_tree_insert()`](https://r-lib.github.io/ts/reference/ts_tree_insert.md),
+[`ts_tree_new()`](https://r-lib.github.io/ts/reference/ts_tree_new.md),
+[`ts_tree_query()`](https://r-lib.github.io/ts/reference/ts_tree_query.md),
+[`ts_tree_select()`](https://r-lib.github.io/ts/reference/ts_tree_select.md),
+[`ts_tree_sexpr()`](https://r-lib.github.io/ts/reference/ts_tree_sexpr.md),
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md),
+[`ts_tree_update()`](https://r-lib.github.io/ts/reference/ts_tree_update.md)
 
 ## Examples
 

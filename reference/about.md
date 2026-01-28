@@ -14,6 +14,10 @@ implemented in other R packages. It has a common API to
 
 tree-sitter parse trees.
 
+## Value
+
+Not applicable.
+
 ## Details
 
 In this document I show examples with the `tsjsonc` package.
@@ -375,7 +379,7 @@ Unserialize a whole document:
     #>
 
 Note that
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md)
 always returns a list, the first element of the list is the unserialized
 document.
 
@@ -403,7 +407,7 @@ Unserialize part(s) of the document:
     #>
 
 Again,
-[`ts_tree_unserialize()`](https://gaborcsardi.github.io/ts/reference/ts_tree_unserialize.md)
+[`ts_tree_unserialize()`](https://r-lib.github.io/ts/reference/ts_tree_unserialize.md)
 returns a list, with one element for each selected node.
 
 ### Exploring a tree-sitter tree
@@ -534,3 +538,9 @@ Print the structural summary of a tree:
     #> tring (string_content)) value: (true)) (pair key: (string (string_content)) valu
     #> e: (false))) (object (pair key: (string (string_content)) value: (false)) (pair
     #> key: (string (string_content)) value: (false)))))))"
+
+## Examples
+
+``` r
+# See above please.
+```
