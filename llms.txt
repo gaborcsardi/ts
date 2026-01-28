@@ -28,7 +28,7 @@ pak::pak("r-lib/ts")
 See at
 [`https://r-lib.github.io/ts/`](https://r-lib.github.io/ts/reference/index.html)
 and also in the installed package:
-[`help(package = "ts")`](https://gaborcsardi.github.io/ts/reference).
+[`help(package = "ts")`](https://r-lib.github.io/ts/reference).
 
 ## Parsers that use ts
 
