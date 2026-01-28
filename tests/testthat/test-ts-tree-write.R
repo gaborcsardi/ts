@@ -13,10 +13,14 @@ test_that("ts_tree_write", {
   })
 
   # error if no file
-  expect_snapshot(error = TRUE, {
-    tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [true, false]}')
-    tree %>% ts_tree_write()
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [true, false]}')
+      tree %>% ts_tree_write()
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # append \n if needed
   expect_snapshot({

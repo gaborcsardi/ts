@@ -62,9 +62,13 @@ test_that("ts_tree_select unknown selector", {
   skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
-  expect_snapshot(error = TRUE, {
-    tree %>% ts_tree_select(raw(2))
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      tree %>% ts_tree_select(raw(2))
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("ts_tree_select NULL", {
@@ -92,18 +96,26 @@ test_that("ts_tree_select zero index", {
   skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
-  expect_snapshot(error = TRUE, {
-    tree %>% ts_tree_select("b", 0)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      tree %>% ts_tree_select("b", 0)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("ts_tree_select invalid logical selector", {
   skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
-  expect_snapshot(error = TRUE, {
-    tree %>% ts_tree_select("b", c(TRUE, FALSE))
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      tree %>% ts_tree_select("b", c(TRUE, FALSE))
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("[[", {
@@ -136,9 +148,13 @@ test_that("TS query", {
   })
 
   # invalid capture name
-  expect_snapshot(error = TRUE, {
-    tree %>% ts_tree_select(query = list("(null) @foo", "bar"))
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      tree %>% ts_tree_select(query = list("(null) @foo", "bar"))
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # query with a captures parameter
   expect_snapshot({

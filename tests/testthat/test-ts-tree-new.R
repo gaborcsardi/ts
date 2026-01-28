@@ -9,16 +9,24 @@ test_that("ts_tree_new", {
   })
 
   # error if both text and file are NULL or present
-  expect_snapshot(error = TRUE, {
-    ts_tree_new(tsjsonc::ts_language_jsonc())
-  })
-  expect_snapshot(error = TRUE, {
-    ts_tree_new(
-      tsjsonc::ts_language_jsonc(),
-      text = '{"a": 1}',
-      file = tempfile()
-    )
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      ts_tree_new(tsjsonc::ts_language_jsonc())
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
+  expect_snapshot(
+    error = TRUE,
+    {
+      ts_tree_new(
+        tsjsonc::ts_language_jsonc(),
+        text = '{"a": 1}',
+        file = tempfile()
+      )
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # reading from file
   tmp <- file.path(tempfile(), "test.jsonc")
@@ -30,7 +38,8 @@ test_that("ts_tree_new", {
       tree <- ts_tree_new(tsjsonc::ts_language_jsonc(), file = tmp)
       tree
     },
-    transform = redact_tempfile
+    transform = redact_tempfile,
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
   )
 })
 
@@ -47,10 +56,14 @@ test_that("ts_tree_new leading whitespace", {
 
 test_that("ts_tree_new parse error", {
   skip_if_not_installed("tsjsonc")
-  expect_snapshot(error = TRUE, {
-    ts_tree_new(
-      tsjsonc::ts_language_jsonc(),
-      text = '{"a": 1, "b": [1,2,3' # missing closing ]
-    )
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      ts_tree_new(
+        tsjsonc::ts_language_jsonc(),
+        text = '{"a": 1, "b": [1,2,3' # missing closing ]
+      )
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })

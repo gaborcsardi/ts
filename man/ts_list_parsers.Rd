@@ -35,10 +35,11 @@ Here is an example that includes all tree-sitter parsers at this time:
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ts_list_parsers()
 }\if{html}{\out{</div>}}\if{html}{\out{
 <div class="asciicast" style="color: #B9C0CB;font-family: 'Fira Code',Monaco,Consolas,Menlo,'Bitstream Vera Sans Mono','Powerline Symbols',monospace;line-height: 1.300000"><pre>
-#> <span style="color: #999999;"># A data frame: 1 × 5</span>                                                           
+#> <span style="color: #999999;"># A data frame: 2 × 5</span>                                                           
 #>   package version    title           library                    loaded          
 #> <span style="color: #c2c2c2;">*</span> <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>   <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>      <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>           <span style="font-style: italic;color: #999999;">&lt;chr&gt;</span>                      <span style="font-style: italic;color: #999999;">&lt;lgl&gt;</span>           
 #> <span style="color: #c2c2c2;">1</span> tsjsonc 0.0.0.9000 Edit JSON Files /Users/gaborcsardi/Librar… FALSE           
+#> <span style="color: #c2c2c2;">2</span> tstoml  0.0.0.9000 Edit TOML files /Users/gaborcsardi/Librar… FALSE           
 </pre></div>
 }}
 }

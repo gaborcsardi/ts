@@ -72,6 +72,11 @@ as.character.ts_caller_arg <- function(x, ...) {
   gsub("\n.*$", "...", lbl)
 }
 
+# older R does not have a format method for names
+format.name <- function(x, ...) {
+  deparse(x, backtick = FALSE)
+}
+
 #' @rdname internal
 #' @param n Number of frames to go up to find the caller environment.
 #' @details `ts_caller_env()` returns the environment of the caller function,

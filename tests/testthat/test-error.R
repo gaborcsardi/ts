@@ -52,19 +52,27 @@ test_that("ts_check_named_arg", {
   expect_silent(f(foobar = 42))
   expect_silent(f())
 
-  expect_snapshot(error = TRUE, {
-    f(42)
-    f(fooba = 42)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      f(42)
+      f(fooba = 42)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("ts_parse_error_cnd", {
   skip_if_not_installed("tsjsonc")
   txt <- '{"a": 1, "b": [true, false, error]}'
   tree <- tsjsonc::ts_parse_jsonc(txt, fail_on_parse_error = FALSE)
-  expect_snapshot(error = TRUE, {
-    stop(ts_parse_error_cnd(tree = tree, text = charToRaw(txt)))
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      stop(ts_parse_error_cnd(tree = tree, text = charToRaw(txt)))
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("format_ts_parse_error_1", {
@@ -73,33 +81,49 @@ test_that("format_ts_parse_error_1", {
   txt <- '{"a": 1, "b": [true, false, "very", error, "this", "is", "ok"]}'
   tree <- tsjsonc::ts_parse_jsonc(txt, fail_on_parse_error = FALSE)
   err <- ts_parse_error_cnd(tree = tree, text = charToRaw(txt))
-  expect_snapshot(error = TRUE, {
-    stop(err)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      stop(err)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # truncate error
   txt2 <- '{"a": 1, "b": [true, false, "very", looooooooooooooooooooooong]}'
   tree2 <- tsjsonc::ts_parse_jsonc(txt2, fail_on_parse_error = FALSE)
   err2 <- ts_parse_error_cnd(tree = tree2, text = charToRaw(txt2))
-  expect_snapshot(error = TRUE, {
-    stop(err2)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      stop(err2)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # show context
   txt3 <- '{"a": 1, \n "b": [true, false, "very", bad]\n}'
   tree3 <- tsjsonc::ts_parse_jsonc(txt3, fail_on_parse_error = FALSE)
   err3 <- ts_parse_error_cnd(tree = tree3, text = charToRaw(txt3))
-  expect_snapshot(error = TRUE, {
-    stop(err3)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      stop(err3)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 
   # omit context on truncation
   txt4 <- '{"a": 1, \n  "b": [true, false, "very", looooooooooooooooooooooong]\n}'
   tree4 <- tsjsonc::ts_parse_jsonc(txt4, fail_on_parse_error = FALSE)
   err4 <- ts_parse_error_cnd(tree = tree4, text = charToRaw(txt4))
-  expect_snapshot(error = TRUE, {
-    stop(err4)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      stop(err4)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("format.ts_parse_error, print.ts_parse_error", {
