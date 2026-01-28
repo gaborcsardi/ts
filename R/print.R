@@ -49,12 +49,13 @@ print.ts_tree <- function(x, n = 10, ...) {
 #' possibly useful to obtain a printed representation without doing the
 #' actual printing.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
+#'
 #' If there are selected nodes in the tree, those will be highlighted
 #' in the output. See \code{\link[ts:ts_tree_select]{ts_tree_select()}} to
 #' select nodes in a tree.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' \eval{ts:::doc_tabs("format_examples")}
 #'

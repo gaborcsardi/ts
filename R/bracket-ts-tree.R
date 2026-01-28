@@ -18,7 +18,7 @@
 #' show (part of) the underlying document, and also the selected elements,
 #' if any.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' It is sometimes useful to treat a `tree` `ts_tree` object as a data
 #' frame, and drop the `ts_tree` classes. This can be done by indexing with

@@ -11,7 +11,7 @@ argument. If the connection is opened in binary mode, the raw bytes
 are written using \code{\link[base:readBin]{base::writeBin()}}. Otherwise, the raw bytes are
 converted to characters using the system encoding before writing using
 \code{\link[base:rawConversion]{base::rawToChar()}}.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 

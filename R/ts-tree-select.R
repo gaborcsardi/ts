@@ -4,14 +4,14 @@
 #' currently selected nodes. For each selector, it is applied individually
 #' to each currently selected node, and the results are concatenated.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' The selection process starts from the root of the DOM tree, the document
 #' node (see \code{\link[ts:ts_tree_dom]{ts_tree_dom()}}), unless
 #' `refine = TRUE` is set, in which case it starts from the current
 #' selection.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' See the various types of selection expressions below.
 #'
@@ -52,7 +52,7 @@
 #' a tree-sitter query. See \code{\link[ts:ts_tree_query]{ts_tree_query()}}
 #' for details on tree-sitter queries.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' Instead of a character scalar this can also be a two-element list, where
 #' the first element is the query string and the second element is a

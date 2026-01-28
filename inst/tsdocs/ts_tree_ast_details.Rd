@@ -6,7 +6,7 @@ This syntax tree contains all nodes of the tree-sitter parse tree,
 including both named and unnamed nodes and comments. E.g. for a JSON(C)
 document it includes the pairs, brackets, braces, commas, colons,
 double quotes and string escape sequences as separate nodes.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 

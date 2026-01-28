@@ -18,7 +18,7 @@
 #' converted to characters using the system encoding before writing using
 #' [base::rawToChar()].
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' Use `file = stdout()` to write to the standard output, i.e. to the
 #' console in an interactive R session.

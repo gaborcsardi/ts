@@ -12,7 +12,7 @@ to a data frame, and
 The \code{ts_tree} class has custom \code{\link[=format]{format()}} and \code{\link[=print]{print()}} methods, that
 show (part of) the underlying document, and also the selected elements,
 if any.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 
