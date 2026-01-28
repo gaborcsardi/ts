@@ -15,8 +15,7 @@ ts_tree_unserialize(tree)
 \description{
 \eval{ts:::doc_insert("ts_tree_unserialize_description")}
 
-\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(),
-"ts_tree_unserialize")}
+\eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_unserialize")}
 }
 \details{
 \eval{ts:::doc_insert("ts::ts_tree_unserialize_details")}

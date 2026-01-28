@@ -6,8 +6,7 @@
 #' @description
 #' \eval{ts:::doc_insert("ts_tree_unserialize_description")}
 #'
-#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(),
-#'   "ts_tree_unserialize")}
+#' \eval{ts:::format_rd_parser_list(ts:::ts_list_parsers(), "ts_tree_unserialize")}
 #'
 #' @ts ts_tree_unserialize_details
 #' If no elements are selected in the tree, then the whole document is
