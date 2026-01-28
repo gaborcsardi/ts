@@ -9,10 +9,7 @@ ts_tree_format(tree, options, ...)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_format_param_tree")}}
 
-\item{options}{\eval{ts:::doc_insert("ts::ts_tree_format_param_options")}\if{html}{\out{
-<p>
-}}
-
+\item{options}{\eval{ts:::doc_insert("ts::ts_tree_format_param_options")}
 
 See details in the manual of the specific parser.}
 
@@ -61,7 +58,7 @@ tree |> ts_tree_format()
 \seealso{
 \eval{ts:::doc_seealso("ts_tree_format")}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -79,4 +76,4 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_update}()},
 \code{\link{ts_tree_write}()}
 }
-\concept{\code{ts_tree} generics}
+\concept{ts_tree generics}

@@ -36,10 +36,10 @@ tree[]
 \seealso{
 \eval{ts:::doc_seealso("[")}
 
-Other \code{ts_tree} exploration: 
+Other ts_tree exploration: 
 \code{\link{ts_tree_ast}()},
 \code{\link{ts_tree_dom}()},
 \code{\link{ts_tree_query}()},
 \code{\link{ts_tree_sexpr}()}
 }
-\concept{\code{ts_tree} exploration}
+\concept{ts_tree exploration}

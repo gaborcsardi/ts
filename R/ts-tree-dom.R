@@ -17,8 +17,6 @@
 #' tree-sitter syntax tree that includes all nodes, including syntax
 #' elements like brackets and commas.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("ts_tree_ast_details_syntax_vs_dom")}
 #'
 #' @details
@@ -36,8 +34,8 @@
 #' @return
 #' \eval{ts:::doc_insert("ts::ts_tree_dom_return")}
 #'
-#' @family `ts_tree` exploration
-#' @family `ts_tree` generics
+#' @family ts_tree exploration
+#' @family ts_tree generics
 #' @seealso [ts_tree_ast()] to show the annotated syntax tree of a
 #'   ts_tree object.
 #'

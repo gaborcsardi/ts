@@ -1,4 +1,5 @@
 test_that("ts_tree_new", {
+  skip_if_not_installed("tsjsonc")
   expect_snapshot({
     tree <- ts_tree_new(
       tsjsonc::ts_language_jsonc(),
@@ -34,6 +35,7 @@ test_that("ts_tree_new", {
 })
 
 test_that("ts_tree_new leading whitespace", {
+  skip_if_not_installed("tsjsonc")
   expect_snapshot({
     tree <- ts_tree_new(
       tsjsonc::ts_language_jsonc(),
@@ -44,6 +46,7 @@ test_that("ts_tree_new leading whitespace", {
 })
 
 test_that("ts_tree_new parse error", {
+  skip_if_not_installed("tsjsonc")
   expect_snapshot(error = TRUE, {
     ts_tree_new(
       tsjsonc::ts_language_jsonc(),

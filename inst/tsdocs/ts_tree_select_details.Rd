@@ -4,7 +4,7 @@ The selection process is iterative. Selection expressions (selectors)
 are applied one by one, and each selector selects nodes from the
 currently selected nodes. For each selector, it is applied individually
 to each currently selected node, and the results are concatenated.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 
@@ -12,7 +12,7 @@ The selection process starts from the root of the DOM tree, the document
 node (see \code{\link[ts:ts_tree_dom]{ts_tree_dom()}}), unless
 \code{refine = TRUE} is set, in which case it starts from the current
 selection.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 
@@ -56,7 +56,7 @@ node.
 A character scalar named \code{query} can be used to select nodes matching
 a tree-sitter query. See \code{\link[ts:ts_tree_query]{ts_tree_query()}}
 for details on tree-sitter queries.\if{html}{\out{
-<p>
+</p><p><!-- ------------------------------------------------------>
 }}
 
 
@@ -106,10 +106,7 @@ The \code{[[} operator works similarly to the combination of
 \code{\link[ts:ts_tree_unserialize]{ts_tree_unserialize()}}, but it
 might be more readable.
 
-\eval{ts:::doc_tabs("ts_tree_select_brackets")}\if{html}{\out{
-<p>
-}}
-
+\eval{ts:::doc_tabs("ts_tree_select_brackets")}
 
 The \verb{[[<-} operator works similarly to the combination of
 \code{\link[ts:ts_tree_select]{ts_tree_select()}} and

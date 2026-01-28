@@ -31,3 +31,8 @@ return multiple AST node ids for a single selected (DOM) node id.
 
 The default implementation simply returns the input node id.
 }
+\examples{
+# This is an internal generic for parser implementations, see the
+# tsjsonc and tstoml packages for examples of methods implementing
+# custom behavior.
+}

@@ -140,4 +140,8 @@ parse errors in the text. It also has \code{format()} and \code{print()}
 methods to display the error together with the relevant lines
 of the original text.
 }
+\examples{
+ts_collapse(letters[1:3])
+ts_collapse(letters[1:10], trunc = 5)
+}
 \keyword{internal}

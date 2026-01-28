@@ -1,4 +1,5 @@
 test_that("ts_tree_select", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
@@ -11,6 +12,7 @@ test_that("ts_tree_select", {
 })
 
 test_that("ts_tree_select NULL", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
@@ -20,6 +22,7 @@ test_that("ts_tree_select NULL", {
 })
 
 test_that("ts_tree_select refine", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 0, "b": [1,2,3]}')
   expect_snapshot({
@@ -31,6 +34,7 @@ test_that("ts_tree_select refine", {
 })
 
 test_that("ts_tree_select regex", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"apple": 1, "banana": 2, "apricot": 3}')
   expect_snapshot({
@@ -45,6 +49,7 @@ test_that("normalize_selectors", {
 })
 
 test_that("ts_tree_select ids", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}') %>% ts_tree_format()
   numbers <- which(tree$type == "number")
@@ -54,6 +59,7 @@ test_that("ts_tree_select ids", {
 })
 
 test_that("ts_tree_select unknown selector", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
@@ -62,6 +68,7 @@ test_that("ts_tree_select unknown selector", {
 })
 
 test_that("ts_tree_select NULL", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
@@ -70,6 +77,7 @@ test_that("ts_tree_select NULL", {
 })
 
 test_that("ts_tree_select keys from non-object", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{ "a": [1,2,3] }')
   expect_snapshot({
@@ -81,6 +89,7 @@ test_that("ts_tree_select keys from non-object", {
 })
 
 test_that("ts_tree_select zero index", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
@@ -89,6 +98,7 @@ test_that("ts_tree_select zero index", {
 })
 
 test_that("ts_tree_select invalid logical selector", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot(error = TRUE, {
@@ -97,6 +107,7 @@ test_that("ts_tree_select invalid logical selector", {
 })
 
 test_that("[[", {
+  skip_if_not_installed("tsjsonc")
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [true, false]}')
   expect_snapshot({
     tree[["a"]]
@@ -109,6 +120,7 @@ test_that("[[", {
 
 
 test_that("TS query", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc(
     '{"a": {"b": [1,2,3]}, "c": {"b": [4,5,6]}}'
@@ -145,6 +157,7 @@ test_that("TS query", {
 })
 
 test_that("ts_tree_select<-", {
+  skip_if_not_installed("tsjsonc")
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
     ts_tree_select(tree, "a") <- 2
@@ -155,6 +168,7 @@ test_that("ts_tree_select<-", {
 })
 
 test_that("ts_tree_delete", {
+  skip_if_not_installed("tsjsonc")
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
     ts_tree_select(tree, "a") <- ts_tree_deleted()
@@ -165,6 +179,7 @@ test_that("ts_tree_delete", {
 })
 
 test_that("ts_tree_select<- can insert", {
+  skip_if_not_installed("tsjsonc")
   library(magrittr)
   tree <- tsjsonc::ts_parse_jsonc('{"a": 1, "b": [1,2,3]}')
   expect_snapshot({
@@ -176,6 +191,7 @@ test_that("ts_tree_select<- can insert", {
 })
 
 test_that("minimize_selection", {
+  skip_if_not_installed("tsjsonc")
   tree <- tsjsonc::ts_parse_jsonc('{"a": null, "b": [1,2,3]}')
   arr <- which(tree$type == "array")
   num <- which(tree$type == "number")

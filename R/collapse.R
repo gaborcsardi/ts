@@ -18,6 +18,9 @@
 #'   with options for truncation by number of elements or display width.
 #'   It is useful for creating informative error messages.
 #' @export
+#' @examples
+#' ts_collapse(letters[1:3])
+#' ts_collapse(letters[1:10], trunc = 5)
 
 ts_collapse <- function(
   s,

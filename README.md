@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 ![lifecycle](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
-[![R-CMD-check](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/gaborcsardi/ts/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/r-lib/ts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/ts/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Common tree-sitter parsing tools for R.
@@ -29,13 +29,13 @@ You can install the development version of ts from
 
 ``` r
 # install.packages("pak")
-pak::pak("gaborcsardi/ts")
+pak::pak("r-lib/ts")
 ```
 
 ## Documentation
 
 See at
-[`https://gaborcsardi.github.io/ts/`](https://gaborcsardi.github.io/ts/reference/index.html)
+[`https://r-lib.github.io/ts/`](https://r-lib.github.io/ts/reference/index.html)
 and also in the installed package: `help(package = "ts")`.
 
 ## Parsers that use ts

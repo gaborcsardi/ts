@@ -15,8 +15,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_unserialize_details_no_selection")}
 #'
-#' <p>
-#'
 #' If the tree has an empty selection, then an empty list is returned.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_unserialize_details_empty_selection")}
@@ -43,8 +41,9 @@
 #'
 #' @ts ts_tree_unserialize_return
 #' List of R objects, with one entry for each selected element.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_unserialize_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @family serialization functions
 #' @seealso \eval{ts:::doc_seealso("ts_tree_unserialize")}
 #' @export

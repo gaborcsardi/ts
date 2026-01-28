@@ -17,13 +17,11 @@
 #' document it includes the pairs, brackets, braces, commas, colons,
 #' double quotes and string escape sequences as separate nodes.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' See \code{\link[ts:ts_tree_dom]{ts::ts_tree_dom()}} for a tree that
 #' shows the semantic structure of the parsed document, which may be
 #' different from the syntax tree.
-#'
-#' <p>
 #'
 #' \eval{ts:::doc_tabs("ts_tree_ast_details_syntax_vs_dom")}
 #'
@@ -42,8 +40,8 @@
 #' may contain ANSI escape sequences for coloring and hyperlinks.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_ast_return")}
 #'
-#' @family `ts_tree` exploration
-#' @family `ts_tree` generics
+#' @family ts_tree exploration
+#' @family ts_tree generics
 #' @seealso [ts_tree_dom()] to show the document object model (DOM) of a
 #'   ts_tree object.
 #'

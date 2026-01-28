@@ -9,6 +9,9 @@ ts_tree_unserialize(tree)
 \arguments{
 \item{tree}{\eval{ts:::doc_insert("ts::ts_tree_unserialize_param_tree")}}
 }
+\value{
+\eval{ts:::doc_insert("ts::ts_tree_unserialize_return")}
+}
 \description{
 \eval{ts:::doc_insert("ts_tree_unserialize_description")}
 
@@ -37,7 +40,7 @@ tree |> ts_tree_select("b") |> ts_tree_unserialize()
 \seealso{
 \eval{ts:::doc_seealso("ts_tree_unserialize")}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -58,5 +61,5 @@ Other \code{ts_tree} generics:
 Other serialization functions: 
 \code{\link{[[.ts_tree}()}
 }
-\concept{\code{ts_tree} generics}
 \concept{serialization functions}
+\concept{ts_tree generics}

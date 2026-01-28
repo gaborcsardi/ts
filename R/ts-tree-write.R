@@ -12,15 +12,13 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_write_details_file")}
 #'
-#' <p>
-#'
 #' To write to a connection, pass a connection object to the `file`
 #' argument. If the connection is opened in binary mode, the raw bytes
 #' are written using [base::writeBin()]. Otherwise, the raw bytes are
 #' converted to characters using the system encoding before writing using
 #' [base::rawToChar()].
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' Use `file = stdout()` to write to the standard output, i.e. to the
 #' console in an interactive R session.
@@ -45,7 +43,7 @@
 #' Invisibly returns `NULL`.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_write_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_write")}
 #' @export
 #' @examplesIf Sys.getenv("IN_PKGDOWN") == "true"

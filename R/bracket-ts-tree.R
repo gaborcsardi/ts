@@ -14,13 +14,11 @@
 #'   to a data frame, and
 #' * `data.frame`, since it is a data frame internally.
 #'
-#' <p>
-#'
 #' The `ts_tree` class has custom [format()] and [print()] methods, that
 #' show (part of) the underlying document, and also the selected elements,
 #' if any.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' It is sometimes useful to treat a `tree` `ts_tree` object as a data
 #' frame, and drop the `ts_tree` classes. This can be done by indexing with
@@ -73,7 +71,7 @@
 #' @return \eval{ts:::doc_insert("ts::ts_tree_brackets_return")}
 #'
 #' @name ts_tree-brackets
-#' @family `ts_tree` exploration
+#' @family ts_tree exploration
 #' @seealso \eval{ts:::doc_seealso("[")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)

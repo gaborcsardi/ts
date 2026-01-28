@@ -37,13 +37,13 @@ json |> ts_tree_query("(number) @number")
 
 \eval{ts:::doc_seealso("ts_tree_query")}
 
-Other \code{ts_tree} exploration: 
+Other ts_tree exploration: 
 \code{\link{ts_tree-brackets}},
 \code{\link{ts_tree_ast}()},
 \code{\link{ts_tree_dom}()},
 \code{\link{ts_tree_sexpr}()}
 
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{[[<-.ts_tree}()},
 \code{\link{format.ts_tree}()},
@@ -61,5 +61,5 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_update}()},
 \code{\link{ts_tree_write}()}
 }
-\concept{\code{ts_tree} exploration}
-\concept{\code{ts_tree} generics}
+\concept{ts_tree exploration}
+\concept{ts_tree generics}

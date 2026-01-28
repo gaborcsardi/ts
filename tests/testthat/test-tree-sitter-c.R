@@ -1,4 +1,5 @@
 test_that("get_ranges", {
+  skip_if_not_installed("tsjsonc")
   withr::local_seed(13)
   randomstr <- function() {
     l <- as.integer(runif(1) * 3)
@@ -42,6 +43,7 @@ test_that("get_ranges", {
 })
 
 test_that("new_lookahead_sym", {
+  skip_if_not_installed("tsjsonc")
   expect_snapshot({
     tree <- ts_tree_new(
       tsjsonc::ts_language_jsonc(),
@@ -72,6 +74,7 @@ test_that("parse", {
 })
 
 test_that("check_predicate_eq", {
+  skip_if_not_installed("tsjsonc")
   withr::local_options(width = 1000)
 
   # compare to string
@@ -118,6 +121,7 @@ test_that("check_predicate_eq", {
 })
 
 test_that("r_grepl", {
+  skip_if_not_installed("tsjsonc")
   withr::local_options(width = 1000)
 
   tree <- ts_tree_new(

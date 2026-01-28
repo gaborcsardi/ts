@@ -4,14 +4,14 @@
 #' currently selected nodes. For each selector, it is applied individually
 #' to each currently selected node, and the results are concatenated.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' The selection process starts from the root of the DOM tree, the document
 #' node (see \code{\link[ts:ts_tree_dom]{ts_tree_dom()}}), unless
 #' `refine = TRUE` is set, in which case it starts from the current
 #' selection.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' See the various types of selection expressions below.
 #'
@@ -52,7 +52,7 @@
 #' a tree-sitter query. See \code{\link[ts:ts_tree_query]{ts_tree_query()}}
 #' for details on tree-sitter queries.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' Instead of a character scalar this can also be a two-element list, where
 #' the first element is the query string and the second element is a
@@ -96,8 +96,6 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_select_brackets")}
 #'
-#' <p>
-#'
 #' The `[[<-` operator works similarly to the combination of
 #' \code{\link[ts:ts_tree_select]{ts_tree_select()}} and
 #' \code{\link[ts:ts_tree_update]{ts_tree_update()}}, (and also to the
@@ -136,7 +134,7 @@ NULL
 #' A `ts_tree` object with the selected parts.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_select_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_select")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
@@ -240,7 +238,14 @@ normalize_selectors <- function(tree, slts) {
 #' @param tree A `ts_tree` object as returned by [ts_tree_new()].
 #' @param node Integer scalar, the node id to select from.
 #' @param slt A selector object, see details in [ts_tree_select()].
+#'
+#' @return Must return an integer vector of selected node ids.
+#'
 #' @export
+#' @examples
+#' # This is an internal generic for parser implementations, see the
+#' # tsjsonc and tstoml packages for examples of methods implementing
+#' # selector types.
 
 ts_tree_select1 <- function(tree, node, slt) {
   treesel <- structure(
@@ -469,8 +474,6 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #' tree[[list(<selectors>)]]
 #' ```
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("ts_tree_select_brackets")}
 #'
 #' ## The `[[<-` replacement operator
@@ -504,8 +507,9 @@ ts_tree_select1.ts_tree.logical <- function(tree, node, slt) {
 #'
 #' @ts ts_tree_double_bracket_return
 #' List of R objects, with one entry for each selected element.
+#' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @family serialization functions
 #' @rdname double-bracket-ts-tree
 #' @export
@@ -601,6 +605,11 @@ minimize_selection <- function(tree, ids) {
 #'   of selectors.
 #'
 #' @export
+#' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
+#' # Create a parse tree with tsjsonc -------------------------------------
+#' tree <- tsjsonc::ts_parse_jsonc('{"a": 13, "b": [1, 2, 3], "c": "x"}')
+#' tree <- ts_tree_select(tree, "b", -1)
+#' ts_tree_selection(tree)
 
 ts_tree_selection <- function(tree, default = TRUE) {
   sel <- attr(tree, "selection")
@@ -681,7 +690,7 @@ ts_tree_selector_default <- function(tree) {
 #'
 #' @name select-set
 #' @rdname select-set
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
@@ -757,7 +766,7 @@ ts_tree_selector_default <- function(tree) {
 #' The modified `ts_tree` object.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_double_bracket_set_return")}
 #' @rdname double-bracket-set-ts-tree
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------

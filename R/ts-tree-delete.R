@@ -10,21 +10,15 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_delete_details_formatting")}
 #'
-#' <p>
-#'
 #' If the tree does not have a selection, the tree corresponding to the
 #' empty document is returned, i.e. the whole content is deleted.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_delete_details_no_selection")}
 #'
-#' <p>
-#'
 #' If the tree has a selection, but it is the empty selection, then
 #' the tree is returned unchanged.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_delete_details_empty_selection")}
-#'
-#' <p>
 #'
 #' For parsers that support comments, deleting elements that include
 #' comments typically delete the comments as well. Other comments are
@@ -52,7 +46,7 @@
 #' The modified `ts_tree` object with the selected elements removed.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_delete_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_delete")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)

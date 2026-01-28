@@ -20,8 +20,8 @@
 #' @return \eval{ts:::doc_insert("ts::ts_tree_sexpr_return")}
 #'
 #' @export
-#' @family `ts_tree` exploration
-#' @family `ts_tree` generics
+#' @family ts_tree exploration
+#' @family ts_tree generics
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
 #' tree <- tsjsonc::ts_parse_jsonc(

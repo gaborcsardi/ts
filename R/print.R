@@ -9,8 +9,6 @@
 #' ts_tree object, writes the formatted object to the standard output, and
 #' returns the original object invisibly.
 #'
-#' <p>
-#'
 #' \eval{ts:::doc_tabs("print_examples")}
 #' @details \eval{ts:::doc_insert("ts::print_details")}
 #'
@@ -26,7 +24,7 @@
 #' Invisibly returns the original `ts_tree` object.
 #' @return \eval{ts:::doc_insert("ts::print_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
@@ -51,12 +49,13 @@ print.ts_tree <- function(x, n = 10, ...) {
 #' possibly useful to obtain a printed representation without doing the
 #' actual printing.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
+#'
 #' If there are selected nodes in the tree, those will be highlighted
 #' in the output. See \code{\link[ts:ts_tree_select]{ts_tree_select()}} to
 #' select nodes in a tree.
 #'
-#' <p>
+#' </p><p><!-- ------------------------------------------------------>
 #'
 #' \eval{ts:::doc_tabs("format_examples")}
 #'
@@ -77,7 +76,7 @@ print.ts_tree <- function(x, n = 10, ...) {
 #' Character vector of lines to print.
 #' @return \eval{ts:::doc_insert("ts::format_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)
 #' # Create a parse tree with tsjsonc -------------------------------------
@@ -145,6 +144,10 @@ ts_tree_mark_selection <- function(tree, node) {
 #' @param node Node id, integer scalar.
 #' @return Integer vector of node ids to highlight.
 #' @export
+#' @examples
+#' # This is an internal generic for parser implementations, see the
+#' # tsjsonc and tstoml packages for examples of methods implementing
+#' # custom behavior.
 
 ts_tree_mark_selection1 <- function(tree, node) {
   UseMethod("ts_tree_mark_selection1")

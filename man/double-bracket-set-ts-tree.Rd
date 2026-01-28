@@ -37,7 +37,7 @@ tree
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other \code{ts_tree} generics: 
+Other ts_tree generics: 
 \code{\link{[[.ts_tree}()},
 \code{\link{format.ts_tree}()},
 \code{\link{print.ts_tree}()},
@@ -55,4 +55,4 @@ Other \code{ts_tree} generics:
 \code{\link{ts_tree_update}()},
 \code{\link{ts_tree_write}()}
 }
-\concept{\code{ts_tree} generics}
+\concept{ts_tree generics}

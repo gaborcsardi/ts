@@ -3,10 +3,7 @@
 If no elements are selected in the tree, then the whole document is
 unserialized.
 
-\eval{ts:::doc_tabs("ts_tree_unserialize_details_no_selection")}\if{html}{\out{
-<p>
-}}
-
+\eval{ts:::doc_tabs("ts_tree_unserialize_details_no_selection")}
 
 If the tree has an empty selection, then an empty list is returned.
 

@@ -16,13 +16,9 @@
 #'
 #' \eval{ts:::doc_tabs("ts_tree_format_details_no_selection")}
 #'
-#' <p>
-#'
 #' If `tree` has an empty selection, then it is returned unchanged.
 #'
 #' \eval{ts:::doc_tabs("ts_tree_format_details_empty_selection")}
-#'
-#' <p>
 #'
 #' Some parsers support options to customize the formatting.
 #' See details in the manual of the specific parser.
@@ -44,8 +40,6 @@
 #' @param options
 #' \eval{ts:::doc_insert("ts::ts_tree_format_param_options")}
 #'
-#' <p>
-#'
 #' See details in the manual of the specific parser.
 #'
 #' @param ... Extra arguments for methods.
@@ -54,7 +48,7 @@
 #' The `ts_tree` object of the reformatted document.
 #' @return \eval{ts:::doc_insert("ts::ts_tree_format_return")}
 #'
-#' @family `ts_tree` generics
+#' @family ts_tree generics
 #' @seealso \eval{ts:::doc_seealso("ts_tree_format")}
 #' @export
 #' @examplesIf requireNamespace("tsjsonc", quietly = TRUE)

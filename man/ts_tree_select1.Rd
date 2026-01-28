@@ -40,6 +40,9 @@ ts_tree_select1(tree, node, slt)
 
 \item{slt}{A selector object, see details in \code{\link[=ts_tree_select]{ts_tree_select()}}.}
 }
+\value{
+Must return an integer vector of selected node ids.
+}
 \description{
 This function is for packages implementing new parsers based on the ts
 package. It is very unlikely that you will need to call this function
@@ -161,4 +164,9 @@ This method is used when the selector is a logical vector.
 The default implementation only supports scalar \code{TRUE}, which selects
 all DOM children of \code{node}. Other values raise an error.
 }
+}
+\examples{
+# This is an internal generic for parser implementations, see the
+# tsjsonc and tstoml packages for examples of methods implementing
+# selector types.
 }
