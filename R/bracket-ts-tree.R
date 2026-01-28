@@ -87,3 +87,10 @@
   requireNamespace("pillar", quietly = TRUE)
   NextMethod("[")
 }
+
+#' @export
+
+`$.ts_tree` <- function(x, name) {
+  class(x) <- setdiff(class(x), "ts_tree")
+  NextMethod(`$`)
+}

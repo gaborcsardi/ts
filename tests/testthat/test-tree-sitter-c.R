@@ -32,14 +32,18 @@ test_that("get_ranges", {
   })
 
   # invalid ranges
-  expect_snapshot(error = TRUE, {
-    ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = 1:10)
-    ranges2 <- data.frame(a = 0:1, b = 0:1, c = 0:1, d = 0:1, e = 1, f = 0:1)
-    ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = ranges2)
-    ranges3 <- ranges
-    ranges3$start_byte[1] <- 100L
-    ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = ranges3)
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = 1:10)
+      ranges2 <- data.frame(a = 0:1, b = 0:1, c = 0:1, d = 0:1, e = 1, f = 0:1)
+      ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = ranges2)
+      ranges3 <- ranges
+      ranges3$start_byte[1] <- 100L
+      ts_tree_new(tsjsonc::ts_language_jsonc(), text = txt, ranges = ranges3)
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("new_lookahead_sym", {
@@ -65,12 +69,16 @@ test_that("ts_xtree_free", {
 })
 
 test_that("parse", {
-  expect_snapshot(error = TRUE, {
-    ts_tree_new(
-      structure("jsonc", class = c("ts_language_jsonc", "ts_language")),
-      text = '{"a": '
-    )
-  })
+  expect_snapshot(
+    error = TRUE,
+    {
+      ts_tree_new(
+        structure("jsonc", class = c("ts_language_jsonc", "ts_language")),
+        text = '{"a": '
+      )
+    },
+    variant = if (getRversion() <= "3.5.100") "old" else "new"
+  )
 })
 
 test_that("check_predicate_eq", {

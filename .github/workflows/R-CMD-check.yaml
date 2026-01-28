@@ -35,6 +35,9 @@ jobs:
           - {os: ubuntu-latest,  r: 'oldrel-2'}
           - {os: ubuntu-latest,  r: 'oldrel-3'}
           - {os: ubuntu-latest,  r: 'oldrel-4'}
+          - {os: ubuntu-latest,  r: 'oldrel-5'}
+          - {os: ubuntu-latest,  r: 'oldrel-6'}
+          - {os: ubuntu-latest,  r: 'oldrel-7'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -50,6 +53,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+
+      - name: R profile to set 'repos' on older R versions
+        run: |
+          if (!file.exists("~/.Rprofile")) {
+            file.create("~/.Rprofile")
+          }
+          file.append("~/.Rprofile", file.path("tools", "ci", "Rprofile"))
+        shell: Rscript {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
