@@ -224,7 +224,7 @@ roxy_tag_parse.roxy_tag_ts <- function(x) {
     add = TRUE
   )
 
-  x <- roxygen2::tag_markdown_with_sections(x)
+  x <- asNamespace("roxygen2")$tag_markdown_with_sections(x)
   x$val <- list(
     file = file,
     title = title,
@@ -234,12 +234,12 @@ roxy_tag_parse.roxy_tag_ts <- function(x) {
 }
 
 roclet_ts <- function() {
-  roxygen2::roclet("ts")
+  asNamespace("roxygen2")$roclet("ts")
 }
 
 roclet_process.roclet_ts <- function(x, blocks, env, base_path) {
   for (block in blocks) {
-    tags <- roxygen2::block_get_tags(block, "ts")
+    tags <- asNamespace("roxygen2")$block_get_tags(block, "ts")
 
     for (tag in tags) {
       path <- file.path(
